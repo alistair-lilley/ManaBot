@@ -1,0 +1,102 @@
+1 Kaalia of the Vast
+1 Blood Crypt
+1 Godless Shrine
+1 Sacred Foundry
+4 Mountain
+5 Plains
+5 Swamp
+1 Marsh Flats
+1 Sulfurous Springs
+1 Battlefield Forge
+1 Caves of Koilos
+1 Smoldering Marsh
+1 Rakdos Carnarium
+1 Graven Cairns
+1 Bloodstained Mire
+1 Arid Mesa
+1 Prismatic Vista
+1 Orzhov Basilica
+1 Boros Garrison
+1 Rugged Prairie
+1 Fetid Heath
+1 Chromatic Lantern
+1 Arcane Signet
+1 Sol Ring
+1 Orzhov Signet
+1 Boros Signet
+1 Rakdos Signet
+1 Talisman of Conviction
+1 Talisman of Hierarchy
+1 Talisman of Indulgence
+1 Darksteel Ingot
+1 Mardu Banner
+1 Command Tower
+1 Clifftop Retreat
+1 Path to Exile
+1 Return to Dust
+1 Anguished Unmaking
+1 Utter End
+1 Wrath of God
+1 Lightning Greaves
+1 Demonic Tutor
+1 Dragon Tempest
+1 Swords to Plowshares
+1 Karmic Guide
+1 Utvara Hellkite
+1 Balefire Dragon
+1 Phyrexian Arena
+1 Rakdos, Lord of Riots
+1 Merciless Eviction
+1 Terminate
+1 Smothering Tithe
+1 Chaos Warp
+1 Grim Tutor
+1 Whip of Erebos
+1 Land Tax
+1 Tithe
+1 Ghostly Prison
+1 Serra the Benevolent
+1 Bruna, the Fading Light
+1 Gisela, the Broken Blade
+1 Ob Nixilis, Unshackled
+1 Tariel, Reckoner of Souls
+1 Archfiend of Despair
+1 Bladewing the Risen
+1 Angelic Skirmisher
+1 Linvala, Keeper of Silence
+1 Akroma, Angel of Fury
+1 Indulgent Tormentor
+1 Terror of Mount Velus
+1 Ryusei, the Falling Star
+1 Basandra, Battle Seraph
+1 Adarkar Valkyrie
+1 Brisela, Voice of Nightmares
+1 Vilis, Broker of Blood
+1 Athreos, God of Passage
+1 Deadly Rollick
+1 Night's Whisper
+1 Reanimate
+1 Boros Charm
+1 Primevals' Glorious Rebirth
+1 Darksteel Plate
+1 Rakdos Charm
+1 Bedevil
+1 Giver of Runes
+1 Nullpriest of Oblivion
+1 Cartographer's Hawk
+1 Damnation
+1 Ruinous Ultimatum
+1 Savai Triome
+1 Solemn Simulacrum
+SB: 1 Sower of Discord
+SB: 1 Planar Cleansing
+SB: 1 Despark
+SB: 1 Phyrexian Reclamation
+SB: 1 Orzhov Charm
+SB: 1 Rise of the Dark Realms
+SB: 1 Diabolic Tutor
+SB: 1 Faithless Looting
+SB: 1 Aven Mindcensor
+SB: 1 Boros Locket
+SB: 1 Orzhov Locket
+SB: 1 Rakdos Locket

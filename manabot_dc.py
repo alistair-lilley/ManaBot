@@ -1,9 +1,11 @@
 import os, discord, requests
+from datetime import datetime
 from dotenv import load_dotenv
 from preftree import PrefNode
 from CARDparser import parseCOD
 from convertDecks import convert
-from loadImages import loadAllImages, simplifyName
+from loadImages import loadAllImages
+from helpers import simplifyName, stripExt
 
 # Load all environment variables
 load_dotenv()
@@ -12,6 +14,7 @@ GUILD = os.getenv('GUILD')
 path_to_cards = os.getenv('CARDPATH')
 path_to_bot = os.getenv('BOTPATH')
 imageDirs = os.getenv('IMAGEPATH')
+me = os.getenv('KOKIDC')
 
 client = discord.Client()
 
@@ -20,7 +23,7 @@ client = discord.Client()
 ########################################################################################################################
 
 # Load name dicts and card prefix tree
-images, names = loadAllImages(imageDirs)
+images, names, loadingErrors = loadAllImages(imageDirs)
 cardTree = PrefNode({"Name": '', "Type": ''})
 parseCOD(path_to_cards, cardTree)
 
@@ -39,6 +42,12 @@ async def on_ready():
         f'{client.user} is connected to the following guild:\n'
         f'{guild.name}(id: {guild.id})'
     )
+
+    dt = datetime.now().strftime("%d-%m-%Y %H:%M ")
+    errs = dt+loadingErrors
+
+    user=await client.fetch_user(me)
+    await user.send(errs)
 
 # React to messages
 @client.event
@@ -93,8 +102,7 @@ async def on_message(message):
         # get filename
         fullname = message.attachments[0].filename
         # get name w/o ext and ext w/o name
-        ext = '.'+fullname.split(".")[-1]
-        name = fullname[:-len(ext)]
+        name, ext = stripExt(fullname)
         # if the ext is .cod, convert it
         if ext in ['.cod','.mwDeck']:
             # get url

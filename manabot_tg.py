@@ -1,10 +1,12 @@
-import os, logging, hashlib
+import asyncio, os, logging, hashlib
+from datetime import datetime
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, executor
 from PIL import Image
 from preftree import PrefNode
 from CARDparser import parseCOD
-from loadImages import loadAllImages, simplifyName
+from loadImages import loadAllImages
+from helpers import simplifyName
 from aiogram.types import InlineQuery, \
     InputTextMessageContent, InlineQueryResultArticle, InlineQueryResultCachedPhoto, InputFile
 
@@ -14,7 +16,7 @@ TOKEN = os.getenv('TGTOKEN')
 path_to_cards = os.getenv('CARDPATH')
 path_to_bot = os.getenv('BOTPATH')
 imageDirs = os.getenv('IMAGEPATH')
-me = os.getenv('KOKIO')
+me = os.getenv('KOKITG')
 
 logging.basicConfig(level=logging.DEBUG)
 bot = Bot(token=TOKEN)
@@ -29,11 +31,27 @@ dp = Dispatcher(bot)
 cardTree = PrefNode({"Name": '', "Type": ''})
 parseCOD(path_to_cards, cardTree)
 
-images, names = loadAllImages(imageDirs)
+images, names, loadingErrors = loadAllImages(imageDirs)
+
+print("Number of images loaded:",len(images))
 
 # This specifically stores the file id of cards already sent with the bot so it doesn't have to send the same cards
 # over and over and over again
 foundCards = {}
+
+########################################################################################################################
+########################################################################################################################
+########################################################################################################################
+
+# Submit card database errors
+async def submitErrors():
+    dt = datetime.now().strftime("%d-%m-%Y %H:%M ")
+    errs = dt+loadingErrors
+    await bot.send_message(me,errs)
+
+# Startup
+async def on_startup(d: Dispatcher):
+    asyncio.create_task(submitErrors())
 
 ########################################################################################################################
 ########################################################################################################################
@@ -52,6 +70,7 @@ async def postCard(message: InlineQuery):
     try:
         # gets the proper name
         propName = names[cardname]
+        print("Card found!",propName)
         # gets the path to the proper name
         path = imageDirs + '/' + images[propName] + '/' + propName + '.jpg'
         # Sets an id for sending the message
@@ -75,7 +94,7 @@ async def postCard(message: InlineQuery):
             foundCards[propName] = pic.photo[0].file_id
             await bot.delete_message(me,pic.message_id)
             # Creates the cardpic variable for sending the file
-            cardpic = InlineQueryResultCachedPhoto(id=result_id, title=[propName],photo_file_id=foundCards[propName])
+            cardpic = InlineQueryResultCachedPhoto(id=result_id,title=propName,photo_file_id=foundCards[propName])
     # If all that fails...
     except:
         # Prints a debugging error
@@ -132,11 +151,11 @@ async def postCard(message: InlineQuery):
         res.append(cardd)
 
     # Try sending the data, and if it cant just throw an error
-    try:
+    if len(res) > 0:
         await bot.answer_inline_query(message.id, results=res, cache_time=1)
-    except:
+    else:
         print("error\n\n")
 
 
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    executor.start_polling(dp, on_startup=on_startup, skip_updates=True)

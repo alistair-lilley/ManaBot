@@ -1,0 +1,88 @@
+1 Vanquisher's Banner
+1 Door of Destinies
+1 Regal Caracal
+1 King of the Pride
+1 Pride Sovereign
+1 Leonin Warleader
+1 Qasali Slingers
+1 Bronzehide Lion
+1 Prowling Serpopard
+1 Adorned Pouncer
+1 White Sun's Zenith
+1 Jazal Goldmane
+1 Hungry Lynx
+1 Brimaz, King of Oreskos
+1 Morophon, the Boundless
+1 Alms Collector
+1 Stalking Leonin
+1 Leonin Arbiter
+1 Leonin Shikari
+1 Balan, Wandering Knight
+1 Taj-Nar Swordsmith
+1 Path to Exile
+1 Swords to Plowshares
+1 Generous Gift
+1 Smothering Tithe
+1 Heroic Intervention
+1 Eladamri's Call
+1 Beast Within
+1 Flawless Maneuver
+1 Krosan Grip
+1 Enlightened Tutor
+1 Return to Dust
+1 Worldly Tutor
+1 Rampant Growth
+1 Cultivate
+1 Kodama's Reach
+1 Wrath of God
+1 Planar Cleansing
+1 Austere Command
+1 Finale of Devastation
+1 Herald's Horn
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Icon of Ancestry
+1 Sword of Light and Shadow
+1 Sword of the Animist
+1 Sword of Truth and Justice
+1 Darksteel Plate
+1 Coat of Arms
+1 Godsend
+1 Sword of Feast and Famine
+1 Sword of Fire and Ice
+1 Mirari's Wake
+1 Cathars' Crusade
+1 Sigarda's Aid
+1 Rancor
+1 Radiant Destiny
+1 Sylvan Library
+1 Ajani, Strength of the Pride
+1 Ajani, Adversary of Tyrants
+1 Ajani, the Greathearted
+1 Rogue's Passage
+1 Sol Ring
+1 Arcane Signet
+1 Selesnya Cluestone
+1 Selesnya Locket
+1 Selesnya Signet
+1 Commander's Sphere
+1 Talisman of Unity
+1 Chromatic Lantern
+1 Command Tower
+1 Temple Garden
+1 Windswept Heath
+1 Misty Rainforest
+1 Marsh Flats
+1 Path of Ancestry
+1 Sunpetal Grove
+1 Selesnya Sanctuary
+1 Evolving Wilds
+1 Prismatic Vista
+1 Terramorphic Expanse
+9 Plains
+8 Forest
+1 Brushland
+1 Arahbo, Roar of the World
+1 Kaheera, the Orphanguard
+SB: 1 Journey to Nowhere
+SB: 1 Oblivion Ring

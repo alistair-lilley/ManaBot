@@ -2,7 +2,7 @@ import os, discord, requests
 from dotenv import load_dotenv
 from preftree import PrefNode
 from CARDparser import parseCOD
-from CODtoTXT import convert
+from convertDecks import convert
 from loadImages import loadAllImages, simplifyName
 
 # Load all environment variables
@@ -88,22 +88,22 @@ async def on_message(message):
             except:
                 print("Card not found. Did you mean...")
 
-    # Convert .cods to .txts
+    # Convert .toparse and .decs to .txts
     if message.attachments:
         # get filename
         fullname = message.attachments[0].filename
         # get name w/o ext and ext w/o name
-        name = fullname[:-4]
-        ext = fullname[-4:]
+        ext = '.'+fullname.split(".")[-1]
+        name = fullname[:-len(ext)]
         # if the ext is .cod, convert it
-        if ext == '.cod':
+        if ext in ['.cod','.mwDeck']:
             # get url
             furl = message.attachments[0].url
             # download file
             r = requests.get(furl)
-            open(path_to_bot+"/cods/"+fullname, 'wb').write(r.content)
+            open(path_to_bot+"/toparse/"+fullname, 'wb').write(r.content)
             # convert file
-            convert(path_to_bot,name)
+            convert(path_to_bot,name,ext)
             # reupload file
             with open(path_to_bot+"/txts/"+name+".txt",'rb') as upload:
                 await channel.send(file=discord.File(upload,name+".txt"))

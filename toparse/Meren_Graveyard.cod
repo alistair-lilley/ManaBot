@@ -11,7 +11,6 @@
         <card number="1" name="Jarad, Golgari Lich Lord"/>
         <card number="1" name="Sakura-Tribe Elder"/>
         <card number="1" name="Putrefy"/>
-        <card number="1" name="Animate Dead"/>
         <card number="1" name="Jarad's Orders"/>
         <card number="1" name="Acidic Slime"/>
         <card number="1" name="Grisly Salvage"/>
@@ -30,7 +29,6 @@
         <card number="1" name="Urborg, Tomb of Yawgmoth"/>
         <card number="1" name="Entomb"/>
         <card number="1" name="Satyr Wayfinder"/>
-        <card number="1" name="Golgari Thug"/>
         <card number="1" name="Reclamation Sage"/>
         <card number="1" name="Phyrexian Delver"/>
         <card number="1" name="Demonic Tutor"/>
@@ -76,7 +74,6 @@
         <card number="1" name="Grim Tutor"/>
         <card number="1" name="Vampiric Tutor"/>
         <card number="1" name="Stitcher's Supplier"/>
-        <card number="1" name="Rhizome Lurcher"/>
         <card number="1" name="Golgari Cluestone"/>
         <card number="1" name="Golgari Locket"/>
         <card number="1" name="Prismatic Vista"/>
@@ -85,6 +82,9 @@
         <card number="1" name="Rampant Growth"/>
         <card number="1" name="Solemn Simulacrum"/>
         <card number="1" name="Butcher of Malakir"/>
+        <card number="1" name="Cabal Therapist"/>
+        <card number="1" name="Yawgmoth, Thran Physician"/>
+        <card number="1" name="Viscera Seer"/>
     </zone>
     <zone name="side">
         <card number="1" name="Fleshbag Marauder"/>
@@ -93,6 +93,5 @@
         <card number="1" name="Deathrite Shaman"/>
         <card number="1" name="Syr Konrad, the Grim"/>
         <card number="1" name="Golgari Grave-Troll"/>
-        <card number="1" name="Viscera Seer"/>
     </zone>
 </cockatrice_deck>

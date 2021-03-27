@@ -140,6 +140,7 @@ Card: AKR/The Locust God.jpg
 Card: AKR/Desert of the True.jpg
 Card: AKR/Thoughtseize.jpg
 Card: AKR/Scavenger Grounds.jpg
+Card: AKR/Baleful Ammit.jpg
 Card: AKR/Trial of Ambition.jpg
 Card: AKR/Sheltered Thicket.jpg
 Card: AKR/Sunscorched Desert.jpg
@@ -764,6 +765,7 @@ Card: THB/Unknown Shores.jpg
 Card: THB/Satyr's Cunning.jpg
 Card: THB/Athreos, Shroud-Veiled.jpg
 Card: THB/Agonizing Remorse.jpg
+Card: THB/Nightmare Shepherd.jpg
 Card: THB/Labyrinth of Skophos.jpg
 Card: THB/Mystic Repeal.jpg
 Card: THB/Elspeth, Sun's Nemesis.jpg
@@ -1400,6 +1402,7 @@ Card: BFZ/Skyline Cascade.jpg
 
 Card: VIS/Griffin Canyon.jpg
 Card: VIS/Pillar Tombs of Aku.jpg
+Card: VIS/Aku Djinn.jpg
 Card: VIS/Butterfly.jpg
 Card: VIS/Chronatog.jpg
 Card: VIS/Phyrexian Marauder.jpg
@@ -1875,6 +1878,7 @@ Card: AVR/Predator's Gambit.jpg
 Card: AVR/Burn at the Stake.jpg
 Card: AVR/Hound of Griselbrand.jpg
 Card: AVR/Herald of War.jpg
+Card: AVR/Soulcage Fiend.jpg
 Card: AVR/Spirit .jpg
 Card: AVR/Defy Death.jpg
 Card: AVR/Blood Artist.jpg
@@ -3173,6 +3177,7 @@ Card: MM3/Bonfire of the Damned.jpg
 Card: MM3/Damnation.jpg
 Card: MM3/Night Terrors.jpg
 Card: MM3/Griselbrand.jpg
+Card: MM3/Desecration Demon.jpg
 Card: MM3/Skirsdag Cultist.jpg
 Card: MM3/Mortician Beetle.jpg
 
@@ -4333,6 +4338,7 @@ Card: BNG/Bolt of Keranos.jpg
 Card: BNG/Archetype of Courage.jpg
 Card: BNG/Ephara, God of the Polis.jpg
 Card: BNG/Archetype of Aggression.jpg
+Card: BNG/Herald of Torment.jpg
 Card: BNG/Cat Soldier.jpg
 Card: BNG/Spirit of the Labyrinth.jpg
 Card: BNG/Stormcaller of Keranos.jpg
@@ -4924,12 +4930,16 @@ Card: C16/Gamekeeper.jpg
 Card: C16/Windborn Muse.jpg
 
 
+Card: ARN/Jihad.jpg
+
+
 Card: M19/Liliana, the Necromancer.jpg
 Card: M19/Aether Tunnel.jpg
 Card: M19/Chromium, the Mutable.jpg
 Card: M19/Tezzeret, Artifice Master (Emblem).jpg
 Card: M19/Resplendent Angel.jpg
 Card: M19/Abnormal Endurance.jpg
+Card: M19/Liliana's Contract.jpg
 Card: M19/Tezzeret's Strider.jpg
 Card: M19/Disperse.jpg
 Card: M19/Timber Gorge.jpg
@@ -5615,6 +5625,7 @@ Card: CMA/Lu Xun, Scholar General.jpg
 Card: CMA/Control Magic.jpg
 Card: CMA/Leafdrake Roost.jpg
 Card: CMA/Sever the Bloodline.jpg
+Card: CMA/Reiver Demon.jpg
 Card: CMA/Slippery Karst.jpg
 Card: CMA/Deceiver Exarch.jpg
 Card: CMA/Kirtar's Wrath.jpg
@@ -7254,6 +7265,7 @@ Card: PDOM/Clifftop Retreat.jpg
 Card: PDOM/Sulfur Falls.jpg
 Card: PDOM/Verdant Force.jpg
 Card: PDOM/Oath of Teferi.jpg
+Card: PDOM/Demonlord Belzenlok.jpg
 Card: PDOM/Hinterland Harbor.jpg
 Card: PDOM/Gilded Lotus.jpg
 Card: PDOM/Aryel, Knight of Windgrace.jpg
@@ -7505,6 +7517,7 @@ Card: GRN/Beamsplitter Mage.jpg
 Card: GRN/Beacon Bolt.jpg
 Card: GRN/Molderhulk.jpg
 Card: GRN/Omnispell Adept.jpg
+Card: GRN/Doom Whisperer.jpg
 Card: GRN/Guildmages' Forum.jpg
 Card: GRN/Goblin Cratermaker.jpg
 Card: GRN/Thousand-Year Storm.jpg

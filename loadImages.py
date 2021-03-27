@@ -16,8 +16,12 @@ def loadAllImages(imageDir):
     imageDict = {} # cardname : path
     nameDict = {} # lowercase+nopunct cardname : proper cardname
     # Loop through subdirs in main dir
+    dircount = len(os.listdir(imageDir))
+    print(f'Total dirs: {dircount}')
+    dirscounted = 0
     failedDirs = []
     for d in os.listdir(imageDir):
+        dirscounted += 1
         # Loop through files in subdir
         numFiles = len(os.listdir(imageDir+"/"+d))
         aa = f'Cards in {d}: {numFiles}'
@@ -39,9 +43,16 @@ def loadAllImages(imageDir):
             failedDirs.append(d)
         cardsToWrite.append('\n')
         countToWrite.append('\n')
-    ee = "Failed directories:"
+    print(f'Counted dirs: {dirscounted}')
+    ee = "\nFailed directories: "
     for line in failedDirs:
-        ee += ', '+line
+        ee += line+', '
+    if not failedDirs:
+        ee += 'None -- all loaded\n'
+    if dircount != dirscounted:
+        ee += f'Error: {dircount - dirscounted} directories missing'
+    else:
+        ee += f'All dirs loaded ({dircount} of {dirscounted})'
     countToWrite.append(ee)
     countToWrite.append(f'Cards loaded: {len(imageDict)}')
     cardsfile.write('\n'.join(cardsToWrite))

@@ -43,10 +43,13 @@ async def on_ready():
         f'{guild.name}(id: {guild.id})'
     )
 
+
     dt = datetime.now().strftime("%d-%m-%Y %H:%M ")
     errs = dt+loadingErrors
 
     user=await client.fetch_user(me)
+    await user.send(f'{client.user} is connected to the following guild:')
+    await user.send(f'{guild.name}(id: {guild.id})')
     await user.send(errs)
 
 # React to messages

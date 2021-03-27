@@ -1,0 +1,96 @@
+1 Elf
+1 Shepherd
+1 Cemetery
+1 Foothills
+1 Heath
+1 Abbey
+1 Catacombs
+1 Tomb of Yawgmoth
+1
+1 Springs
+1 Ground
+1 Swamp
+1 Mountain
+5 Forest
+1 Tarn
+1 Vista
+1 Delta
+1 Tower
+1 Tomb
+1 Peatland
+1 Rainforest
+1 Wastes
+1 Wolf Run
+1 Forest
+1 Arbor
+1 Summit
+1 Vein
+1 Pathway
+1 Tower
+1 of Traitors
+1 Embereth
+1 Mire
+1 Crypt
+1
+1
+1 Mesa
+1 of Paradise
+1 Artist
+1 Druid
+1 Behemoth
+1 Shaman
+1 Druid
+1 of Deep Shadow
+1 Mystic
+1 Giant
+1 Elves
+1 Revenge
+1 Elves
+1 Cobra
+1 Battlement
+1 God of the Forge
+1 Beast
+1 Elder
+1 Caryatid
+1 Wall
+1 Satyr
+1 of Roots
+1 God of Revels
+1 of Calling
+1 Rotation
+1 Ritual
+1 Tutor
+1 Intent
+1
+1 to Dust
+1 Evolution
+1 of Devastation
+1 Sun's Zenith
+1 Spasm
+1 // Run
+1 of Kozilek
+1 Twist
+1 Lore
+1 for Tomorrow
+1 Pact
+1 Strike
+1
+1 Visits
+1 Tutor
+1 Monolith
+1 Relic
+1
+1
+1 Ground
+1 Wildspeaker
+1 Bombardment
+1
+1 of Rebirth
+1 Animosity
+1
+1 Sprawl
+1 Growth
+1 Haven
+1 Powerstone
+1 the Reveler
+1 Skyraider of Kher

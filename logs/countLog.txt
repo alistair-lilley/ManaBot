@@ -18,8 +18,8 @@ Cards in PM19: 10
 Loaded: 10
 
 
-Cards in AKR: 87
-Loaded: 87
+Cards in AKR: 88
+Loaded: 88
 
 
 Cards in HA3: 14
@@ -102,8 +102,8 @@ Cards in WTH: 13
 Loaded: 13
 
 
-Cards in THB: 53
-Loaded: 53
+Cards in THB: 54
+Loaded: 54
 
 
 Cards in PBFZ: 13
@@ -210,8 +210,8 @@ Cards in BFZ: 20
 Loaded: 20
 
 
-Cards in VIS: 12
-Loaded: 12
+Cards in VIS: 13
+Loaded: 13
 
 
 Cards in AJMP: 5
@@ -290,8 +290,8 @@ Cards in HA2: 9
 Loaded: 9
 
 
-Cards in AVR: 21
-Loaded: 21
+Cards in AVR: 22
+Loaded: 22
 
 
 Cards in PIDW: 1
@@ -438,8 +438,8 @@ Cards in PZ2: 17
 Loaded: 17
 
 
-Cards in MM3: 19
-Loaded: 19
+Cards in MM3: 20
+Loaded: 20
 
 
 Cards in DDJ: 4
@@ -662,8 +662,8 @@ Cards in APC: 6
 Loaded: 6
 
 
-Cards in BNG: 21
-Loaded: 21
+Cards in BNG: 22
+Loaded: 22
 
 
 Cards in F06: 1
@@ -798,8 +798,12 @@ Cards in C16: 24
 Loaded: 24
 
 
-Cards in M19: 38
-Loaded: 38
+Cards in ARN: 1
+Loaded: 1
+
+
+Cards in M19: 39
+Loaded: 39
 
 
 Cards in IMA: 30
@@ -906,8 +910,8 @@ Cards in XLN: 32
 Loaded: 32
 
 
-Cards in CMA: 32
-Loaded: 32
+Cards in CMA: 33
+Loaded: 33
 
 
 Cards in P02: 3
@@ -1206,8 +1210,8 @@ Cards in GN2: 8
 Loaded: 8
 
 
-Cards in PDOM: 15
-Loaded: 15
+Cards in PDOM: 16
+Loaded: 16
 
 
 Cards in THP3: 2
@@ -1286,9 +1290,11 @@ Cards in BBD: 19
 Loaded: 19
 
 
-Cards in GRN: 37
-Loaded: 37
+Cards in GRN: 38
+Loaded: 38
 
 
-Failed directories:
-Cards loaded: 6699
+
+Failed directories: None -- all loaded
+All dirs loaded (324 of 324)
+Cards loaded: 6709

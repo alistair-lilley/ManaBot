@@ -6,7 +6,6 @@
 1 Jarad, Golgari Lich Lord
 1 Sakura-Tribe Elder
 1 Putrefy
-1 Animate Dead
 1 Jarad's Orders
 1 Acidic Slime
 1 Grisly Salvage
@@ -25,7 +24,6 @@
 1 Urborg, Tomb of Yawgmoth
 1 Entomb
 1 Satyr Wayfinder
-1 Golgari Thug
 1 Reclamation Sage
 1 Phyrexian Delver
 1 Demonic Tutor
@@ -71,7 +69,6 @@
 1 Grim Tutor
 1 Vampiric Tutor
 1 Stitcher's Supplier
-1 Rhizome Lurcher
 1 Golgari Cluestone
 1 Golgari Locket
 1 Prismatic Vista
@@ -80,10 +77,12 @@
 1 Rampant Growth
 1 Solemn Simulacrum
 1 Butcher of Malakir
+1 Cabal Therapist
+1 Yawgmoth, Thran Physician
+1 Viscera Seer
 SB: 1 Fleshbag Marauder
 SB: 1 Dark Ritual
 SB: 1 Diabolic Tutor
 SB: 1 Deathrite Shaman
 SB: 1 Syr Konrad, the Grim
 SB: 1 Golgari Grave-Troll
-SB: 1 Viscera Seer

@@ -1,0 +1,10 @@
+from ctypes import *
+pT = CDLL('./prefTree.so')
+pT.newNode("")
+root = pT.newNode("")
+pT.readInNodes("allCards.txt",root)
+print("All cards read!")
+#pT.findAndPrint(root,"Phyrexian Tower")
+a = pT.printAllChildren(root)
+type(a)
+print(type(a))

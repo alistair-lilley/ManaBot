@@ -77,7 +77,7 @@ async def postCard(message: InlineQuery):
         result_id: str = hashlib.md5(cardname.encode()).hexdigest()
         # This try tries finding the file id in the dictionary
         try:
-            cardpic = InlineQueryResultCachedPhoto(id=result_id,photo_file_id=foundCards[propName])
+            photoid = foundCards[propName]
         # Its except loads or reloads the image if it cant find the file id
         except:
             # Checks to see if the file is too beeg
@@ -93,8 +93,10 @@ async def postCard(message: InlineQuery):
             pic = await bot.send_photo(me,cardphoto)
             foundCards[propName] = pic.photo[0].file_id
             await bot.delete_message(me,pic.message_id)
+            photoid = foundCards[propName]
             # Creates the cardpic variable for sending the file
-            cardpic = InlineQueryResultCachedPhoto(id=result_id,title=propName,photo_file_id=foundCards[propName])
+        # sends cardpic
+        cardpic = InlineQueryResultCachedPhoto(id=result_id, photo_file_id=photoid)
     # If all that fails...
     except:
         # Prints a debugging error

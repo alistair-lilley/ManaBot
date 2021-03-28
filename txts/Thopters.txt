@@ -1,0 +1,99 @@
+1 Planar Bridge
+1 Tamiyo's Journal
+1 Planar Portal
+1 Thopter Squadron
+1 Roterothopter
+1 Snare Thopter
+1 Thopter Assembly
+1 Flowstone Thopter
+1 Ornithopter
+1 Skyscanner
+1 Drill-Skimmer
+1 Hope of Ghirapur
+1 Retrofitter Foundry
+1 Whirlermaker
+1 Hangarback Walker
+1 Filigree Crawler
+1 Foundry of the Consuls
+1 Sword of War and Peace
+1 Sword of Light and Shadow
+1 Sword of Feast and Famine
+1 Sword of Truth and Justice
+1 Sword of Fire and Ice
+1 Sword of Sinew and Steel
+1 Sword of Body and Mind
+1 Mind Stone
+1 Hedron Archive
+1 Thran Dynamo
+1 Sol Ring
+1 Blinkmoth Urn
+1 Blinkmoth Nexus
+1 Blinkmoth Well
+1 Everflowing Chalice
+1 Dreamstone Hedron
+1 Basalt Monolith
+1 Mana Vault
+1 Unstable Obelisk
+1 Mind's Eye
+1 Nevinyrral's Disk
+1 Darksteel Forge
+1 Mycosynth Lattice
+1 War Room
+1 Phyrexian Triniform
+1 Forsaken Monument
+1 Foundry Inspector
+1 All Is Dust
+1 Ugin, the Ineffable
+1 Ugin, the Spirit Dragon
+1 Karn, the Great Creator
+1 Karn, Silver Golem
+1 Karn Liberated
+1 Jhoira's Familiar
+1 Mystic Forge
+1 Scour from Existence
+1 Swiftfoot Boots
+1 Blightsteel Colossus
+1 Darksteel Colossus
+1 Wurmcoil Engine
+1 Mycosynth Golem
+1 Walking Ballista
+1 Scrap Trawler
+1 Summoning Station
+1 Blasting Station
+1 Shrine of the Forsaken Gods
+1 Darksteel Citadel
+1 Inventors' Fair
+1 Buried Ruin
+1 Rogue's Passage
+1 Urza's Power Plant
+1 Urza's Tower
+1 Urza's Mine
+1 Zhalfirin Void
+1 Reliquary Tower
+1 Sea Gate Wreckage
+1 Tomb of the Spirit Dragon
+1 Bonders' Enclave
+1 Radiant Fountain
+1 Ghost Quarter
+1 Encroaching Wastes
+1 Mishra's Factory
+1 Dread Statuary
+1 Mystifying Maze
+1 Strip Mine
+1 Urza's Factory
+1 Field of the Dead
+1 Mutavault
+1 Blasted Landscape
+1 Nephalia Academy
+1 Ruins of Oran-Rief
+1 Crawling Barrens
+1 Thespian's Stage
+1 Cryptic Caves
+2 Wastes (a)
+1 Chief of the Foundry
+1 Steel Overseer
+1 Grindstone
+1 Painter's Servant
+1 Sensei's Divining Top
+1 Commander's Plate
+1 Karn, Scion of Urza

@@ -9,6 +9,12 @@
 '''
 import xml.etree.ElementTree as ET
 from preftree import PrefNode
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+path_to_cards = os.getenv('CARDPATH')
 
 # Parse the <prop> subtags
 # Just get all of the subtag data
@@ -55,3 +61,9 @@ def parseCOD(codfile, trieRoot):
             nodeEles = parseCard(card)
             newEle = PrefNode(nodeEles)
             trieRoot.addChild(newEle)
+
+
+if __name__ == "__main__":
+    cardTree = PrefNode({"Name": '', "Type": ''})
+    parseCOD(path_to_cards, cardTree)
+    print(cardTree.findAllSim('Phyrexian aren'))

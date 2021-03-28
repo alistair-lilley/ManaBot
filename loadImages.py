@@ -7,39 +7,37 @@ import os
 from helpers import stripExt, simplifyName
 
 # Creates two dictionaries recording the path and names of all files given a directory
+# Also includes error logs that are sent in direct messages to me
 def loadAllImages(imageDir):
     cardsfile = open('logs/cardLog.txt','w')
     countfile = open('logs/countLog.txt','w')
+    # Some debugging stuff -- variables to keep track of what cards have been added and what cards have been counted
     cardsToWrite = []
     countToWrite = []
-    # Initialize dicts
     imageDict = {} # cardname : path
     nameDict = {} # lowercase+nopunct cardname : proper cardname
-    # Loop through subdirs in main dir
-    dircount = len(os.listdir(imageDir))
-    print(f'Total dirs: {dircount}')
-    dirscounted = 0
-    failedDirs = []
+    dircount = len(os.listdir(imageDir)) # Count the number of directories for debugging
+    countToWrite.append(f'Total dirs: {dircount}') # debugging
+    dirscounted = 0 # initialize counting dirs
+    failedDirs = [] # set up what directories didn't load everything
     for d in os.listdir(imageDir):
-        dirscounted += 1
+        dirscounted += 1 # count the dir
         # Loop through files in subdir
         numFiles = len(os.listdir(imageDir+"/"+d))
-        aa = f'Cards in {d}: {numFiles}'
-        countToWrite.append(aa)
-        count = 0
+        # Debugging stuff -- count files in dir for counting files debugging
+        countToWrite.append(f'Cards in {d}: {numFiles}')
+        count = 0 # count cards
         for c in os.listdir(imageDir+"/"+d):
             propName, ext = stripExt(c) # Gets the name of the card without the extension
             imageDict[propName] = d # Corresponds card name with subdir
             lowerName = simplifyName(propName.lower()) # Gets the simplified name
             nameDict[lowerName] = propName # Corresponds simplified name with proper name
-            bb = f'Card: {d}/{propName}{ext}'
-            cardsToWrite.append(bb)
+            cardsToWrite.append(f'Card: {d}/{propName}{ext}')
             count += 1
-        cc = f'Loaded: {count}'
-        countToWrite.append(cc)
+        countToWrite.append(f'Loaded: {count}')
+        # Checks if the directory didn't get all the files, and adds to error logging if it didn't
         if numFiles != count:
-            dd = "Failed to load all files"
-            countToWrite.append(dd)
+            countToWrite.append("Failed to load all files")
             failedDirs.append(d)
         cardsToWrite.append('\n')
         countToWrite.append('\n')

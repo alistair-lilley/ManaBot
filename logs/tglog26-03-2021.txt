@@ -1,0 +1,32 @@
+Total dirs: 324
+Counted dirs: 324
+Number of images loaded: 6709
+Card found! Jihad
+Card found! Ramos, Dragon Engine
+Card found! _____
+Card found! Niv-Mizzet, Parun
+Card image not found: nivmizzet
+Card image not found: nivmizzet paragon
+Card image not found: nicol
+Card image not found: nicolbolas god pharo
+Card image not found: nicolbolas god pharoah
+Card image not found: nicol bolas god pharoah
+Card found! Nicol Bolas
+Card image not found: nicol bolas pharoah god
+Card found! _____
+Card image not found: nicol bolas godpharoah
+Card image not found: nicol bolas godpharoah
+Card found! _____
+Card found! Black Lotus
+Card image not found: brago g
+Card image not found: brago god eternla
+Card image not found: brago god eternal
+Card found! _____
+Card image not found: brago
+Card image not found: brago
+Card image not found: brago king
+Card found! _____
+Card image not found: thraben pureblood
+Card found! Thraben Purebloods
+Card not found. Big error.
+Card found! Silverchase Fox

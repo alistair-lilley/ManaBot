@@ -1,3 +1,4 @@
+Total dirs: 324
 Cards in PROE: 1
 Loaded: 1
 
@@ -6,20 +7,20 @@ Cards in WC99: 13
 Loaded: 13
 
 
-Cards in CON_: 12
-Loaded: 12
+Cards in CON_: 13
+Loaded: 13
 
 
-Cards in TSP: 21
-Loaded: 21
+Cards in TSP: 22
+Loaded: 22
 
 
 Cards in PM19: 10
 Loaded: 10
 
 
-Cards in AKR: 88
-Loaded: 88
+Cards in AKR: 89
+Loaded: 89
 
 
 Cards in HA3: 14
@@ -50,12 +51,12 @@ Cards in PZ1: 13
 Loaded: 13
 
 
-Cards in PZNR: 44
-Loaded: 44
+Cards in PZNR: 45
+Loaded: 45
 
 
-Cards in PSOI: 23
-Loaded: 23
+Cards in PSOI: 24
+Loaded: 24
 
 
 Cards in DGM: 8
@@ -66,12 +67,12 @@ Cards in FUT: 10
 Loaded: 10
 
 
-Cards in ME3: 70
-Loaded: 70
+Cards in ME3: 71
+Loaded: 71
 
 
-Cards in KHM: 192
-Loaded: 192
+Cards in KHM: 194
+Loaded: 194
 
 
 Cards in IKO: 31
@@ -94,8 +95,8 @@ Cards in 5ED: 37
 Loaded: 37
 
 
-Cards in CP2: 2
-Loaded: 2
+Cards in CP2: 3
+Loaded: 3
 
 
 Cards in WTH: 13
@@ -110,12 +111,12 @@ Cards in PBFZ: 13
 Loaded: 13
 
 
-Cards in PMOA: 30
-Loaded: 30
+Cards in PMOA: 31
+Loaded: 31
 
 
-Cards in M14: 26
-Loaded: 26
+Cards in M14: 27
+Loaded: 27
 
 
 Cards in PHPR: 1
@@ -130,8 +131,8 @@ Cards in DDL: 2
 Loaded: 2
 
 
-Cards in CMR: 205
-Loaded: 205
+Cards in CMR: 211
+Loaded: 211
 
 
 Cards in UGIN: 2
@@ -190,8 +191,8 @@ Cards in DDS: 11
 Loaded: 11
 
 
-Cards in OARC: 15
-Loaded: 15
+Cards in OARC: 16
+Loaded: 16
 
 
 Cards in SUM: 11
@@ -258,8 +259,8 @@ Cards in C15: 18
 Loaded: 18
 
 
-Cards in KLR: 66
-Loaded: 66
+Cards in KLR: 67
+Loaded: 67
 
 
 Cards in PARB: 1
@@ -306,8 +307,8 @@ Cards in AER: 10
 Loaded: 10
 
 
-Cards in MB1: 353
-Loaded: 353
+Cards in MB1: 358
+Loaded: 358
 
 
 Cards in MD1: 5
@@ -370,8 +371,8 @@ Cards in PLS: 12
 Loaded: 12
 
 
-Cards in MM2: 19
-Loaded: 19
+Cards in MM2: 22
+Loaded: 22
 
 
 Cards in ME2: 65
@@ -382,20 +383,20 @@ Cards in PRNA: 52
 Loaded: 52
 
 
-Cards in THS: 25
-Loaded: 25
+Cards in THS: 26
+Loaded: 26
 
 
 Cards in USG: 74
 Loaded: 74
 
 
-Cards in M20: 33
-Loaded: 33
+Cards in M20: 35
+Loaded: 35
 
 
-Cards in KHC: 56
-Loaded: 56
+Cards in KHC: 57
+Loaded: 57
 
 
 Cards in CC1: 5
@@ -426,8 +427,8 @@ Cards in AKH: 18
 Loaded: 18
 
 
-Cards in VMA: 63
-Loaded: 63
+Cards in VMA: 64
+Loaded: 64
 
 
 Cards in UNH: 22
@@ -446,8 +447,8 @@ Cards in DDJ: 4
 Loaded: 4
 
 
-Cards in BOK: 14
-Loaded: 14
+Cards in BOK: 15
+Loaded: 15
 
 
 Cards in CSP: 7
@@ -462,8 +463,8 @@ Cards in C19: 59
 Loaded: 59
 
 
-Cards in JOU: 16
-Loaded: 16
+Cards in JOU: 17
+Loaded: 17
 
 
 Cards in RTR: 21
@@ -502,8 +503,8 @@ Cards in GVL: 11
 Loaded: 11
 
 
-Cards in SOM: 14
-Loaded: 14
+Cards in SOM: 15
+Loaded: 15
 
 
 Cards in PGRN: 11
@@ -522,8 +523,8 @@ Cards in F10: 1
 Loaded: 1
 
 
-Cards in ZNR: 137
-Loaded: 137
+Cards in ZNR: 138
+Loaded: 138
 
 
 Cards in ARB: 11
@@ -542,8 +543,8 @@ Cards in J18: 1
 Loaded: 1
 
 
-Cards in PLIST: 141
-Loaded: 141
+Cards in PLIST: 144
+Loaded: 144
 
 
 Cards in M12: 16
@@ -566,8 +567,8 @@ Cards in 4ED: 30
 Loaded: 30
 
 
-Cards in KTK: 11
-Loaded: 11
+Cards in KTK: 12
+Loaded: 12
 
 
 Cards in RNA: 180
@@ -634,8 +635,8 @@ Cards in PCA: 7
 Loaded: 7
 
 
-Cards in ROE: 15
-Loaded: 15
+Cards in ROE: 16
+Loaded: 16
 
 
 Cards in SS3: 3
@@ -686,8 +687,8 @@ Cards in GS1: 3
 Loaded: 3
 
 
-Cards in GTC: 17
-Loaded: 17
+Cards in GTC: 18
+Loaded: 18
 
 
 Cards in PDTK: 4
@@ -754,8 +755,8 @@ Cards in CMD: 8
 Loaded: 8
 
 
-Cards in HOU: 13
-Loaded: 13
+Cards in HOU: 14
+Loaded: 14
 
 
 Cards in SS2: 3
@@ -778,8 +779,8 @@ Cards in DDU: 2
 Loaded: 2
 
 
-Cards in CN2: 14
-Loaded: 14
+Cards in CN2: 15
+Loaded: 15
 
 
 Cards in DDI: 9
@@ -798,16 +799,16 @@ Cards in C16: 24
 Loaded: 24
 
 
-Cards in ARN: 1
-Loaded: 1
+Cards in ARN: 2
+Loaded: 2
 
 
-Cards in M19: 39
-Loaded: 39
+Cards in M19: 40
+Loaded: 40
 
 
-Cards in IMA: 30
-Loaded: 30
+Cards in IMA: 32
+Loaded: 32
 
 
 Cards in OC20: 1
@@ -850,8 +851,8 @@ Cards in PAER: 6
 Loaded: 6
 
 
-Cards in TSB: 22
-Loaded: 22
+Cards in TSB: 23
+Loaded: 23
 
 
 Cards in THP1: 2
@@ -862,8 +863,8 @@ Cards in OC19: 1
 Loaded: 1
 
 
-Cards in EMN: 80
-Loaded: 80
+Cards in EMN: 82
+Loaded: 82
 
 
 Cards in TD0: 7
@@ -906,12 +907,12 @@ Cards in DDK: 7
 Loaded: 7
 
 
-Cards in XLN: 32
-Loaded: 32
-
-
-Cards in CMA: 33
+Cards in XLN: 33
 Loaded: 33
+
+
+Cards in CMA: 34
+Loaded: 34
 
 
 Cards in P02: 3
@@ -942,8 +943,8 @@ Cards in CM2: 38
 Loaded: 38
 
 
-Cards in RAV: 19
-Loaded: 19
+Cards in RAV: 22
+Loaded: 22
 
 
 Cards in GNT: 7
@@ -970,8 +971,8 @@ Cards in P04: 1
 Loaded: 1
 
 
-Cards in MMA: 11
-Loaded: 11
+Cards in MMA: 12
+Loaded: 12
 
 
 Cards in V16: 5
@@ -1042,16 +1043,16 @@ Cards in BTD: 5
 Loaded: 5
 
 
-Cards in NPH: 12
-Loaded: 12
+Cards in NPH: 23
+Loaded: 23
 
 
-Cards in C14: 26
-Loaded: 26
+Cards in C14: 27
+Loaded: 27
 
 
-Cards in POR: 1
-Loaded: 1
+Cards in POR: 2
+Loaded: 2
 
 
 Cards in LGN: 9
@@ -1118,8 +1119,8 @@ Cards in HTR: 1
 Loaded: 1
 
 
-Cards in PM20: 25
-Loaded: 25
+Cards in PM20: 26
+Loaded: 26
 
 
 Cards in DRK: 3
@@ -1134,8 +1135,8 @@ Cards in PCEL: 1
 Loaded: 1
 
 
-Cards in 2XM: 158
-Loaded: 158
+Cards in 2XM: 160
+Loaded: 160
 
 
 Cards in PRIX: 12
@@ -1162,8 +1163,8 @@ Cards in MMQ: 38
 Loaded: 38
 
 
-Cards in UST: 43
-Loaded: 43
+Cards in UST: 44
+Loaded: 44
 
 
 Cards in PIKO: 2
@@ -1182,8 +1183,8 @@ Cards in J21: 2
 Loaded: 2
 
 
-Cards in ALL: 7
-Loaded: 7
+Cards in ALL: 8
+Loaded: 8
 
 
 Cards in PXTC: 15
@@ -1210,8 +1211,8 @@ Cards in GN2: 8
 Loaded: 8
 
 
-Cards in PDOM: 16
-Loaded: 16
+Cards in PDOM: 18
+Loaded: 18
 
 
 Cards in THP3: 2
@@ -1226,16 +1227,16 @@ Cards in V11: 3
 Loaded: 3
 
 
-Cards in ME1: 46
-Loaded: 46
+Cards in ME1: 47
+Loaded: 47
 
 
 Cards in DDT: 6
 Loaded: 6
 
 
-Cards in DTK: 7
-Loaded: 7
+Cards in DTK: 8
+Loaded: 8
 
 
 Cards in PLC: 10
@@ -1270,8 +1271,8 @@ Cards in DDQ: 12
 Loaded: 12
 
 
-Cards in SCG: 6
-Loaded: 6
+Cards in SCG: 7
+Loaded: 7
 
 
 Cards in HOP: 5
@@ -1297,4 +1298,4 @@ Loaded: 38
 
 Failed directories: None -- all loaded
 All dirs loaded (324 of 324)
-Cards loaded: 6709
+Cards loaded: 6788

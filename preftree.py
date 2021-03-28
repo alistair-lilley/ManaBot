@@ -21,8 +21,24 @@
         - findAllSim - initiates a search for lowest edit distance cards
         - findSimilar - recursively looks through nodes and records which card names have the lowest edit dist
 '''
-from editDist import edist
+import eDistC
 from loadImages import simplifyName
+
+
+def addResult(name, cname, top, N):
+    # get the two names to lowercase no punctuation
+    sname = simplifyName(name)
+    c = simplifyName(cname)
+    # Gets edit distance
+    dist = eDistC.edist(c, sname, len(c), len(sname))
+    # Adds edit distance to top
+    top[name] = dist
+    # If there are more than N names in top, remove the one with the highest edit distance
+    if len(top) > N:
+        maxCard = max(top, key=top.get)
+        del (top[maxCard])
+    return top
+
 
 
 
@@ -124,25 +140,38 @@ class PrefNode:
     def findAllSim(self, cname, N=7):
         top = {} # Dictionary of top N cards
         # Recursively searches and edits top
-        for c in self.children:
-            top = c.findSimilar(cname, N, top)
+        top = self.findSimilar(self, cname, N, top)
         # Returns top as a list, ordered from lowest edit distance to highest edit distance
         return list(sorted(top,key=top.get))
 
-    # Recursively seasrch for similar cards
-    def findSimilar(self, cname, N, top):
-        # get the two names to lowercase no punctuation
-        sname = simplifyName(self.name)
-        c = simplifyName(cname)
-        # Gets edit distance
-        dist = edist(c,sname,len(c),len(sname))
-        # Adds edit distance to top
-        top[self.name] = dist
-        # If there are more than N names in top, remove the one with the highest edit distance
-        if len(top) > N:
-            maxCard = max(top,key=top.get)
-            del(top[maxCard])
-        # Do this through children recursively
-        for c in self.children:
-            top = c.findSimilar(cname, N, top)
+    # iteratively seasrch for similar cards
+    def findSimilar(self, par, cname, N, top):
+        parents = [par]
+        parchilds = [0]
+        i = 0
+        while len(parents) > 0:
+            top = addResult(parents[i].name, cname, top, N)
+            while parchilds[i] < len(parents[i].children):
+                if not parents[i].children[parchilds[i]].children:
+                    top = addResult(parents[i].children[parchilds[i]].name, cname, top, N)
+                    parchilds[i] += 1
+                    continue
+                if parents[i].children[parchilds[i]].children:
+                    parents.append(parents[i].children[parchilds[i]])
+                    parchilds.append(0)
+                    parchilds[i] += 1
+                    i += 1
+                    continue
+            parents = parents[:-1]
+            parchilds = parchilds[:-1]
+            i -= 1
         return top
+
+
+    # gets all cards for any reason needed
+    def allCards(self, cardList):
+        if self.name != '':
+            cardList.append(self.name)
+        for c in self.children:
+            cardList = c.allCards(cardList)
+        return cardList

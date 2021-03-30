@@ -1,14 +1,15 @@
 import asyncio, os, logging, hashlib
+
 from datetime import datetime
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, executor
 from PIL import Image
-from preftree import PrefNode
-from CARDparser import parseCOD
-from loadImages import loadAllImages
-from helpers import simplifyName
 from aiogram.types import InlineQuery, \
     InputTextMessageContent, InlineQueryResultArticle, InlineQueryResultCachedPhoto, InputFile
+
+from readInCards import parseCOD
+from loadImages import loadAllImages
+from helpers import *
 
 # Load all environment variables
 load_dotenv()
@@ -28,8 +29,8 @@ dp = Dispatcher(bot)
 ########################################################################################################################
 
 # Get the basic data: pre fix tree and name dictionaries
-cardTree = PrefNode({"Name": '', "Type": ''})
-parseCOD(path_to_cards, cardTree)
+cards = parseCOD(path_to_cards)
+mS(cards)
 
 images, names, loadingErrors = loadAllImages(imageDirs)
 
@@ -66,11 +67,19 @@ async def postCard(message: InlineQuery):
     cardname = simplifyName(message.query)
     # Sets description and pic to None in case the try-except fails
     cardd, cardpic = None, None
+    # result ids
+    pic_result_id: str = hashlib.md5(cardname.encode()).hexdigest()
+    c = cardname+'1'
+    text_result_id: str = hashlib.md5(c.encode()).hexdigest()
+
+
     # Try-except for the card image
     try:
         # gets the proper name
-        propName = names[cardname]
-        print("Card found!",propName)
+        if cardname in names:
+            propName = names[cardname]
+        else:
+            propName = findMostSimilar(cards,cardname)
         # gets the path to the proper name
         path = imageDirs + '/' + images[propName] + '/' + propName + '.jpg'
         # Sets an id for sending the message
@@ -96,7 +105,7 @@ async def postCard(message: InlineQuery):
             photoid = foundCards[propName]
             # Creates the cardpic variable for sending the file
         # sends cardpic
-        cardpic = InlineQueryResultCachedPhoto(id=result_id, photo_file_id=photoid)
+        cardpic = InlineQueryResultCachedPhoto(id=pic_result_id, photo_file_id=photoid)
     # If all that fails...
     except:
         # Prints a debugging error
@@ -104,41 +113,47 @@ async def postCard(message: InlineQuery):
         # Creates a card image error to send
         err = "Image for " + cardname + " not found"
         input_content = InputTextMessageContent(err)
-        result_id: str = hashlib.md5(cardname.encode()).hexdigest()
         cardpic = InlineQueryResultArticle(
-            id=result_id,
+            id=pic_result_id,
             title=f'Can\'t find image for {cardname!r}.',
             input_message_content=input_content,
         )
+
+
     # Try-except for card text
     try:
         # This is mostly just so it doesn't crash in the next lines
         # It sets "propName" to cardname, then if it exists in the names dictionary, it replaces it
-        propName = cardname
+        similars = findSimilar(cards, cardname)
         if cardname in names:
             propName = names[cardname]
+        else:
+            propName = similars[0]
         # Gets card data from card prefix tree
-        cardData = cardTree.findAndPrint(cardname)
-        # Id for message
-        c = cardname+'1'
-        result_id: str = hashlib.md5(c.encode()).hexdigest()
-        # Creates message content from card data
-        input_content = InputTextMessageContent(cardData)
-        # Creates result article to send-
-        cardd = InlineQueryResultArticle(
-            id=result_id,
-            title=f'Information for {propName!r}',
-            input_message_content=input_content,
-        )
-        # If it couldn't find the card...
-        if cardData == "Card not found. Did you mean...\n":
+        try:
+            card = binarySearch(cards, cardname)
+            cardData = card.printData()
+            # Id for message
+            # Creates message content from card data
+            input_content = InputTextMessageContent(cardData)
+            # Creates result article to send-
+            cardd = InlineQueryResultArticle(
+                id=text_result_id,
+                title=f'Information for {propName!r}',
+                input_message_content=input_content,
+            )
+        except:
+            # If it couldn't find the card...
             # Add onto cardData the similar results
-            simcards = cardData+'\n'.join(cardTree.findAllSim(cardname))
+            card = binarySearch(cards, propName)
+            cardData = card.printData()
+            similars = '\n'.join(similars[1:])
+            simcards = f'Card not found. Closest match:{propName}\n{cardData}\n\nDid you mean...\n{similars}'
             input_content = InputTextMessageContent(simcards)
             # Use that as the card data
             cardd = InlineQueryResultArticle(
-                id=result_id,
-                title=f'Info not found. Did you mean...',
+                id=text_result_id,
+                title=f'Info not found. Did you mean...\n',
                 input_message_content=input_content,
             )
     except:

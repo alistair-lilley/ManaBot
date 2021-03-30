@@ -1,11 +1,12 @@
 import os, discord, requests
 from datetime import datetime
 from dotenv import load_dotenv
-from preftree import PrefNode
-from CARDparser import parseCOD
+
+from readInCards import parseCOD
 from convertDecks import convert
 from loadImages import loadAllImages
-from helpers import simplifyName, stripExt
+
+from helpers import *
 
 # Load all environment variables
 load_dotenv()
@@ -24,8 +25,8 @@ client = discord.Client()
 
 # Load name dicts and card prefix tree
 images, names, loadingErrors = loadAllImages(imageDirs)
-cardTree = PrefNode({"Name": '', "Type": ''})
-parseCOD(path_to_cards, cardTree)
+cards = parseCOD(path_to_cards)
+mS(cards)
 
 ########################################################################################################################
 ########################################################################################################################
@@ -73,32 +74,28 @@ async def on_message(message):
             # Get the cardname
             cardname = simplifyName(' '.join(contParsed[1:]))
             # try-except for getting card pic
-            try:
-                # get proper name
+            # get proper name
+            similars = findSimilar(cards, cardname)
+            if cardname in names:
                 propName = names[cardname]
-                # get path
-                path = imageDirs+'/'+images[propName]+'/'+propName+'.jpg'
-                # send file
-                with open(path,'rb') as f:
-                    cardpic = discord.File(f)
-                    await channel.send(file=cardpic)
-
-            except:
-                # don't send if it can't find it
-                print("Image not found:",cardname)
-                await channel.send("Image not found")
-
-            # Try-except for card data
+            else:
+                propName = similars[0]
+            # get path
+            path = imageDirs+'/'+images[propName]+'/'+propName+'.jpg'
+            # send file
+            with open(path,'rb') as f:
+                cardpic = discord.File(f)
+                await channel.send(file=cardpic)
             try:
                 # get card data
-                cardData = cardTree.findAndPrint(cardname)
+                cardData = binarySearch(cards, cardname)
                 # send if possible
-                await channel.send(cardData)
-                # if it couldn't find it, send similar data
-                if cardData == "Card not found. Did you mean...\n":
-                    await channel.send('\n'.join(cardTree.findAllSim(cardname)))
+                await channel.send(cardData.printData())
+            # if it couldn't find it, send similar data
             except:
-                print("Card not found. Did you mean...")
+                similars = '\n'.join(similars[1:])
+                cardData = binarySearch(cards, propName).printData()
+                await channel.send(f"Card not found. Most similar is:\n{cardData}\n\nDid you mean...\n{similars}")
 
     # Convert .toparse and .decs to .txts
     if message.attachments:

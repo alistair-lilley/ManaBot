@@ -83,7 +83,6 @@ async def postCard(message: InlineQuery):
         except:
             similars = findSimilar(cardsSimple,cardname)
             propName = names[similars[0]]
-        print(f'\n\n{propName}\n\n')
         # gets the path to the proper name
         path = imageDirs + '/' + images[propName] + '/' + propName + '.jpg'
         # This try tries finding the file id in the dictionary

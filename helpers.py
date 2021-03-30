@@ -36,7 +36,7 @@ def firstdiff(nameL, nameR):
     return False
 
 
-
+# NO LONGER USED
 def binarySearch(cardlist, name):
     if len(cardlist) == 1:
         if cardlist[0] == name:
@@ -48,8 +48,6 @@ def binarySearch(cardlist, name):
     elif firstdiff(name, cardlist[m].name):
         return binarySearch(cardlist[:m], name)
     return binarySearch(cardlist[m+1:], name)
-
-
 
 
 def merge(arr, l, m, r):
@@ -115,6 +113,7 @@ def mS(arr):
 
 
 def findSimilar(cards, name, N=7):
+    tops = {}
     top = {}
     for card in cards:
         try:
@@ -124,13 +123,14 @@ def findSimilar(cards, name, N=7):
             # Gets edit distance
             dist = eDistC.edist(c, n, len(c), len(n))
             # Adds edit distance to top
-            top[card] = dist
-            # If there are more than N names in top, remove the one with the highest edit distance
-            if len(top) > N:
-                maxCard = max(top, key=top.get)
-                del (top[maxCard])
+            tops[card] = dist
         except:
             print(f"Uh-oh! {card} had an error")
+    # If there are more than N names in top, remove the one with the highest edit distance
+    while len(top) < N:
+        maxCard = min(tops, key=tops.get)
+        top[maxCard] = tops[maxCard]
+        del(tops[maxCard])
     toplist = list(sorted(top,key=top.get))
     return toplist
 

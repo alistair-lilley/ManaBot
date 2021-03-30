@@ -24,9 +24,7 @@ def simplifyName(name):
 # if all the letters are the same to maxLen...
 #    if the left name is shorter, return True
 #    if the right name is shorter (aka else), return False
-def firstdiff(cardL, cardR):
-    nameL = simplifyName(cardL)
-    nameR = simplifyName(cardR)
+def firstdiff(nameL, nameR):
     maxLen = min(len(nameL),len(nameR))
     for i in range(maxLen):
         if nameL[i] < nameR[i]:
@@ -41,11 +39,11 @@ def firstdiff(cardL, cardR):
 
 def binarySearch(cardlist, name):
     if len(cardlist) == 1:
-        if simplifyName(cardlist[0].name) == simplifyName(name):
+        if cardlist[0] == name:
             return cardlist[0]
         return None
     m = len(cardlist) // 2
-    if simplifyName(cardlist[m].name) == simplifyName(name):
+    if cardlist[m].name == name:
         return cardlist[m]
     elif firstdiff(name, cardlist[m].name):
         return binarySearch(cardlist[:m], name)
@@ -59,8 +57,8 @@ def merge(arr, l, m, r):
     n2 = r - m
 
     # create temp arrays
-    L = [0] * (n1)
-    R = [0] * (n2)
+    L = [""] * (n1)
+    R = [""] * (n2)
 
     # Copy data to temp arrays L[] and R[]
     for i in range(0, n1):
@@ -75,7 +73,7 @@ def merge(arr, l, m, r):
     k = l  # Initial index of merged subarray
 
     while i < n1 and j < n2:
-        if firstdiff(L[i].name,R[j].name):
+        if firstdiff(L[i],R[j]):
             arr[k] = L[i]
             i += 1
         else:
@@ -121,18 +119,18 @@ def findSimilar(cards, name, N=7):
     for card in cards:
         try:
             # get the two names to lowercase no punctuation
-            c = simplifyName(card.name)
+            c = simplifyName(card)
             n = simplifyName(name)
             # Gets edit distance
             dist = eDistC.edist(c, n, len(c), len(n))
             # Adds edit distance to top
-            top[card.name] = dist
+            top[card] = dist
             # If there are more than N names in top, remove the one with the highest edit distance
             if len(top) > N:
                 maxCard = max(top, key=top.get)
                 del (top[maxCard])
         except:
-            print(f"Uh-oh! {card.name} had an error")
+            print(f"Uh-oh! {card} had an error")
     toplist = list(sorted(top,key=top.get))
     return toplist
 

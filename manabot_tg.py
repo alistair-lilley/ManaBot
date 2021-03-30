@@ -28,11 +28,15 @@ dp = Dispatcher(bot)
 ########################################################################################################################
 ########################################################################################################################
 
-# Get the basic data: pre fix tree and name dictionaries
-cards = parseCOD(path_to_cards)
-mS(cards)
-
+# Load name dicts and card prefix tree
 images, names, loadingErrors = loadAllImages(imageDirs)
+cards = parseCOD(path_to_cards)
+# the "exists" dictionary is for quick lookup time
+exists = {simplifyName(c.name):c for c in cards}
+# and the cardsSimple is for binary searches
+cardsSimple = [c for c in exists]
+mS(cardsSimple)
+
 
 print("Number of images loaded:",len(images))
 
@@ -65,25 +69,23 @@ async def on_startup(d: Dispatcher):
 async def postCard(message: InlineQuery):
     # Get cardname simplified
     cardname = simplifyName(message.query)
-    # Sets description and pic to None in case the try-except fails
-    cardd, cardpic = None, None
     # result ids
     pic_result_id: str = hashlib.md5(cardname.encode()).hexdigest()
     c = cardname+'1'
     text_result_id: str = hashlib.md5(c.encode()).hexdigest()
-
+    similars = []
 
     # Try-except for the card image
     try:
         # gets the proper name
-        if cardname in names:
+        try:
             propName = names[cardname]
-        else:
-            propName = findMostSimilar(cards,cardname)
+        except:
+            similars = findSimilar(cardsSimple,cardname)
+            propName = names[similars[0]]
+        print(f'\n\n{propName}\n\n')
         # gets the path to the proper name
         path = imageDirs + '/' + images[propName] + '/' + propName + '.jpg'
-        # Sets an id for sending the message
-        result_id: str = hashlib.md5(cardname.encode()).hexdigest()
         # This try tries finding the file id in the dictionary
         try:
             photoid = foundCards[propName]
@@ -93,7 +95,7 @@ async def postCard(message: InlineQuery):
             sizecheck = Image.open(path)
             if sizecheck.size[0] > 300:
                 # and resizes it to 375x500 if so
-                resized = sizecheck.resize((300,400), Image.ANTIALIAS)
+                resized = sizecheck.resize((350,466), Image.ANTIALIAS)
                 path = path_to_bot+'/resizedpics/'+propName+'.jpg' # if it resizes, it gets the new pic's file path
                 resized.save(path)
             # That part is specifically to make sure it CAN send the file, cuz if it's too big it wont send
@@ -121,43 +123,40 @@ async def postCard(message: InlineQuery):
 
 
     # Try-except for card text
+    # This is mostly just so it doesn't crash in the next lines
+    # It sets "propName" to cardname, then if it exists in the names dictionary, it replaces it
+    # Gets card data from card prefix tree
     try:
-        # This is mostly just so it doesn't crash in the next lines
-        # It sets "propName" to cardname, then if it exists in the names dictionary, it replaces it
-        similars = findSimilar(cards, cardname)
-        if cardname in names:
-            propName = names[cardname]
-        else:
-            propName = similars[0]
-        # Gets card data from card prefix tree
-        try:
-            card = binarySearch(cards, cardname)
-            cardData = card.printData()
-            # Id for message
-            # Creates message content from card data
-            input_content = InputTextMessageContent(cardData)
-            # Creates result article to send-
-            cardd = InlineQueryResultArticle(
-                id=text_result_id,
-                title=f'Information for {propName!r}',
-                input_message_content=input_content,
-            )
-        except:
-            # If it couldn't find the card...
-            # Add onto cardData the similar results
-            card = binarySearch(cards, propName)
-            cardData = card.printData()
-            similars = '\n'.join(similars[1:])
-            simcards = f'Card not found. Closest match:{propName}\n{cardData}\n\nDid you mean...\n{similars}'
-            input_content = InputTextMessageContent(simcards)
-            # Use that as the card data
-            cardd = InlineQueryResultArticle(
-                id=text_result_id,
-                title=f'Info not found. Did you mean...\n',
-                input_message_content=input_content,
-            )
+        card = exists[cardname]
+        propName = card.name
+        cardData = card.printData()
+        # Id for message
+        # Creates message content from card data
+        input_content = InputTextMessageContent(cardData)
+        # Creates result article to send-
+        cardd = InlineQueryResultArticle(
+            id=text_result_id,
+            title=f'Information for {propName!r}',
+            input_message_content=input_content,
+        )
     except:
-        print("Card not found. Big error.")
+        if not similars:
+            similars = findSimilar(cardsSimple, cardname)
+        # If it couldn't find the card...
+        # Add onto cardData the similar results
+        card = exists[similars[0]]
+        cardData = card.printData()
+        propName = card.name
+        propSims = [exists[sim].name for sim in similars]
+        similars = '\n'.join(propSims[1:])
+        simcards = f'Card not found. Closest match:{propName}\n{cardData}\n\nDid you mean...\n{similars}'
+        input_content = InputTextMessageContent(simcards)
+        # Use that as the card data
+        cardd = InlineQueryResultArticle(
+            id=text_result_id,
+            title=f'Info not found. Did you mean...\n',
+            input_message_content=input_content,
+        )
 
     # Results array
     # Store cardpic and cardd if they are found; if they failed, ignore them

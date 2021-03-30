@@ -30,7 +30,7 @@ def loadAllImages(imageDir):
         for c in os.listdir(imageDir+"/"+d):
             propName, ext = stripExt(c) # Gets the name of the card without the extension
             imageDict[propName] = d # Corresponds card name with subdir
-            lowerName = simplifyName(propName.lower()) # Gets the simplified name
+            lowerName = simplifyName(propName) # Gets the simplified name
             nameDict[lowerName] = propName # Corresponds simplified name with proper name
             cardsToWrite.append(f'Card: {d}/{propName}{ext}')
             count += 1

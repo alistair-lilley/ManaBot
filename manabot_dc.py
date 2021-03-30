@@ -26,7 +26,11 @@ client = discord.Client()
 # Load name dicts and card prefix tree
 images, names, loadingErrors = loadAllImages(imageDirs)
 cards = parseCOD(path_to_cards)
-mS(cards)
+# the "exists" dictionary is for quick lookup time
+exists = {simplifyName(c.name):c for c in cards}
+# and the cardsSimple is for binary searches
+cardsSimple = [c for c in exists]
+mS(cardsSimple)
 
 ########################################################################################################################
 ########################################################################################################################
@@ -49,9 +53,7 @@ async def on_ready():
     errs = dt+loadingErrors
 
     user=await client.fetch_user(me)
-    await user.send(f'{client.user} is connected to the following guild:')
-    await user.send(f'{guild.name}(id: {guild.id})')
-    await user.send(errs)
+    await user.send(f'{client.user} is connected to the following guild:\n{guild.name}(id: {guild.id})\n{errs})')
 
 # React to messages
 @client.event
@@ -75,26 +77,31 @@ async def on_message(message):
             cardname = simplifyName(' '.join(contParsed[1:]))
             # try-except for getting card pic
             # get proper name
-            similars = findSimilar(cards, cardname)
+            similars = findSimilar(cardsSimple, cardname)
+            print(similars)
             if cardname in names:
                 propName = names[cardname]
             else:
-                propName = similars[0]
+                propName = names[similars[0]]
             # get path
             path = imageDirs+'/'+images[propName]+'/'+propName+'.jpg'
             # send file
             with open(path,'rb') as f:
                 cardpic = discord.File(f)
                 await channel.send(file=cardpic)
+
             try:
                 # get card data
-                cardData = binarySearch(cards, cardname)
+                card = exists[cardname]
+                cardData = card.printData()
                 # send if possible
-                await channel.send(cardData.printData())
+                await channel.send(cardData)
             # if it couldn't find it, send similar data
             except:
-                similars = '\n'.join(similars[1:])
-                cardData = binarySearch(cards, propName).printData()
+                card = exists[similars[0]]
+                cardData = card.printData()
+                propSims = [exists[sim].name for sim in similars]
+                similars = '\n'.join(propSims[1:])
                 await channel.send(f"Card not found. Most similar is:\n{cardData}\n\nDid you mean...\n{similars}")
 
     # Convert .toparse and .decs to .txts

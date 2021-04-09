@@ -83,12 +83,15 @@ async def on_message(message):
                 propName = names[cardname]
             else:
                 propName = names[similars[0]]
-            # get path
-            path = imageDirs+'/'+images[propName]+'/'+propName+'.jpg'
-            # send file
-            with open(path,'rb') as f:
-                cardpic = discord.File(f)
-                await channel.send(file=cardpic)
+            try:
+                # get path
+                path = imageDirs+'/'+images[propName]+'/'+propName+'.jpg'
+                # send file
+                with open(path,'rb') as f:
+                    cardpic = discord.File(f)
+                    await channel.send(file=cardpic)
+            except:
+                await channel.send("Card image not found")
 
             try:
                 # get card data

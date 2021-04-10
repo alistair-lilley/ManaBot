@@ -1,25 +1,28 @@
-import asyncio, os, logging, hashlib
+'''                                                  MANABOT FOR TELEGRAM                                            '''
+'''
+    Mana Bot main (telegram implementation)
+'''
+# Bot-oriented imports
+import asyncio, os, logging
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, executor
-from aiogram.types import InlineQuery, \
-    InputTextMessageContent, InlineQueryResultArticle, InlineQueryResultCachedPhoto, InputFile
+from aiogram.types import InlineQuery
 
 from datetime import datetime
-from PIL import Image
 
-from readInCards import parseCOD
-from loadImages import loadAllImages
 from helpers import *
+from cardmanager import CardMgr
 
 # Load all environment variables
 load_dotenv()
 TOKEN = os.getenv('TGTOKEN')
 path_to_cards = os.getenv('CARDPATH')
 path_to_bot = os.getenv('BOTPATH')
-imageDirs = os.getenv('IMAGEPATH')
+path_to_images = os.getenv('IMAGEPATH')
 me = os.getenv('KOKITG')
 
-logging.basicConfig(level=logging.DEBUG)
+# Start logging and initialize bot and dispatcher objects
+logging.basicConfig(level=logging.INFO)
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 
@@ -28,134 +31,47 @@ dp = Dispatcher(bot)
 ########################################################################################################################
 ########################################################################################################################
 
-# Load name dicts and card prefix tree
-images, names, loadingErrors = loadAllImages(imageDirs)
-cards = parseCOD(path_to_cards)
-# the "exists" dictionary is for quick lookup time
-exists = {simplifyName(c.name):c for c in cards}
-# and the cardsSimple is for binary searches
-cardsSimple = [c for c in exists]
-mS(cardsSimple)
-
-
-print("Number of images loaded:",len(images))
-
-# This specifically stores the file id of cards already sent with the bot so it doesn't have to send the same cards
-# over and over and over again
-foundCards = {}
+# Load CardMgr object
+# This will load image & name dicts, card list, exists set, searchable card list, and merge sort them
+# It will also store found cards for searching/checking
+CardManager = CardMgr(path_to_images,path_to_cards,path_to_bot,me,bot=bot)
 
 ########################################################################################################################
 ########################################################################################################################
 ########################################################################################################################
 
-# Submit card database errors
-async def submitErrors():
-    dt = datetime.now().strftime("%d-%m-%Y %H:%M ")
-    errs = dt+loadingErrors
-    await bot.send_message(me,errs)
+# Send startup message
+async def startAlert():
+    dt = datetime.now().strftime("%d-%m-%Y %H:%M")
+    upmsg = f"Bot has started: {dt}"
+    await bot.send_message(me,upmsg)
 
 # Startup
 async def on_startup(d: Dispatcher):
-    asyncio.create_task(submitErrors())
+    asyncio.create_task(startAlert())
 
 ########################################################################################################################
 ########################################################################################################################
 ########################################################################################################################
 
 # Inline handler
-# Man, fuck inline bots, they're such a pain
-# This function gets a card based on typing it in on the inline
+# This was one hell of a mess, so lets clean it up!
 @dp.inline_handler()
-async def postCard(message: InlineQuery):
-    # Get cardname simplified
-    cardname = simplifyName(message.query)
-    # result ids
-    pic_result_id: str = hashlib.md5(cardname.encode()).hexdigest()
-    c = cardname+'1'
-    text_result_id: str = hashlib.md5(c.encode()).hexdigest()
-    similars = []
+async def on_inline(message: InlineQuery):
+    simplified = simplifyString(message.query)
+    if simplified == '':
+        return
+    cardpic, cardd = None, None # just in case
 
-    # Try-except for the card image
     try:
-        # gets the proper name
-        try:
-            propName = names[cardname]
-        except:
-            similars = findSimilar(cardsSimple,cardname)
-            propName = names[similars[0]]
-        # gets the path to the proper name
-        path = imageDirs + '/' + images[propName] + '/' + propName + '.jpg'
-        # This try tries finding the file id in the dictionary
-        try:
-            photoid = foundCards[propName]
-        # Its except loads or reloads the image if it cant find the file id
-        except:
-            # Checks to see if the file is too beeg
-            sizecheck = Image.open(path)
-            if sizecheck.size[0] > 300:
-                # and resizes it to 375x500 if so
-                resized = sizecheck.resize((350,466), Image.ANTIALIAS)
-                path = path_to_bot+'/resizedpics/'+propName+'.jpg' # if it resizes, it gets the new pic's file path
-                resized.save(path)
-            # That part is specifically to make sure it CAN send the file, cuz if it's too big it wont send
-            cardphoto = InputFile(path)
-            # Sends the pic to me, saves the file id, and deletes the photo
-            pic = await bot.send_photo(me,cardphoto)
-            foundCards[propName] = pic.photo[0].file_id
-            await bot.delete_message(me,pic.message_id)
-            photoid = foundCards[propName]
-            # Creates the cardpic variable for sending the file
-        # sends cardpic
-        cardpic = InlineQueryResultCachedPhoto(id=pic_result_id, photo_file_id=photoid)
-    # If all that fails...
+        cardpic = await CardManager.searchImage(simplified)
     except:
-        # Prints a debugging error
-        print("Card image not found:",cardname)
-        # Creates a card image error to send
-        err = "Image for " + cardname + " not found"
-        input_content = InputTextMessageContent(err)
-        cardpic = InlineQueryResultArticle(
-            id=pic_result_id,
-            title=f'Can\'t find image for {cardname!r}.',
-            input_message_content=input_content,
-        )
+        await bot.send_message(me,"Whoa! Big error in card pic search\nNext is card data search")
 
-
-    # Try-except for card text
-    # This is mostly just so it doesn't crash in the next lines
-    # It sets "propName" to cardname, then if it exists in the names dictionary, it replaces it
-    # Gets card data from card prefix tree
     try:
-        card = exists[cardname]
-        propName = card.name
-        cardData = card.printData()
-        # Id for message
-        # Creates message content from card data
-        input_content = InputTextMessageContent(cardData)
-        # Creates result article to send-
-        cardd = InlineQueryResultArticle(
-            id=text_result_id,
-            title=f'Information for {propName!r}',
-            input_message_content=input_content,
-        )
+        cardd = await CardManager.searchDescription(simplified)
     except:
-        if not similars:
-            similars = findSimilar(cardsSimple, cardname)
-        # If it couldn't find the card...
-        # Add onto cardData the similar results
-        card = exists[similars[0]]
-        cardData = card.printData()
-        propName = card.name
-        propSims = [exists[sim].name for sim in similars]
-        similars = '\n'.join(propSims[1:])
-        simcards = f'Card not found. Closest match:{propName}\n{cardData}\n\nDid you mean...\n{similars}'
-        input_content = InputTextMessageContent(simcards)
-        # Use that as the card data
-        cardd = InlineQueryResultArticle(
-            id=text_result_id,
-            title=f'Info not found. Did you mean...\n',
-            input_message_content=input_content,
-        )
+        await bot.send_message(me,"Whoa! Big error in card data search")
 
     # Results array
     # Store cardpic and cardd if they are found; if they failed, ignore them
@@ -169,7 +85,9 @@ async def postCard(message: InlineQuery):
     if len(res) > 0:
         await bot.answer_inline_query(message.id, results=res, cache_time=1)
     else:
-        print("error\n\n")
+        await bot.send_message(me, f"There was an issue with sending a response to this query: {message}.\n"
+                                   f"EVERYTHING went wrong, bro. Everything.")
+
 
 
 if __name__ == '__main__':

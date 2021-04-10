@@ -45,8 +45,10 @@ Card: TSP/Hypergenesis.jpg
 Card: TSP/Magus of the Jar.jpg
 Card: TSP/Triskelavite.jpg
 Card: TSP/Saffi Eriksdotter.jpg
+Card: TSP/Mindstab.jpg
 Card: TSP/Flickering Spirit.jpg
 Card: TSP/Nether Traitor.jpg
+Card: TSP/Venser's Sliver.jpg
 Card: TSP/Two-Headed Sliver.jpg
 Card: TSP/Knight of the Holy Nimbus.jpg
 Card: TSP/Ashcoat Bear.jpg
@@ -80,6 +82,7 @@ Card: AKR/Pride Sovereign.jpg
 Card: AKR/Throne of the God-Pharaoh.jpg
 Card: AKR/InsultInjury.jpg
 Card: AKR/Shatterstorm.jpg
+Card: AKR/Rhonas's Monument.jpg
 Card: AKR/Oashra Cultivator.jpg
 Card: AKR/Fetid Pools.jpg
 Card: AKR/Angel of Sanctions.jpg
@@ -88,12 +91,14 @@ Card: AKR/Horror of the Broken Lands.jpg
 Card: AKR/Desert of the Indomitable.jpg
 Card: AKR/Sidewinder Naga.jpg
 Card: AKR/Rhonas the Indomitable.jpg
+Card: AKR/Chandra's Defeat.jpg
 Card: AKR/Imminent Doom.jpg
 Card: AKR/Oketra's Avenger.jpg
 Card: AKR/Abandoned Sarcophagus.jpg
 Card: AKR/Kefnet the Mindful.jpg
 Card: AKR/Sandwurm Convergence.jpg
 Card: AKR/Sweltering Suns.jpg
+Card: AKR/Manglehorn.jpg
 Card: AKR/By Force.jpg
 Card: AKR/Hazoret's Monument.jpg
 Card: AKR/The Scorpion God.jpg
@@ -101,6 +106,7 @@ Card: AKR/Binding Mummy.jpg
 Card: AKR/Canyon Slough.jpg
 Card: AKR/Festering Mummy.jpg
 Card: AKR/Torment of Hailfire.jpg
+Card: AKR/Naga Vitalist.jpg
 Card: AKR/Gravedigger.jpg
 Card: AKR/Renewed Faith.jpg
 Card: AKR/Curator of Mysteries.jpg
@@ -110,6 +116,7 @@ Card: AKR/Forsake the Worldly.jpg
 Card: AKR/Oketra the True.jpg
 Card: AKR/Nissa, Steward of Elements.jpg
 Card: AKR/Hour of Devastation.jpg
+Card: AKR/ConsignOblivion.jpg
 Card: AKR/Liliana's Mastery.jpg
 Card: AKR/Cascading Cataracts.jpg
 Card: AKR/The Scarab God.jpg
@@ -141,8 +148,10 @@ Card: AKR/Archfiend of Ifnir.jpg
 Card: AKR/The Locust God.jpg
 Card: AKR/Desert of the True.jpg
 Card: AKR/Thoughtseize.jpg
+Card: AKR/Cartouche of Ambition.jpg
 Card: AKR/Scavenger Grounds.jpg
 Card: AKR/Bontu's Last Reckoning.jpg
+Card: AKR/Chandra, Pyromaster.jpg
 Card: AKR/Baleful Ammit.jpg
 Card: AKR/Trial of Ambition.jpg
 Card: AKR/Sheltered Thicket.jpg
@@ -297,6 +306,7 @@ Card: PZNR/Ondu Skyruins.jpg
 Card: PZNR/Wayward Guide-Beast.jpg
 Card: PZNR/Timbercrown Pathway.jpg
 Card: PZNR/Crawling Barrens.jpg
+Card: PZNR/Felidar Retreat.jpg
 Card: PZNR/Kazandu Valley.jpg
 Card: PZNR/Scute Swarm.jpg
 Card: PZNR/Glasspool Shore.jpg
@@ -309,6 +319,7 @@ Card: PZNR/Sea Gate Stormcaller.jpg
 Card: PZNR/Emeria, Shattered Skyclave.jpg
 
 
+Card: PSOI/Thing in the Ice.jpg
 Card: PSOI/Westvale Cult Leader.jpg
 Card: PSOI/Diregraf Colossus.jpg
 Card: PSOI/Goldnight Castigator.jpg
@@ -339,6 +350,7 @@ Card: DGM/Boros Battleshaper.jpg
 Card: DGM/Exava, Rakdos Blood Witch.jpg
 Card: DGM/Gruul Cluestone.jpg
 Card: DGM/Izzet Cluestone.jpg
+Card: DGM/Mindstatic.jpg
 Card: DGM/Selesnya Cluestone.jpg
 Card: DGM/Debt to the Deathless.jpg
 Card: DGM/Aetherling.jpg
@@ -349,12 +361,15 @@ Card: FUT/Magus of the Future.jpg
 Card: FUT/Cloud Key.jpg
 Card: FUT/Pact of the Titan.jpg
 Card: FUT/Baru, Fist of Krosa.jpg
+Card: FUT/Venser's Diffusion.jpg
 Card: FUT/Augur of Skulls.jpg
 Card: FUT/Intervention Pact.jpg
 Card: FUT/Snake Cult Initiation.jpg
 Card: FUT/Llanowar Elves (Token).jpg
 Card: FUT/Cloud Sprite (Token).jpg
 Card: FUT/Bonded Fetch.jpg
+Card: FUT/Judge Unworthy.jpg
+Card: FUT/Veilstone Amulet.jpg
 
 
 Card: ME3/Jedit Ojanen.jpg
@@ -376,6 +391,7 @@ Card: ME3/Faerie Noble.jpg
 Card: ME3/Blood Lust.jpg
 Card: ME3/Heavy Fog.jpg
 Card: ME3/Zodiac Dragon.jpg
+Card: ME3/Vaevictis Asmadi.jpg
 Card: ME3/Fire Ambush.jpg
 Card: ME3/Arcades Sabboth.jpg
 Card: ME3/Lu Bu, Master-at-Arms.jpg
@@ -501,6 +517,7 @@ Card: KHM/Snow-Covered Plains.jpg
 Card: KHM/Toralf, God of Fury.jpg
 Card: KHM/Shimmerdrift Vale.jpg
 Card: KHM/Tyrite Sanctum.jpg
+Card: KHM/Kardur, Doomscourge.jpg
 Card: KHM/Bound in Gold.jpg
 Card: KHM/Jorn, God of Winter.jpg
 Card: KHM/Valor of the Worthy.jpg
@@ -603,6 +620,7 @@ Card: KHM/Sulfurous Mire.jpg
 Card: KHM/Birgi, God of Storytelling.jpg
 Card: KHM/Island.jpg
 Card: KHM/Treasure.png
+Card: KHM/Shackles of Treachery.jpg
 Card: KHM/Shepherd of the Cosmos.jpg
 Card: KHM/Skemfar Avenger.jpg
 Card: KHM/Aegar, the Freezing Flame.jpg
@@ -641,6 +659,8 @@ Card: IKO/Colossification.jpg
 Card: IKO/General Kudro of Drannith.jpg
 Card: IKO/Eerie Ultimatum.jpg
 Card: IKO/Indatha Triome.jpg
+Card: IKO/Blisterspit Gremlin.jpg
+Card: IKO/Anticipate.jpg
 Card: IKO/Almighty Brushwagg.jpg
 Card: IKO/Lutri, the Spellchaser.jpg
 Card: IKO/Ketria Crystal.jpg
@@ -774,10 +794,12 @@ Card: THB/Unknown Shores.jpg
 Card: THB/Satyr's Cunning.jpg
 Card: THB/Athreos, Shroud-Veiled.jpg
 Card: THB/Agonizing Remorse.jpg
+Card: THB/Shadowspear.jpg
 Card: THB/Nightmare Shepherd.jpg
 Card: THB/Labyrinth of Skophos.jpg
 Card: THB/Mystic Repeal.jpg
 Card: THB/Elspeth, Sun's Nemesis.jpg
+Card: THB/Destiny Spinner.jpg
 Card: THB/Callaphe, Beloved of the Sea.jpg
 Card: THB/Flicker of Fate.jpg
 Card: THB/Nylea, Keen-Eyed.jpg
@@ -788,6 +810,8 @@ Card: THB/Tymaret, Chosen from Death.jpg
 Card: THB/Nyx Lotus.jpg
 Card: THB/Altar of the Pantheon.jpg
 Card: THB/Erebos, Bleak-Hearted.jpg
+Card: THB/Hero of the Winds.jpg
+Card: THB/Fateful End.jpg
 Card: THB/Bronzehide Lion.jpg
 Card: THB/Satyr .png
 Card: THB/Temple of Plenty.jpg
@@ -802,6 +826,7 @@ Card: THB/Temple of Enlightenment.jpg
 Card: THB/Alirios, Enraptured.jpg
 Card: THB/Polukranos, Unchained.jpg
 Card: THB/Enemy of Enlightenment.jpg
+Card: THB/Storm's Wrath.jpg
 Card: THB/Temple of Deceit.jpg
 Card: THB/Omen of the Sun.jpg
 Card: THB/Renata, Called to the Hunt.jpg
@@ -855,6 +880,7 @@ Card: PMOA/Seshiro the Anointed Avatar.jpg
 Card: PMOA/Erhnam Djinn Avatar.jpg
 Card: PMOA/Birds of Paradise Avatar.jpg
 Card: PMOA/Braids, Conjurer Adept Avatar.jpg
+Card: PMOA/Haakon, Stromgald Scourge Avatar.jpg
 Card: PMOA/Momir Vig, Simic Visionary Avatar.jpg
 Card: PMOA/Arcanis, the Omnipotent Avatar.jpg
 Card: PMOA/Chronatog Avatar.jpg
@@ -863,6 +889,7 @@ Card: PMOA/Mayael the Anima Avatar.jpg
 Card: PMOA/Murderous Redcap Avatar.jpg
 Card: PMOA/Ashling the Pilgrim Avatar.jpg
 Card: PMOA/Raksha Golden Cub Avatar.jpg
+Card: PMOA/Stalking Tiger Avatar.jpg
 Card: PMOA/Vampire Nocturnus Avatar.jpg
 Card: PMOA/Dauntless Escort Avatar.jpg
 Card: PMOA/Eight-and-a-Half-Tails Avatar.jpg
@@ -877,6 +904,7 @@ Card: M14/Ajani, Caller of the Pride.jpg
 Card: M14/Galerider Sliver.jpg
 Card: M14/Mutavault.jpg
 Card: M14/Accorder's Shield.jpg
+Card: M14/Mindsparker.jpg
 Card: M14/Bonescythe Sliver.jpg
 Card: M14/Pyromancer's Gauntlet.jpg
 Card: M14/Grim Return.jpg
@@ -937,9 +965,11 @@ Card: CMR/Loxodon Warhammer.jpg
 Card: CMR/Court of Grace.jpg
 Card: CMR/Saproling.png
 Card: CMR/Seer's Lantern.jpg
+Card: CMR/Malcolm, Keen-Eyed Navigator.jpg
 Card: CMR/Foundry Inspector.jpg
 Card: CMR/Boarding Party.jpg
 Card: CMR/Sakashima of a Thousand Faces.jpg
+Card: CMR/Rakshasa Debaser.jpg
 Card: CMR/Wind-Scarred Crag.jpg
 Card: CMR/Eternal Witness.jpg
 Card: CMR/Breeches, Brazen Plunderer.jpg
@@ -958,6 +988,7 @@ Card: CMR/Howling Golem.jpg
 Card: CMR/Angel.png
 Card: CMR/Armix, Filigree Thrasher.jpg
 Card: CMR/Sunforger.jpg
+Card: CMR/Universal Solvent.jpg
 Card: CMR/Encroaching Wastes.jpg
 Card: CMR/Beast Within.jpg
 Card: CMR/Secluded Steppe.jpg
@@ -1016,6 +1047,7 @@ Card: CMR/Commander's Plate.jpg
 Card: CMR/Boros Garrison.jpg
 Card: CMR/Search for Tomorrow.jpg
 Card: CMR/Odric, Lunarch Marshal.jpg
+Card: CMR/Oreskos Explorer.jpg
 Card: CMR/Gor Muldrak, Amphinologist.jpg
 Card: CMR/Ior Ruin Expedition.jpg
 Card: CMR/Scroll Rack.jpg
@@ -1024,6 +1056,7 @@ Card: CMR/Revenant.jpg
 Card: CMR/Maelstrom Colossus.jpg
 Card: CMR/Wild Ricochet.jpg
 Card: CMR/Dawn Charm.jpg
+Card: CMR/Humble Defector.jpg
 Card: CMR/Stone Quarry.jpg
 Card: CMR/Seraphic Greatsword.jpg
 Card: CMR/Coral Atoll.jpg
@@ -1044,6 +1077,7 @@ Card: CMR/Deflecting Palm.jpg
 Card: CMR/Fire Diamond.jpg
 Card: CMR/Akroma, Vision of Ixidor.jpg
 Card: CMR/Unbreakable Formation.jpg
+Card: CMR/Amphin Mutineer.jpg
 Card: CMR/Fathom Fleet Swordjack.jpg
 Card: CMR/Simic Growth Chamber.jpg
 Card: CMR/Jeweled Lotus.jpg
@@ -1063,6 +1097,7 @@ Card: CMR/Thalisse, Reverent Medium.jpg
 Card: CMR/Boros Signet.jpg
 Card: CMR/Xenagos, God of Revels.jpg
 Card: CMR/Sword of Vengeance.jpg
+Card: CMR/Aesi, Tyrant of Gyre Strait.jpg
 Card: CMR/Sakashima's Protege.jpg
 Card: CMR/Kwain, Itinerant Meddler.jpg
 Card: CMR/Simic Signet.jpg
@@ -1084,6 +1119,7 @@ Card: CMR/Volcanic Torrent.jpg
 Card: CMR/Ravos, Soultender.jpg
 Card: CMR/Rampaging Baloths.jpg
 Card: CMR/Yuriko, the Tiger's Shadow.jpg
+Card: CMR/Jeska, Thrice Reborn.jpg
 Card: CMR/Winds of Rath.jpg
 Card: CMR/Disenchant.jpg
 Card: CMR/Crow of Dark Tidings.jpg
@@ -1096,6 +1132,7 @@ Card: CMR/War Room.jpg
 Card: CMR/Slurrk, All-Ingesting.jpg
 Card: CMR/Timely Ward.jpg
 Card: CMR/Karador, Ghost Chieftain.jpg
+Card: CMR/Ludevic, Necro-Alchemist.jpg
 Card: CMR/Yavimaya Elder.jpg
 Card: CMR/Abrade.jpg
 Card: CMR/Spectator Seating.jpg
@@ -1135,6 +1172,7 @@ Card: C17/Fractured Identity.jpg
 Card: C17/Blood Tribute.jpg
 Card: C17/Hungry Lynx.jpg
 Card: C17/Blind Obedience.jpg
+Card: C17/Territorial Hellkite.jpg
 Card: C17/Crucible of the Spirit Dragon.jpg
 Card: C17/Underworld Connections.jpg
 Card: C17/Haven of the Spirit Dragon.jpg
@@ -1204,6 +1242,7 @@ Card: MED/Tezzeret the Seeker.jpg
 Card: MED/Karn, Scion of Urza.jpg
 Card: MED/Dack Fayden.jpg
 Card: MED/Daretti, Ingenious Iconoclast.jpg
+Card: MED/Jaya Ballard.jpg
 Card: MED/Elspeth, Knight-Errant.jpg
 Card: MED/Tezzeret, Agent of Bolas.jpg
 Card: MED/Teferi, Hero of Dominaria.jpg
@@ -1221,19 +1260,26 @@ Card: PM21/Grim Tutor.jpg
 Card: PM21/Temple of Malady.jpg
 Card: PM21/Basri Ket.jpg
 Card: PM21/Temple of Epiphany.jpg
+Card: PM21/Double Vision.jpg
 Card: PM21/Nine Lives.jpg
+Card: PM21/Chandra's Incinerator.jpg
 Card: PM21/Ghostly Pilferer.jpg
 Card: PM21/Temple of Mystery.jpg
+Card: PM21/Garruk's Harbinger.jpg
+Card: PM21/Fiery Emancipation.jpg
 Card: PM21/Radha, Heart of Keld.jpg
 Card: PM21/Animal Sanctuary.jpg
 Card: PM21/Mangara, the Diplomat.jpg
 Card: PM21/Temple of Triumph.jpg
 Card: PM21/Scavenging Ooze.jpg
 Card: PM21/Glorious Anthem.jpg
+Card: PM21/Garruk, Unleashed.jpg
 Card: PM21/Pack Leader.jpg
+Card: PM21/Chandra, Heart of Fire.jpg
 Card: PM21/Solemn Simulacrum.jpg
 Card: PM21/Temple of Silence.jpg
 Card: PM21/Chromatic Orrery.jpg
+Card: PM21/Liliana, Waker of the Dead.jpg
 Card: PM21/Fabled Passage.jpg
 Card: PM21/Teferi, Master of Time.jpg
 Card: PM21/Ugin, the Spirit Dragon.jpg
@@ -1274,6 +1320,7 @@ Card: SOI/Arlinn Kord (Emblem).png
 Card: SOI/Aberrant Researcher.jpg
 Card: SOI/Indulgent Aristocrat.jpg
 Card: SOI/Unruly Mob.jpg
+Card: SOI/Human Cleric.png
 Card: SOI/Skin Shedder.jpg
 Card: SOI/Lambholt Butcher.jpg
 Card: SOI/Neck Breaker.jpg
@@ -1287,6 +1334,7 @@ Card: SOI/Bearer of Overwhelming Truths.jpg
 
 Card: JUD/Funeral Pyre.jpg
 Card: JUD/Seedtime.jpg
+Card: JUD/Balthor the Defiled.jpg
 Card: JUD/Flash of Insight.jpg
 Card: JUD/Test of Endurance.jpg
 Card: JUD/Riftstone Portal.jpg
@@ -1307,6 +1355,7 @@ Card: FBB/Sol Ring.jpg
 
 
 Card: DOM/Woodland Cemetery.jpg
+Card: DOM/Chandra's Outburst.jpg
 Card: DOM/Memorial to Glory.jpg
 Card: DOM/Karn's Temporal Sundering.jpg
 Card: DOM/Eviscerate.jpg
@@ -1322,7 +1371,10 @@ Card: DOM/Memorial to Unity.jpg
 Card: DOM/Academy Drake.jpg
 Card: DOM/Thorn Elemental.jpg
 Card: DOM/Unwind.jpg
+Card: DOM/Ghitu Journeymage.jpg
 Card: DOM/Final Parting.jpg
+Card: DOM/Chandra, Bold Pyromancer.jpg
+Card: DOM/Shivan Fire.jpg
 Card: DOM/Teferi, Hero of Dominaria (Emblem).png
 Card: DOM/Triumph of Gerrard.jpg
 Card: DOM/Zombie Knight.png
@@ -1336,6 +1388,7 @@ Card: DDS/Reach Through Mists.jpg
 Card: DDS/Jhoira of the Ghitu.jpg
 Card: DDS/Quicken.jpg
 Card: DDS/Beacon of Destruction.jpg
+Card: DDS/Firemind's Foresight.jpg
 Card: DDS/Jori En, Ruin Diver.jpg
 Card: DDS/Lovisa Coldeyes.jpg
 Card: DDS/Zo-Zu the Punisher.jpg
@@ -1402,6 +1455,7 @@ Card: BFZ/Kozilek's Channeler.jpg
 Card: BFZ/Ulamog's Despoiler.jpg
 Card: BFZ/Gideon, Ally of Zendikar (Emblem).jpg
 Card: BFZ/Kozilek's Sentinel.jpg
+Card: BFZ/Ruin Processor.jpg
 Card: BFZ/Drana's Emissary.jpg
 Card: BFZ/Snapping Gnarlid.jpg
 Card: BFZ/Sandstone Bridge.jpg
@@ -1425,6 +1479,7 @@ Card: VIS/Aku Djinn.jpg
 Card: VIS/Butterfly.jpg
 Card: VIS/Chronatog.jpg
 Card: VIS/Phyrexian Marauder.jpg
+Card: VIS/Teferi's Realm.jpg
 Card: VIS/Dream Tides.jpg
 Card: VIS/Phyrexian Walker.jpg
 Card: VIS/Foreshadow.jpg
@@ -1458,6 +1513,7 @@ Card: ODY/Krosan Archer.jpg
 Card: ODY/Aboshan's Desire.jpg
 Card: ODY/Thaumatog.jpg
 Card: ODY/Otarian Juggernaut.jpg
+Card: ODY/Words of Wisdom.jpg
 Card: ODY/Abandoned Outpost.jpg
 Card: ODY/Lieutenant Kirtar.jpg
 Card: ODY/Seafloor Debris.jpg
@@ -1472,13 +1528,16 @@ Card: ODY/Krosan Avenger.jpg
 Card: ODY/Cabal Pit.jpg
 Card: ODY/Tarnished Citadel.jpg
 Card: ODY/Beloved Chaplain.jpg
+Card: ODY/Ashen Firebeast.jpg
 Card: ODY/Atogatog.jpg
 Card: ODY/Aboshan, Cephalid Emperor.jpg
 Card: ODY/New Frontiers.jpg
 Card: ODY/Ravaged Highlands.jpg
+Card: ODY/Thought Devourer.jpg
 Card: ODY/Ancestral Tribute.jpg
 Card: ODY/Divine Sacrament.jpg
 Card: ODY/Nomad Stadium.jpg
+Card: ODY/Lava Blister.jpg
 Card: ODY/Lithatog.jpg
 Card: ODY/Catalyst Stone.jpg
 
@@ -1498,6 +1557,7 @@ Card: JMP/Rogue's Gloves.jpg
 Card: JMP/Cemetery Recruitment.jpg
 Card: JMP/Tithebearer Giant.jpg
 Card: JMP/Drana, Liberator of Malakir.jpg
+Card: JMP/Duelist's Heritage.jpg
 Card: JMP/Thriving Heath.jpg
 Card: JMP/Rhystic Study.jpg
 Card: JMP/Alloy Myr.jpg
@@ -1526,6 +1586,7 @@ Card: JMP/Reanimate.jpg
 Card: JMP/Mirrodin's Core.jpg
 Card: JMP/Weaver of Lightning.jpg
 Card: JMP/Act of Treason.jpg
+Card: JMP/Rhox Faithmender.jpg
 Card: JMP/Minotaur Skullcleaver.jpg
 Card: JMP/Reckless Scholar.jpg
 Card: JMP/Flametongue Kavu.jpg
@@ -1548,6 +1609,8 @@ Card: JMP/Fling.jpg
 Card: JMP/Serendib Efreet.jpg
 Card: JMP/Bulwark Giant.jpg
 Card: JMP/Phyrexian Reclamation.jpg
+Card: JMP/Chain Lightning.jpg
+Card: JMP/Ulvenwald Hydra.jpg
 Card: JMP/Long Road Home.jpg
 Card: JMP/Cathar's Companion.jpg
 Card: JMP/Sangromancer.jpg
@@ -1575,6 +1638,7 @@ Card: JMP/Muxus, Goblin Grandee.jpg
 Card: JMP/Thermo-Alchemist.jpg
 Card: JMP/Agonizing Syphon.jpg
 Card: JMP/Furnace Whelp.jpg
+Card: JMP/Aether Spellbomb.jpg
 Card: JMP/Angel of the Dire Hour.jpg
 Card: JMP/Silhana Wayfinder.jpg
 Card: JMP/Linvala, Keeper of Silence.jpg
@@ -1595,6 +1659,7 @@ Card: JMP/Branching Evolution.jpg
 Card: JMP/Cloudshift.jpg
 Card: JMP/Sigiled Starfish.jpg
 Card: JMP/Charmbreaker Devils.jpg
+Card: JMP/Oneirophage.jpg
 Card: JMP/Sky Tether.jpg
 Card: JMP/Bruvac the Grandiloquent.jpg
 Card: JMP/Blood Divination.jpg
@@ -1612,7 +1677,9 @@ Card: OC18/Aminatou, the Fateshifter.jpg
 Card: EVE/Altar Golem.jpg
 Card: EVE/Antler Skulkin.jpg
 Card: EVE/Gift of the Deity.jpg
+Card: EVE/Fiery Bombardment.jpg
 Card: EVE/Bloodied Ghost.jpg
+Card: EVE/Banishing Knack.jpg
 Card: EVE/Rise of the Hobgoblins.jpg
 Card: EVE/Divinity of Pride.jpg
 
@@ -1623,6 +1690,7 @@ Card: PLGS/Hangarback Walker.jpg
 Card: OCM1/Grimgrin, Corpse-Born.jpg
 
 
+Card: GPT/Dryad Sophisticate.jpg
 Card: GPT/Orzhova, the Church of Deals.jpg
 Card: GPT/Gruul War Plow.jpg
 Card: GPT/Primeval Light.jpg
@@ -1661,6 +1729,7 @@ Card: UMA/Songs of the Damned.jpg
 Card: UMA/Appetite for Brains.jpg
 Card: UMA/Phyrexian Altar.jpg
 Card: UMA/Golgari Grave-Troll.jpg
+Card: UMA/Firewing Phoenix.jpg
 Card: UMA/Double Cleave.jpg
 Card: UMA/Liliana of the Veil.jpg
 Card: UMA/Plumeveil.jpg
@@ -1732,12 +1801,14 @@ Card: KLR/Sculpting Steel.jpg
 Card: KLR/Aetherflux Reservoir.jpg
 Card: KLR/Planar Bridge.jpg
 Card: KLR/Rashmi, Eternities Crafter.jpg
+Card: KLR/Oath of Ajani.jpg
 Card: KLR/Metallurgic Summonings.jpg
 Card: KLR/Fatal Push.jpg
 Card: KLR/Blooming Marsh.jpg
 Card: KLR/Panharmonicon.jpg
 Card: KLR/Herald of Anguish.jpg
 Card: KLR/Ornithopter.jpg
+Card: KLR/Rishkar, Peema Renegade.jpg
 Card: KLR/Trophy Mage.jpg
 Card: KLR/Scrap Trawler.jpg
 Card: KLR/Dovin Baan.jpg
@@ -1754,6 +1825,7 @@ Card: KLR/Spirebluff Canal.jpg
 Card: KLR/Whirlermaker.jpg
 Card: KLR/Nissa, Vital Force.jpg
 Card: KLR/Tezzeret the Schemer.jpg
+Card: KLR/Torrential Gearhulk.jpg
 Card: KLR/Inventor's Goggles.jpg
 Card: KLR/Chandra, Torch of Defiance.jpg
 Card: KLR/Kambal, Consul of Allocation.jpg
@@ -1792,8 +1864,11 @@ Card: KLR/Tezzeret's Ambition.jpg
 Card: KLR/Hungry Flames.jpg
 Card: KLR/Voltaic Brawler.jpg
 Card: KLR/Cogworker's Puzzleknot.jpg
+Card: KLR/Kari Zev, Skyship Raider.jpg
+Card: KLR/Blossoming Defense.jpg
 Card: KLR/Aethertorch Renegade.jpg
 Card: KLR/Fumigate.jpg
+Card: KLR/Chandra's Revolution.jpg
 
 
 Card: PARB/Knight of New Alara.jpg
@@ -1814,22 +1889,27 @@ Card: GK1/Mizzium Mortars.jpg
 Card: GK1/Razia, Boros Archangel.jpg
 Card: GK1/Golgari Signet.jpg
 Card: GK1/Legion Loyalist.jpg
+Card: GK1/Savra, Queen of the Golgari.jpg
 Card: GK1/Moroii.jpg
 Card: GK1/Izoni, Thousand-Eyed.jpg
+Card: GK1/Aurelia, the Warleader.jpg
 Card: GK1/Treasured Find.jpg
 Card: GK1/Telling Time.jpg
 Card: GK1/Electrolyze.jpg
 Card: GK1/Abrupt Decay.jpg
+Card: GK1/Grave-Shell Scarab.jpg
 Card: GK1/Pyromatics.jpg
 Card: GK1/Agrus Kos, Wojek Veteran.jpg
 Card: GK1/Deathrite Shaman.jpg
 Card: GK1/Glare of Subdual.jpg
+Card: GK1/Invoke the Firemind.jpg
 Card: GK1/Selesnya Charm.jpg
 Card: GK1/Jarad, Golgari Lich Lord.jpg
 Card: GK1/Hypersonic Dragon.jpg
 Card: GK1/Circu, Dimir Lobotomist.jpg
 Card: GK1/Boros Swiftblade.jpg
 Card: GK1/Selesnya Evangel.jpg
+Card: GK1/Firemane Angel.jpg
 Card: GK1/Grove of the Guardian.jpg
 Card: GK1/Selesnya Signet.jpg
 
@@ -1900,12 +1980,14 @@ Card: AVR/Hound of Griselbrand.jpg
 Card: AVR/Herald of War.jpg
 Card: AVR/Soulcage Fiend.jpg
 Card: AVR/Spirit .jpg
+Card: AVR/Aggravate.jpg
 Card: AVR/Defy Death.jpg
 Card: AVR/Blood Artist.jpg
 Card: AVR/Angel of Glory's Rise.jpg
 Card: AVR/Thatcher Revolt.jpg
 Card: AVR/Nearheath Pilgrim.jpg
 Card: AVR/Scroll of Griselbrand.jpg
+Card: AVR/Farbog Explorer.jpg
 Card: AVR/Battle Hymn.jpg
 Card: AVR/Heirs of Stromkirk.jpg
 Card: AVR/Divine Deflection.jpg
@@ -1924,6 +2006,7 @@ Card: AER/Tezzeret, Master of Metal.jpg
 Card: AER/Filigree Crawler.jpg
 Card: AER/Aetherstream Leopard.jpg
 Card: AER/Tezzeret's Betrayal.jpg
+Card: AER/Ragavan.jpg
 Card: AER/Natural Obsolescence.jpg
 Card: AER/Tezzeret's Simulacrum.jpg
 Card: AER/Deadeye Harpooner.jpg
@@ -1935,13 +2018,16 @@ Card: MB1/Regrowth.jpg
 Card: MB1/Coat of Arms.jpg
 Card: MB1/Faerie Conclave.jpg
 Card: MB1/Trepanation Blade.jpg
+Card: MB1/Abundant Growth.jpg
 Card: MB1/Vapor Snag.jpg
 Card: MB1/New Benalia.jpg
 Card: MB1/Dream Twist.jpg
 Card: MB1/Fertile Ground.jpg
 Card: MB1/Absorb Vis.jpg
 Card: MB1/Stitched Drake.jpg
+Card: MB1/Misdirection.jpg
 Card: MB1/Goblin Bombardment.jpg
+Card: MB1/Asceticism.jpg
 Card: MB1/Backwoods Survivalists.jpg
 Card: MB1/Blessing of Belzenlok.jpg
 Card: MB1/Wirewood Lodge.jpg
@@ -1964,6 +2050,7 @@ Card: MB1/Desolation Twin.jpg
 Card: MB1/Arbor Elf.jpg
 Card: MB1/Borrowed Hostility.jpg
 Card: MB1/Consulate Dreadnought.jpg
+Card: MB1/Alhammarret's Archive.jpg
 Card: MB1/Screamreach Brawler.jpg
 Card: MB1/Mortify.jpg
 Card: MB1/Guttersnipe.jpg
@@ -1990,6 +2077,7 @@ Card: MB1/Qasali Pridemage.jpg
 Card: MB1/Shatter.jpg
 Card: MB1/Rancor.jpg
 Card: MB1/Eldrazi Devastator.jpg
+Card: MB1/Explosive Vegetation.jpg
 Card: MB1/Felidar Sovereign.jpg
 Card: MB1/Arrester's Zeal.jpg
 Card: MB1/Prophetic Ravings.jpg
@@ -2011,6 +2099,7 @@ Card: MB1/Chancellor of the Annex.jpg
 Card: MB1/Thieving Magpie.jpg
 Card: MB1/Dreadship Reef.jpg
 Card: MB1/Sword of the Animist.jpg
+Card: MB1/Crowned Ceratok.jpg
 Card: MB1/Tithe Drinker.jpg
 Card: MB1/Animate Dead.jpg
 Card: MB1/Mulch.jpg
@@ -2029,9 +2118,11 @@ Card: MB1/Sultai Charm.jpg
 Card: MB1/Sakashima the Impostor.jpg
 Card: MB1/Laboratory Maniac.jpg
 Card: MB1/Wild Growth.jpg
+Card: MB1/Maximize Altitude.jpg
 Card: MB1/Dictate of Heliod.jpg
 Card: MB1/Gift of Estates.jpg
 Card: MB1/Skarrg, the Rage Pits.jpg
+Card: MB1/Academy Journeymage.jpg
 Card: MB1/Teferi, Temporal Archmage.jpg
 Card: MB1/Breeding Pit.jpg
 Card: MB1/Will-o'-the-Wisp.jpg
@@ -2078,6 +2169,7 @@ Card: MB1/Treasure Cruise.jpg
 Card: MB1/Dark Dabbling.jpg
 Card: MB1/Deadeye Tormentor.jpg
 Card: MB1/Circular Logic.jpg
+Card: MB1/Blistergrub.jpg
 Card: MB1/Dark Ritual.jpg
 Card: MB1/Simic Locket.jpg
 Card: MB1/Murder of Crows.jpg
@@ -2085,8 +2177,10 @@ Card: MB1/Archaeomancer.jpg
 Card: MB1/Avalanche Riders.jpg
 Card: MB1/Crush Dissent.jpg
 Card: MB1/Felidar Guardian.jpg
+Card: MB1/Urborg Uprising.jpg
 Card: MB1/Acrobatic Maneuver.jpg
 Card: MB1/Read the Bones.jpg
+Card: MB1/Arrow Storm.jpg
 Card: MB1/Mizzix's Mastery.jpg
 Card: MB1/Felidar Umbra.jpg
 Card: MB1/Dragon Broodmother.jpg
@@ -2126,9 +2220,11 @@ Card: MB1/Trinket Mage.jpg
 Card: MB1/Gurmag Angler.jpg
 Card: MB1/Predict.jpg
 Card: MB1/Ghostly Changeling.jpg
+Card: MB1/Stinkweed Imp.jpg
 Card: MB1/Skyhunter Skirmisher.jpg
 Card: MB1/Elves of Deep Shadow.jpg
 Card: MB1/Ethercaste Knight.jpg
+Card: MB1/Expose Evil.jpg
 Card: MB1/Thran Dynamo.jpg
 Card: MB1/Perish.jpg
 Card: MB1/Mire's Malice.jpg
@@ -2143,6 +2239,7 @@ Card: MB1/Leonin Relic-Warder.jpg
 Card: MB1/Tukatongue Thallid.jpg
 Card: MB1/Skitter Eel.jpg
 Card: MB1/Exsanguinate.jpg
+Card: MB1/Shambling Attendants.jpg
 Card: MB1/Giant Spider.jpg
 Card: MB1/Reassembling Skeleton.jpg
 Card: MB1/Impact Tremors.jpg
@@ -2164,6 +2261,7 @@ Card: MB1/Mahamoti Djinn.jpg
 Card: MB1/Collective Brutality.jpg
 Card: MB1/Thraben Standard Bearer.jpg
 Card: MB1/Erg Raiders.jpg
+Card: MB1/Dauthi Mindripper.jpg
 Card: MB1/Ill-Tempered Cyclops.jpg
 Card: MB1/Gut Shot.jpg
 Card: MB1/Fogwalker.jpg
@@ -2181,6 +2279,7 @@ Card: MB1/Pyrotechnics.jpg
 Card: MB1/Priest of Titania.jpg
 Card: MB1/Quest for the Gravelord.jpg
 Card: MB1/Drana, Kalastria Bloodchief.jpg
+Card: MB1/Shenanigans.jpg
 Card: MB1/Umbral Mantle.jpg
 Card: MB1/Beacon of Immortality.jpg
 Card: MB1/Wild Griffin.jpg
@@ -2196,6 +2295,7 @@ Card: MB1/Pathrazer of Ulamog.jpg
 Card: MB1/Ancient Den.jpg
 Card: MB1/Plaguecrafter.jpg
 Card: MB1/Kazandu Refuge.jpg
+Card: MB1/Underworld Coinsmith.jpg
 Card: MB1/Purphoros, God of the Forge.jpg
 Card: MB1/Akroan Horse.jpg
 Card: MB1/Murderous Compulsion.jpg
@@ -2226,6 +2326,7 @@ Card: MB1/Fiend Hunter.jpg
 Card: MB1/Crystal Ball.jpg
 Card: MB1/Paladin of the Bloodstained.jpg
 Card: MB1/Bastion Inventor.jpg
+Card: MB1/Taurean Mauler.jpg
 Card: MB1/Ajani's Pridemate.jpg
 Card: MB1/Thunder Drake.jpg
 Card: MB1/Thraben Foulbloods.jpg
@@ -2240,6 +2341,7 @@ Card: MB1/Hamlet Captain.jpg
 Card: MB1/Seal of Cleansing.jpg
 Card: MB1/Pestilence.jpg
 Card: MB1/Ancient Brontodon.jpg
+Card: MB1/Contagion Clasp.jpg
 Card: MB1/Dream Cache.jpg
 Card: MB1/Orcish Oriflamme.jpg
 Card: MB1/Recruiter of the Guard.jpg
@@ -2266,6 +2368,7 @@ Card: MB1/Curse of the Nightly Hunt.jpg
 Card: MB1/Phyrexian Plaguelord.jpg
 Card: MB1/Angelic Purge.jpg
 Card: MB1/Icy Manipulator.jpg
+Card: MB1/Aggressive Instinct.jpg
 Card: MB1/Farseek.jpg
 Card: MB1/Catacomb Crocodile.jpg
 Card: MB1/Naturalize.jpg
@@ -2394,6 +2497,7 @@ Card: OPCA/Prahv.jpg
 
 
 Card: LRW/Auntie's Hovel.jpg
+Card: LRW/Merrow Commerce.jpg
 Card: LRW/Fistful of Force.jpg
 Card: LRW/Ashling the Pilgrim.jpg
 Card: LRW/Secluded Glen.jpg
@@ -2448,6 +2552,7 @@ Card: STH/Lancers en-Kor.jpg
 Card: STH/Spike.jpg
 Card: STH/Amok.jpg
 Card: STH/Sword of the Chosen.jpg
+Card: STH/Mind Games.jpg
 Card: STH/Invasion Plans.jpg
 Card: STH/Pursuit of Knowledge.jpg
 Card: STH/Furnace Spirit.jpg
@@ -2472,6 +2577,7 @@ Card: ELD/Alela, Artful Provocateur.jpg
 Card: ELD/Heraldic Banner.jpg
 Card: ELD/Animating FaerieBring to Life.jpg
 Card: ELD/Seven Dwarves.jpg
+Card: ELD/Food.png
 Card: ELD/Smitten SwordmasterCurry Favor.jpg
 Card: ELD/Faerie GuidemotherGift of the Fae.jpg
 Card: ELD/Syr Faren, the Hengehammer.jpg
@@ -2493,6 +2599,7 @@ Card: ELD/Human Rogue.png
 Card: ELD/Dwarf.png
 Card: ELD/Human Warrior.png
 Card: ELD/Gingerbread Cabin.jpg
+Card: ELD/Searing Barrage.jpg
 Card: ELD/Dwarven Mine.jpg
 Card: ELD/Banish into Fable.jpg
 
@@ -2517,8 +2624,10 @@ Card: MIR/Acidic Dagger.jpg
 Card: MIR/Agility.jpg
 Card: MIR/Tombstone Stairwell.jpg
 Card: MIR/Prismatic Lace.jpg
+Card: MIR/Chaosphere.jpg
 Card: MIR/Mangara's Tome.jpg
 Card: MIR/Gibbering Hyenas.jpg
+Card: MIR/Mind Harness.jpg
 Card: MIR/Mtenda Herder.jpg
 Card: MIR/Emberwilde Djinn.jpg
 Card: MIR/Prismatic Boon.jpg
@@ -2538,6 +2647,7 @@ Card: MIR/Amulet of Unmaking.jpg
 Card: PLS/March of Souls.jpg
 Card: PLS/Dromar's Cavern.jpg
 Card: PLS/Crosis's Catacombs.jpg
+Card: PLS/Tahngarth, Talruum Hero.jpg
 Card: PLS/Multani's Harmony.jpg
 Card: PLS/Keldon Twilight.jpg
 Card: PLS/Planeswalker's Scorn.jpg
@@ -2580,6 +2690,7 @@ Card: ME2/Ambush Party.jpg
 Card: ME2/Magus of the Unseen.jpg
 Card: ME2/Anarchy.jpg
 Card: ME2/Orcish Cannoneers.jpg
+Card: ME2/Aether Storm.jpg
 Card: ME2/Fyndhorn Pollen.jpg
 Card: ME2/Angel of Light.jpg
 Card: ME2/Sea Spirit.jpg
@@ -2702,15 +2813,20 @@ Card: THS/Burnished Hart.jpg
 Card: THS/Asphodel Wanderer.jpg
 Card: THS/Erebos, God of the Dead.jpg
 Card: THS/Destructive Revelry.jpg
+Card: THS/Agent of the Fates.jpg
 Card: THS/Traveling Philosopher.jpg
 Card: THS/Xenagos, the Reveler.jpg
+Card: THS/Anthousa, Setessan Hero.jpg
 Card: THS/Satyr Hedonist.jpg
+Card: THS/Scholar of Athreos.jpg
 Card: THS/Sylvan Caryatid.jpg
 Card: THS/Satyr.jpg
+Card: THS/Polukranos, World Eater.jpg
 Card: THS/Baleful Eidolon.jpg
 Card: THS/Pyxis of Pandemonium.jpg
 Card: THS/Ordeal of Purphoros.jpg
 Card: THS/Firedrinker Satyr.jpg
+Card: THS/Karametra's Acolyte.jpg
 Card: THS/March of the Returned.jpg
 Card: THS/Flamecast Wheel.jpg
 Card: THS/Heliod, God of the Sun.jpg
@@ -2740,6 +2856,7 @@ Card: USG/Goblin War Buggy.jpg
 Card: USG/Wirecat.jpg
 Card: USG/Presence of the Master.jpg
 Card: USG/Pendrell Drake.jpg
+Card: USG/Gilded Drake.jpg
 Card: USG/Sulfuric Vapors.jpg
 Card: USG/Stern Proctor.jpg
 Card: USG/Sicken.jpg
@@ -2798,6 +2915,8 @@ Card: USG/Serra's Hymn.jpg
 Card: USG/Purging Scythe.jpg
 
 
+Card: M20/Chandra, Flame's Fury.jpg
+Card: M20/Chandra, Novice Pyromancer.jpg
 Card: M20/Sorin, Imperious Bloodlord.jpg
 Card: M20/Destructive Digger.jpg
 Card: M20/Embodiment of Agonies.jpg
@@ -2812,13 +2931,16 @@ Card: M20/Goblin Assailant.jpg
 Card: M20/Ajani's Pridemate (Token).png
 Card: M20/Icon of Ancestry.jpg
 Card: M20/Omnath, Locus of the Roil.jpg
+Card: M20/Chandra's Outrage.jpg
 Card: M20/Ajani, Strength of the Pride.jpg
 Card: M20/Rubblebelt Recluse.jpg
 Card: M20/Mammoth Spider.jpg
 Card: M20/Field of the Dead.jpg
 Card: M20/Ironclad Krovod.jpg
+Card: M20/Chandra, Awakened Inferno (Emblem).png
 Card: M20/Rienne, Angel of Rebirth.jpg
 Card: M20/Ajani, Inspiring Leader.jpg
+Card: M20/Chandra's Embercat.jpg
 Card: M20/Shivan Dragon.jpg
 Card: M20/Leyline of Anticipation.jpg
 Card: M20/Disentomb.jpg
@@ -2833,6 +2955,7 @@ Card: M20/Phantom Warrior.jpg
 Card: M20/Sorin, Vampire Lord.jpg
 Card: M20/Fortress Crab.jpg
 Card: M20/Aggressive Mammoth.jpg
+Card: M20/Chandra's Flame Wave.jpg
 
 
 Card: KHC/Jungle Hollow.jpg
@@ -2888,6 +3011,7 @@ Card: KHC/Path of Ancestry.jpg
 Card: KHC/Meteor Golem.jpg
 Card: KHC/Putrefy.jpg
 Card: KHC/Eerie Interlude.jpg
+Card: KHC/Empyrean Eagle.jpg
 Card: KHC/Soulherder.jpg
 Card: KHC/Command Tower.jpg
 Card: KHC/Reclamation Sage.jpg
@@ -2914,6 +3038,7 @@ Card: DDR/Giant Scorpion.jpg
 
 
 Card: UDS/Scrying Glass.jpg
+Card: UDS/Archery Training.jpg
 Card: UDS/Treachery.jpg
 Card: UDS/Twisted Experiment.jpg
 Card: UDS/Goblin Masons.jpg
@@ -2926,8 +3051,10 @@ Card: E01/Grand Abolisher.jpg
 Card: E01/Cruel Ultimatum.jpg
 Card: E01/Talisman of Indulgence.jpg
 Card: E01/Nissa, Worldwaker.jpg
+Card: E01/Chandra's Phoenix.jpg
 Card: E01/Talisman of Dominance.jpg
 Card: E01/Smoldering Spires.jpg
+Card: E01/Searing Spear.jpg
 Card: E01/Archfiend of Depravity.jpg
 Card: E01/Obsidian Fireheart.jpg
 Card: E01/Aegis Angel.jpg
@@ -3095,6 +3222,7 @@ Card: VMA/City in a Bottle.jpg
 Card: VMA/Tundra.jpg
 Card: VMA/Wheel of Fortune.jpg
 Card: VMA/Palinchron.jpg
+Card: VMA/Timetwister.jpg
 Card: VMA/Yawgmoth's Bargain.jpg
 Card: VMA/Paralyze.jpg
 Card: VMA/Tropical Island.jpg
@@ -3106,6 +3234,7 @@ Card: VMA/Falter.jpg
 Card: VMA/Black Lotus.jpg
 Card: VMA/Keldon Necropolis.jpg
 Card: VMA/Putrid Imp.jpg
+Card: VMA/Krosan Vorine.jpg
 Card: VMA/Yavimaya Hollow.jpg
 Card: VMA/Expunge.jpg
 Card: VMA/Lightning Dragon.jpg
@@ -3147,6 +3276,7 @@ Card: VMA/Mistmoon Griffin.jpg
 Card: VMA/Plateau.jpg
 Card: VMA/Devout Witness.jpg
 Card: VMA/Hulking Goblin.jpg
+Card: VMA/Dack's Duplicate.jpg
 Card: VMA/Ankh of Mishra.jpg
 
 
@@ -3194,10 +3324,12 @@ Card: PZ2/Lady Zhurong, Warrior Queen.jpg
 
 
 Card: MM3/Deadeye Navigator.jpg
+Card: MM3/Stoic Angel.jpg
 Card: MM3/Olivia Voldaren.jpg
 Card: MM3/Abyssal Specter.jpg
 Card: MM3/Gruul War Chant.jpg
 Card: MM3/Serum Visions.jpg
+Card: MM3/Torrent of Souls.jpg
 Card: MM3/Stony Silence.jpg
 Card: MM3/Venser, Shaper Savant.jpg
 Card: MM3/Bronzebeak Moa.jpg
@@ -3219,10 +3351,12 @@ Card: DDJ/Force Spike.jpg
 Card: DDJ/Nivix, Aerie of the Firemind.jpg
 Card: DDJ/Brain Weevil.jpg
 Card: DDJ/Galvanoth.jpg
+Card: DDJ/Nightmare Void.jpg
 
 
 Card: BOK/Kodama of the Center Tree.jpg
 Card: BOK/Eradicate.jpg
+Card: BOK/Azamuki, Treachery Incarnate.jpg
 Card: BOK/Baku Altar.jpg
 Card: BOK/Stir the Grave.jpg
 Card: BOK/Hero's Demise.jpg
@@ -3234,6 +3368,7 @@ Card: BOK/Tendo Ice Bridge.jpg
 Card: BOK/Genju of the Fields.jpg
 Card: BOK/Sway of the Stars.jpg
 Card: BOK/Child of Thorns.jpg
+Card: BOK/Akki Blizzard-Herder.jpg
 Card: BOK/Gods' Eye, Gate to the Reikai.jpg
 Card: BOK/Faithful Squire.jpg
 
@@ -3291,6 +3426,7 @@ Card: C19/Overseer of the Damned.jpg
 Card: C19/Purify the Grave.jpg
 Card: C19/Centaur.png
 Card: C19/Highland Lake.jpg
+Card: C19/Kheru Spellsnatcher.jpg
 Card: C19/Feldon of the Third Path.jpg
 Card: C19/Strionic Resonator.jpg
 Card: C19/Apex Altisaur.jpg
@@ -3343,6 +3479,7 @@ Card: RTR/Golgari Keyrune.jpg
 Card: RTR/Selesnya Keyrune.jpg
 Card: RTR/Soul Tithe.jpg
 Card: RTR/Selesnya Sentry.jpg
+Card: RTR/Ash Zealot.jpg
 Card: RTR/Death's Presence.jpg
 Card: RTR/Jarad's Orders.jpg
 Card: RTR/Golgari Decoy.jpg
@@ -3366,12 +3503,14 @@ Card: MH1/Cloudshredder Sliver.jpg
 Card: MH1/Altar of Dementia.jpg
 Card: MH1/Serra the Benevolent.jpg
 Card: MH1/Deep Forest Hermit.jpg
+Card: MH1/Aria of Flame.jpg
 Card: MH1/Undead Augur.jpg
 Card: MH1/Cave of Temptation.jpg
 Card: MH1/Cordial Vampire.jpg
 Card: MH1/Talisman of Creativity.jpg
 Card: MH1/Unsettled Mariner.jpg
 Card: MH1/Talisman of Hierarchy.jpg
+Card: MH1/Graveshifter.jpg
 Card: MH1/Tempered Sliver.jpg
 Card: MH1/Abominable Treefolk.jpg
 Card: MH1/The First Sliver.jpg
@@ -3419,6 +3558,7 @@ Card: MH1/King of the Pride.jpg
 
 Card: PAST/Whimsy.jpg
 Card: PAST/Gem Bazaar.jpg
+Card: PAST/Call from the Grave.jpg
 
 
 Card: M15/Staff of the Wild Magus.jpg
@@ -3457,6 +3597,7 @@ Card: WC04/Plow Under.jpg
 
 Card: GVL/Albino Troll.jpg
 Card: GVL/Vampire Bats.jpg
+Card: GVL/Mutilate.jpg
 Card: GVL/Howling Banshee.jpg
 Card: GVL/Drudge Skeletons.jpg
 Card: GVL/Wall of Bone.jpg
@@ -3621,6 +3762,7 @@ Card: ZNR/Rockslide Sorcerer.jpg
 Card: ZNR/Field Research.jpg
 Card: ZNR/Makindi Stampede.jpg
 Card: ZNR/Sneaking Guide.jpg
+Card: ZNR/Cat Beast.png
 Card: ZNR/Windrider Wizard.jpg
 Card: ZNR/Akoum Teeth.jpg
 Card: ZNR/Shadow Stinger.jpg
@@ -3671,6 +3813,7 @@ Card: ZNR/Tormenting Voice.jpg
 Card: ZNR/Acquisitions Expert.jpg
 Card: ZNR/Silundi Isle.jpg
 Card: ZNR/Rabid Bite.jpg
+Card: ZNR/Song-Mad Treachery.jpg
 Card: ZNR/Vastwood Thicket.jpg
 Card: ZNR/Springmantle Cleric.jpg
 Card: ZNR/Ardent Electromancer.jpg
@@ -3683,8 +3826,10 @@ Card: ARB/Demonic Dread.jpg
 Card: ARB/Lich Lord of Unx.jpg
 Card: ARB/Sigiled Behemoth.jpg
 Card: ARB/Captured Sunlight.jpg
+Card: ARB/Sanctum Plowbeast.jpg
 Card: ARB/Ardent Plea.jpg
 Card: ARB/Sigil of the Nayan Gods.jpg
+Card: ARB/Firewild Borderpost.jpg
 Card: ARB/Esper Sojourners.jpg
 Card: ARB/Stormcaller's Boon.jpg
 Card: ARB/Violent Outburst.jpg
@@ -3696,6 +3841,7 @@ Card: PKTK/Anafenza, the Foremost.jpg
 
 Card: PELD/Charming Prince.jpg
 Card: PELD/Outlaws' Merriment.jpg
+Card: PELD/Gilded Goose.jpg
 Card: PELD/Castle Ardenvale.jpg
 Card: PELD/Clackbridge Troll.jpg
 Card: PELD/Castle Locthwain.jpg
@@ -3716,6 +3862,7 @@ Card: J18/Lord of Atlantis.jpg
 
 
 Card: PLIST/Murderous Cut.jpg
+Card: PLIST/Evermind.jpg
 Card: PLIST/Skullclamp.jpg
 Card: PLIST/Phyrexian Tower.jpg
 Card: PLIST/Trusty Machete.jpg
@@ -3750,6 +3897,7 @@ Card: PLIST/Rootrunner.jpg
 Card: PLIST/Cold Storage.jpg
 Card: PLIST/Daxos, Blessed by the Sun.jpg
 Card: PLIST/Ancestor's Prophet.jpg
+Card: PLIST/Korvold, Fae-Cursed King.jpg
 Card: PLIST/Lord of the Undead.jpg
 Card: PLIST/Mycosynth Golem.jpg
 Card: PLIST/Nahiri, the Lithomancer.jpg
@@ -3782,8 +3930,10 @@ Card: PLIST/Isochron Scepter.jpg
 Card: PLIST/Terminate.jpg
 Card: PLIST/Emrakul, the Aeons Torn.jpg
 Card: PLIST/Winds of Abandon.jpg
+Card: PLIST/Tuktuk the Explorer.jpg
 Card: PLIST/Prismatic Geoscope.jpg
 Card: PLIST/Diregraf Captain.jpg
+Card: PLIST/Chemister's Insight.jpg
 Card: PLIST/Read the Runes.jpg
 Card: PLIST/Burst Lightning.jpg
 Card: PLIST/Cavern of Souls.jpg
@@ -3806,7 +3956,9 @@ Card: PLIST/Door to Nothingness.jpg
 Card: PLIST/Extinction.jpg
 Card: PLIST/Groundbreaker.jpg
 Card: PLIST/Seething Song.jpg
+Card: PLIST/Vorinclex, Voice of Hunger.jpg
 Card: PLIST/Vampire Nighthawk.jpg
+Card: PLIST/Simian Spirit Guide.jpg
 Card: PLIST/Morophon, the Boundless.jpg
 Card: PLIST/Kher Keep.jpg
 Card: PLIST/Tamiyo's Journal.jpg
@@ -3837,8 +3989,10 @@ Card: PLIST/Doom Blade.jpg
 Card: PLIST/Reality Shift.jpg
 Card: PLIST/Erratic Portal.jpg
 Card: PLIST/Nissa Revane.jpg
+Card: PLIST/Contagion Engine.jpg
 Card: PLIST/Loyal Unicorn.jpg
 Card: PLIST/Fabricate.jpg
+Card: PLIST/Shambling Shell.jpg
 Card: PLIST/Grim Haruspex.jpg
 Card: PLIST/Vampire Nocturnus.jpg
 Card: PLIST/Hua Tuo, Honored Physician.jpg
@@ -3882,6 +4036,7 @@ Card: M12/Stonehorn Dignitary.jpg
 Card: 10E/Sulfurous Springs.jpg
 Card: 10E/Sylvan Basilisk.jpg
 Card: 10E/Field Marshal.jpg
+Card: 10E/Contaminated Bond.jpg
 Card: 10E/Doubling Cube.jpg
 Card: 10E/Arcane Teachings.jpg
 Card: 10E/Holy Day.jpg
@@ -3929,6 +4084,7 @@ Card: 10E/Samite Healer.jpg
 Card: 10E/Treasure Hunter.jpg
 Card: 10E/Adarkar Wastes.jpg
 Card: 10E/Steadfast Guard.jpg
+Card: 10E/Mind Bend.jpg
 Card: 10E/Ambassador Laquatus.jpg
 Card: 10E/Dragon Roost.jpg
 Card: 10E/Rain of Tears.jpg
@@ -3956,6 +4112,7 @@ Card: 4ED/Thoughtlace.jpg
 Card: 4ED/Magnetic Mountain.jpg
 Card: 4ED/Sunglasses of Urza.jpg
 Card: 4ED/Aladdin's Lamp.jpg
+Card: 4ED/Ashnod's Battle Gear.jpg
 Card: 4ED/Purelace.jpg
 Card: 4ED/Siren's Call.jpg
 Card: 4ED/Power Leak.jpg
@@ -3984,6 +4141,7 @@ Card: 4ED/Celestial Prism.jpg
 
 
 Card: KTK/Abomination of Gudul.jpg
+Card: KTK/Mindswipe.jpg
 Card: KTK/Erase.jpg
 Card: KTK/Despise.jpg
 Card: KTK/Tomb of the Spirit Dragon.jpg
@@ -3998,6 +4156,7 @@ Card: KTK/Sidisi's Pet.jpg
 
 
 Card: RNA/Rubblebelt Runner.jpg
+Card: RNA/Precognitive Perception.jpg
 Card: RNA/Eyes Everywhere.jpg
 Card: RNA/CarnivalCarnage.jpg
 Card: RNA/Pestilent Spirit.jpg
@@ -4023,6 +4182,7 @@ Card: RNA/Gruul Locket.jpg
 Card: RNA/Tin Street Dodger.jpg
 Card: RNA/Rumbling Ruin.jpg
 Card: RNA/Enraged Ceratok.jpg
+Card: RNA/Lavinia, Azorius Renegade.jpg
 Card: RNA/Pitiless Pontiff.jpg
 Card: RNA/Ministrant of Obligation.jpg
 Card: RNA/Gyre Engineer.jpg
@@ -4123,6 +4283,7 @@ Card: RNA/Skatewing Spy.jpg
 Card: RNA/Drill Bit.jpg
 Card: RNA/Skewer the Critics.jpg
 Card: RNA/Saruli Caretaker.jpg
+Card: RNA/Rakdos, the Showstopper.jpg
 Card: RNA/Vizkopa Vampire.jpg
 Card: RNA/Root Snare.jpg
 Card: RNA/Forbidding Spirit.jpg
@@ -4131,6 +4292,7 @@ Card: RNA/Ill-Gotten Inheritance.jpg
 Card: RNA/Dead Revels.jpg
 Card: RNA/Mesmerizing Benthid.jpg
 Card: RNA/RevivalRevenge.jpg
+Card: RNA/Spawn of Mayhem.jpg
 Card: RNA/Clear the Stage.jpg
 Card: RNA/Code of Constraint.jpg
 Card: RNA/Dovin, Architect of Law.jpg
@@ -4182,6 +4344,7 @@ Card: RNA/Blade Juggler.jpg
 Card: ARC/Skullcage.jpg
 Card: ARC/Branching Bolt.jpg
 Card: ARC/March of the Machines.jpg
+Card: ARC/Shinen of Life's Roar.jpg
 Card: ARC/Nantuko Monastery.jpg
 
 
@@ -4238,6 +4401,7 @@ Card: GK2/Rapid Hybridization.jpg
 Card: GK2/Vizkopa Guildmage.jpg
 Card: GK2/Rakdos's Return.jpg
 Card: GK2/Avatar of Discord.jpg
+Card: GK2/Rakdos Shred-Freak.jpg
 Card: GK2/Dreadbore.jpg
 Card: GK2/Orzhov Charm.jpg
 Card: GK2/Momir Vig, Simic Visionary.jpg
@@ -4279,6 +4443,7 @@ Card: J13/Overwhelming Forces.jpg
 Card: FEM/Camarid.jpg
 Card: FEM/Goblin Flotilla.jpg
 Card: FEM/Goblin Grenade (c).jpg
+Card: FEM/Zelyon Sword.jpg
 Card: FEM/Basal Thrull (c).jpg
 
 
@@ -4289,10 +4454,12 @@ Card: ONS/Dispersing Orb.jpg
 Card: ONS/Brightstone Ritual.jpg
 Card: ONS/Sunfire Balm.jpg
 Card: ONS/Seaside Haven.jpg
+Card: ONS/Complicate.jpg
 Card: ONS/Aphetto Alchemist.jpg
 Card: ONS/Lay Waste.jpg
 Card: ONS/Artificial Evolution.jpg
 Card: ONS/Anurid Murkdiver.jpg
+Card: ONS/Crowd Favorites.jpg
 
 
 Card: PCA/Lumberknot.jpg
@@ -4339,12 +4506,15 @@ Card: 5DN/Loxodon Stalwart.jpg
 Card: 5DN/Chimeric Coils.jpg
 Card: 5DN/Avarice Totem.jpg
 Card: 5DN/Grinding Station.jpg
+Card: 5DN/Abuna's Chant.jpg
 Card: 5DN/Conjurer's Bauble.jpg
 Card: 5DN/Advanced Hoverguard.jpg
 Card: 5DN/Auriok Windwalker.jpg
 
 
+Card: PORI/Chandra's Ignition.jpg
 Card: PORI/Abbot of Keral Keep.jpg
+Card: PORI/Mizzium Meddler.jpg
 Card: PORI/Exquisite Firecraft.jpg
 Card: PORI/Gaea's Revenge.jpg
 Card: PORI/Alhammarret, High Arbiter.jpg
@@ -4353,11 +4523,13 @@ Card: PORI/Alhammarret, High Arbiter.jpg
 Card: MRD/Altar's Light.jpg
 Card: MRD/Talisman of Impulse.jpg
 Card: MRD/Electrostatic Bolt.jpg
+Card: MRD/Lifespark Spellbomb.jpg
 Card: MRD/Leonin Den-Guard.jpg
 Card: MRD/Talisman of Unity.jpg
 Card: MRD/Altar of Shadows.jpg
 Card: MRD/Glissa Sunseeker.jpg
 Card: MRD/Auriok Steelshaper.jpg
+Card: MRD/Rust Elemental.jpg
 Card: MRD/Megatog.jpg
 Card: MRD/Blinkmoth Well.jpg
 Card: MRD/Grid Monitor.jpg
@@ -4393,6 +4565,7 @@ Card: BNG/Graverobber Spider.jpg
 Card: BNG/Phenax, God of Deception.jpg
 Card: BNG/Ephara's Enlightenment.jpg
 Card: BNG/Ephara's Radiance.jpg
+Card: BNG/Acolyte's Reward.jpg
 Card: BNG/Fanatic of Xenagos.jpg
 Card: BNG/Odunos River Trawler.jpg
 Card: BNG/Satyr Firedancer.jpg
@@ -4421,6 +4594,7 @@ Card: JVC/Keldon Megaliths.jpg
 Card: JVC/Fireslinger.jpg
 Card: JVC/Slith Firewalker.jpg
 Card: JVC/Waterspout Djinn.jpg
+Card: JVC/Chandra Nalaar.jpg
 
 
 Card: GS1/Brilliant Plan.jpg
@@ -4628,7 +4802,9 @@ Card: SLD/Chromatic Lantern.jpg
 
 
 Card: M13/Diabolic Revelation.jpg
+Card: M13/Ring of Xathrid.jpg
 Card: M13/Hellion Crucible.jpg
+Card: M13/Chandra, the Firebrand.jpg
 Card: M13/Merfolk of the Pearl Trident.jpg
 Card: M13/Knight of Glory.jpg
 Card: M13/Liliana's Shade.jpg
@@ -4667,6 +4843,7 @@ Card: C13/Golgari Guildmage.jpg
 Card: C13/Carnage Altar.jpg
 Card: C13/Incendiary Command.jpg
 Card: C13/Sun Droplet.jpg
+Card: C13/Snake    .jpg
 Card: C13/Disciple of Griselbrand.jpg
 Card: C13/Magus of the Arena.jpg
 Card: C13/Curse of Shallow Graves.jpg
@@ -4724,6 +4901,7 @@ Card: A25/Kobolds of Kher Keep (Token).png
 Card: A25/Utopia Sprawl.jpg
 Card: A25/Vendilion Clique.jpg
 Card: A25/Phyrexian Ghoul.jpg
+Card: A25/Vindicate.jpg
 Card: A25/Accumulated Knowledge.jpg
 Card: A25/Spirit   .png
 Card: A25/Bident of Thassa.jpg
@@ -4772,6 +4950,7 @@ Card: POGW/Sea Gate Wreckage.jpg
 Card: POGW/Ayli, Eternal Pilgrim.jpg
 Card: POGW/Corrupted Crossroads.jpg
 Card: POGW/Hissing Quagmire.jpg
+Card: POGW/Oath of Jace.jpg
 Card: POGW/Matter Reshaper.jpg
 Card: POGW/Mirrorpool.jpg
 Card: POGW/Kozilek's Return.jpg
@@ -4796,6 +4975,7 @@ Card: CN2/Flame Slash.jpg
 Card: CN2/Dread Statuary.jpg
 Card: CN2/Sovereign's Realm.jpg
 Card: CN2/Arcane Savant.jpg
+Card: CN2/Berserk.jpg
 Card: CN2/Voyaging Satyr.jpg
 Card: CN2/Guul Draz Specter.jpg
 Card: CN2/Horn of Greed.jpg
@@ -4807,10 +4987,14 @@ Card: CN2/Pharika's Mender.jpg
 Card: CN2/Construct .png
 Card: CN2/Deputized Protester.jpg
 Card: CN2/Kami of the Crescent Moon.jpg
+Card: CN2/Covenant of Minds.jpg
 
 
 Card: DDI/Aether Membrane.jpg
+Card: DDI/Venser, the Sojourner (Emblem).jpg
 Card: DDI/Stone Giant.jpg
+Card: DDI/Koth of the Hammer (Emblem).jpg
+Card: DDI/Koth of the Hammer.jpg
 Card: DDI/Journeyer's Kite.jpg
 Card: DDI/Spire Barrage.jpg
 Card: DDI/Steel of the Godhead.jpg
@@ -4958,9 +5142,13 @@ Card: C16/Burgeoning.jpg
 Card: C16/Evacuation.jpg
 Card: C16/Guiltfeeder.jpg
 Card: C16/Necrogenesis.jpg
+Card: C16/Sylvok Explorer.jpg
 Card: C16/Iroas, God of Victory.jpg
+Card: C16/Quirion Explorer.jpg
 Card: C16/Managorger Hydra.jpg
+Card: C16/Venser's Journal.jpg
 Card: C16/Forbidden Orchard.jpg
+Card: C16/Selvala, Explorer Returned.jpg
 Card: C16/Bird    .png
 Card: C16/Wild Beastmaster.jpg
 Card: C16/Oath of Druids.jpg
@@ -4987,7 +5175,9 @@ Card: M19/Resplendent Angel.jpg
 Card: M19/Abnormal Endurance.jpg
 Card: M19/Liliana's Contract.jpg
 Card: M19/Tezzeret's Strider.jpg
+Card: M19/Fiery Finish.jpg
 Card: M19/Disperse.jpg
+Card: M19/Chaos Wand.jpg
 Card: M19/Timber Gorge.jpg
 Card: M19/Detection Tower.jpg
 Card: M19/Ajani, Adversary of Tyrants.jpg
@@ -5030,6 +5220,7 @@ Card: IMA/Abyssal Persecutor.jpg
 Card: IMA/Wall of Roots.jpg
 Card: IMA/Night of Souls' Betrayal.jpg
 Card: IMA/Manakin.jpg
+Card: IMA/Dissolve.jpg
 Card: IMA/Abzan Battle Priest.jpg
 Card: IMA/Teferi, Mage of Zhalfir.jpg
 Card: IMA/Primeval Titan.jpg
@@ -5038,6 +5229,7 @@ Card: IMA/Angelic Accord.jpg
 Card: IMA/Phantom Monster.jpg
 Card: IMA/Jugan, the Rising Star.jpg
 Card: IMA/Bladewing's Thrall.jpg
+Card: IMA/Kolaghan Monument.jpg
 Card: IMA/River of Tears.jpg
 Card: IMA/Ryusei, the Falling Star.jpg
 Card: IMA/Magus of the Moon.jpg
@@ -5444,6 +5636,7 @@ Card: EMN/Hanweir Battlements.jpg
 Card: EMN/Conduit of Emrakul.jpg
 Card: EMN/It That Rides as One.jpg
 Card: EMN/Grim Flayer.jpg
+Card: EMN/Bedlam Reveler.jpg
 Card: EMN/Imprisoned in the Moon.jpg
 Card: EMN/Abandon Reason.jpg
 Card: EMN/Galvanic Bombardment.jpg
@@ -5468,6 +5661,7 @@ Card: EMN/Guardian of Pilgrims.jpg
 Card: EMN/Woodcutter's Grit.jpg
 Card: EMN/Spectral Reserves.jpg
 Card: EMN/Shrill Howler.jpg
+Card: EMN/Soul Separator.jpg
 Card: EMN/Blessed Alliance.jpg
 Card: EMN/Cryptolith Fragment.jpg
 Card: EMN/Lone Rider.jpg
@@ -5496,6 +5690,7 @@ Card: TD0/All Hallow's Eve.jpg
 Card: TD0/Constant Mists.jpg
 Card: TD0/Darigaaz's Caldera.jpg
 Card: TD0/Massacre.jpg
+Card: TD0/Concordant Crossroads.jpg
 
 
 Card: PMIC/Aswan Jaguar.jpg
@@ -5508,8 +5703,10 @@ Card: TD2/Talisman of Progress.jpg
 Card: TD2/Reprocess.jpg
 
 
+Card: PHOU/Rhonas's Last Stand.jpg
 Card: PHOU/Ammit Eternal.jpg
 Card: PHOU/Angel of Condemnation.jpg
+Card: PHOU/Kefnet's Last Word.jpg
 Card: PHOU/Fraying Sanity.jpg
 
 
@@ -5571,11 +5768,13 @@ Card: C18/Jund Panorama.jpg
 Card: C18/Yavimaya Enchantress.jpg
 Card: C18/Crash of Rhino Beetles.jpg
 Card: C18/Treasure Nabber.jpg
+Card: C18/Lavalanche.jpg
 Card: C18/Seaside Citadel.jpg
 Card: C18/Foundry of the Consuls.jpg
 Card: C18/Moldgraf Monstrosity.jpg
 Card: C18/Warped Landscape.jpg
 Card: C18/Dokai, Weaver of Life.jpg
+Card: C18/Heavenly Blademaster.jpg
 Card: C18/Geode Golem.jpg
 Card: C18/Nesting Dragon.jpg
 Card: C18/High Priest of Penance.jpg
@@ -5588,6 +5787,7 @@ Card: C18/Aminatou, the Fateshifter.jpg
 Card: C18/Bruna, Light of Alabaster.jpg
 Card: C18/Boreas Charger.jpg
 Card: C18/Forsaken Sanctuary.jpg
+Card: C18/Whiptongue Hydra.jpg
 Card: C18/Dictate of Kruphix.jpg
 Card: C18/Bant Charm.jpg
 Card: C18/Aethermage's Touch.jpg
@@ -5597,6 +5797,7 @@ Card: C18/Ponder.jpg
 Card: C18/Skull Storm.jpg
 Card: C18/Finest Hour.jpg
 Card: C18/Etherium Sculptor.jpg
+Card: C18/Ground Seal.jpg
 Card: C18/Creeping Renaissance.jpg
 Card: C18/Decimate.jpg
 Card: C18/Scute Mob.jpg
@@ -5638,6 +5839,7 @@ Card: XLN/Tilonalli's Knight.jpg
 Card: XLN/Kopala, Warden of Waves.jpg
 Card: XLN/Glacial Fortress.jpg
 Card: XLN/Rigging Runner.jpg
+Card: XLN/Kinjalli's Sunwing.jpg
 Card: XLN/Bishop of the Bloodstained.jpg
 Card: XLN/Deadeye Quartermaster.jpg
 Card: XLN/Rootbound Crag.jpg
@@ -5697,6 +5899,7 @@ Card: CMA/Kessig Cagebreakers.jpg
 Card: CMA/Archangel of Strife.jpg
 Card: CMA/Thousand-Year Elixir.jpg
 Card: CMA/Karmic Guide.jpg
+Card: CMA/Dread Cacodemon.jpg
 Card: CMA/Diabolic Servitude.jpg
 Card: CMA/Titania, Protector of Argoth.jpg
 
@@ -5708,7 +5911,9 @@ Card: P02/Armored Galleon.jpg
 
 Card: DST/Skullclamp.jpg
 Card: DST/Well of Lost Dreams.jpg
+Card: DST/Arcane Spyglass.jpg
 Card: DST/Darksteel Pendant.jpg
+Card: DST/Death-Mask Duplicant.jpg
 Card: DST/Voltaic Construct.jpg
 Card: DST/Drill-Skimmer.jpg
 
@@ -5792,6 +5997,7 @@ Card: CM2/Hardened Scales.jpg
 Card: CM2/Epochrasite.jpg
 Card: CM2/Inferno Titan.jpg
 Card: CM2/Shared Trauma.jpg
+Card: CM2/Necroplasm.jpg
 Card: CM2/Nighteyes the Desecrator.jpg
 Card: CM2/Vivid Meadow.jpg
 Card: CM2/Triskelavus.jpg
@@ -5833,7 +6039,9 @@ Card: GNT/Everdawn Champion.jpg
 
 Card: FMB1/Pyretic Ritual.jpg
 Card: FMB1/Soul's Attendant.jpg
+Card: FMB1/Mindslaver.jpg
 Card: FMB1/Shizo, Death's Storehouse.jpg
+Card: FMB1/Aurelia's Fury.jpg
 Card: FMB1/Sakura-Tribe Scout.jpg
 Card: FMB1/Stalking Stones.jpg
 Card: FMB1/Myojin of Life's Web.jpg
@@ -5842,6 +6050,7 @@ Card: FMB1/Pull from Eternity.jpg
 Card: FMB1/Marrow-Gnawer.jpg
 Card: FMB1/Sosuke, Son of Seshiro.jpg
 Card: FMB1/Fungusaur.jpg
+Card: FMB1/Greater Mossdog.jpg
 Card: FMB1/Triskelion.jpg
 Card: FMB1/Alchemist's Refuge.jpg
 Card: FMB1/Rhox.jpg
@@ -5963,6 +6172,7 @@ Card: MMA/Cenn's Enlistment.jpg
 Card: MMA/Logic Knot.jpg
 Card: MMA/Pyromancer's Swath.jpg
 Card: MMA/Petals of Insight.jpg
+Card: MMA/Moldervine Cloak.jpg
 Card: MMA/Hana Kami.jpg
 Card: MMA/Hammerheim Deadeye.jpg
 Card: MMA/Imperiosaur.jpg
@@ -5981,6 +6191,7 @@ Card: CNS/Uncontrollable Anger.jpg
 Card: CNS/Galvanic Juggernaut.jpg
 Card: CNS/Ill-Gotten Gains.jpg
 Card: CNS/Secrets of Paradise.jpg
+Card: CNS/Deathrender.jpg
 Card: CNS/Muzzio's Preparations.jpg
 Card: CNS/Reito Lantern.jpg
 Card: CNS/Paliano, the High City.jpg
@@ -5988,8 +6199,11 @@ Card: CNS/Agent of Acquisitions.jpg
 Card: CNS/Sentinel Dispatch.jpg
 Card: CNS/Worldknit.jpg
 Card: CNS/Double Stroke.jpg
+Card: CNS/Canal Dredger.jpg
 Card: CNS/Mana Geyser.jpg
+Card: CNS/Barbed Shocker.jpg
 Card: CNS/Split Decision.jpg
+Card: CNS/Wrap in Vigor.jpg
 Card: CNS/Magus of the Mirror.jpg
 Card: CNS/Stronghold Discipline.jpg
 Card: CNS/Backup Plan.jpg
@@ -6195,12 +6409,14 @@ Card: PVAN/Karn.jpg
 
 Card: HML/Castle Sengir.jpg
 Card: HML/An-Havva Township.jpg
+Card: HML/Chandler.jpg
 Card: HML/Aysen Abbey.jpg
 Card: HML/Koskun Keep.jpg
 Card: HML/Abbey Matron.jpg
 Card: HML/Dwarven Trader.jpg
 
 
+Card: WC02/Opposition.jpg
 Card: WC02/Mana Short.jpg
 Card: WC02/Global Ruin.jpg
 Card: WC02/Island (b).jpg
@@ -6220,6 +6436,7 @@ Card: LEG/Quagmire.jpg
 
 
 Card: ME4/Amulet of Kroog.jpg
+Card: ME4/Artifact Blast.jpg
 Card: ME4/Water Elemental.jpg
 Card: ME4/Bird Maiden.jpg
 Card: ME4/Dakmor Plague.jpg
@@ -6241,6 +6458,7 @@ Card: ME4/Urza's Mine (b).jpg
 Card: ME4/Animate Artifact.jpg
 Card: ME4/Titania's Song.jpg
 Card: ME4/Urza's Tower (d).jpg
+Card: ME4/Celestial Sword.jpg
 Card: ME4/Warp Artifact.jpg
 Card: ME4/Hasran Ogress.jpg
 Card: ME4/Cyclopean Mummy.jpg
@@ -6336,8 +6554,10 @@ Card: ORI/Jayemdae Tome.jpg
 Card: ORI/Aerial Volley.jpg
 Card: ORI/Liliana, Defiant Necromancer (Emblem).jpg
 Card: ORI/Mage-Ring Responder.jpg
+Card: ORI/Chandra, Roaring Flame (Emblem).jpg
 Card: ORI/Alhammarret, High Arbiter.jpg
 Card: ORI/Archangel of Tithes.jpg
+Card: ORI/Chandra's Fury.jpg
 Card: ORI/Pyromancer's Goggles.jpg
 Card: ORI/Jace, Telepath Unbound (Emblem).jpg
 
@@ -6442,6 +6662,7 @@ Card: ANB/Goblin Trashmaster.jpg
 Card: ANB/Air Elemental.jpg
 Card: ANB/Angelic Guardian.jpg
 Card: ANB/Charmed Stray.jpg
+Card: ANB/Colossal Majesty.jpg
 Card: ANB/Unlikely Aid.jpg
 Card: ANB/Typhoid Rats.jpg
 Card: ANB/Burn Bright.jpg
@@ -6452,6 +6673,7 @@ Card: ANB/Vampire Opportunist.jpg
 Card: ANB/Bond of Discipline.jpg
 Card: ANB/Impassioned Orator.jpg
 Card: ANB/Angel of Vitality.jpg
+Card: ANB/Inspiring Commander.jpg
 Card: ANB/Nightmare.jpg
 Card: ANB/Ogre Battledriver.jpg
 Card: ANB/Maniacal Rage.jpg
@@ -6540,8 +6762,10 @@ Card: ZEN/Seascape Aerialist.jpg
 Card: KLD/Insidious Will.jpg
 Card: KLD/Sequestered Stash.jpg
 Card: KLD/Maulfist Doorbuster.jpg
+Card: KLD/Chandra, Torch of Defiance (Emblem).png
 Card: KLD/Dovin Baan (Emblem).png
 Card: KLD/Aethersquall Ancient.jpg
+Card: KLD/Chandra, Pyrogenius.jpg
 Card: KLD/Nissa, Vital Force (Emblem).png
 Card: KLD/Nissa, Nature's Artisan.jpg
 Card: KLD/Perpetual Timepiece.jpg
@@ -6552,6 +6776,7 @@ Card: M21/Tormod's Crypt.jpg
 Card: M21/Chandra, Flame's Catalyst.jpg
 Card: M21/Liliana's Scorn.jpg
 Card: M21/Azusa, Lost but Seeking.jpg
+Card: M21/Chandra's Magmutt.jpg
 Card: M21/Teferi's Tutelage.jpg
 Card: M21/Archfiend's Vessel.jpg
 Card: M21/Skyscanner.jpg
@@ -6563,6 +6788,7 @@ Card: M21/Unsubstantiate.jpg
 Card: M21/Opt.jpg
 Card: M21/Ghostly Pilferer.jpg
 Card: M21/Ranger's Guile.jpg
+Card: M21/Garruk's Uprising.jpg
 Card: M21/Turret Ogre.jpg
 Card: M21/Eliminate.jpg
 Card: M21/Spellgorger Weird.jpg
@@ -6577,11 +6803,14 @@ Card: M21/Pitchburn Devils.jpg
 Card: M21/Blossoming Sands.jpg
 Card: M21/Rugged Highlands.jpg
 Card: M21/Prismite.jpg
+Card: M21/Chandra's Pyreling.jpg
 Card: M21/Furor of the Bitten.jpg
+Card: M21/Chandra's Firemaw.jpg
 Card: M21/Alpine Watchdog.jpg
 Card: M21/Sublime Epiphany.jpg
 Card: M21/Temple of Triumph.jpg
 Card: M21/Garruk's Warsteed.jpg
+Card: M21/Goremand.jpg
 Card: M21/Bloodfell Caves.jpg
 Card: M21/Pridemalkin.jpg
 Card: M21/Gloom Sower.jpg
@@ -6606,6 +6835,7 @@ Card: M21/Ugin, the Spirit Dragon.jpg
 
 
 Card: SOK/Aether Shockwave.jpg
+Card: SOK/Plow Through Reito.jpg
 Card: SOK/Cowed by Wisdom.jpg
 Card: SOK/Tomb of Urami.jpg
 Card: SOK/Kami of the Tended Garden.jpg
@@ -6613,6 +6843,7 @@ Card: SOK/Adamaro, First to Desire.jpg
 Card: SOK/Rune-Tail's Essence.jpg
 Card: SOK/Oboro, Palace in the Clouds.jpg
 Card: SOK/Spiritual Visit.jpg
+Card: SOK/Death of a Thousand Stings.jpg
 Card: SOK/Choice of Damnations.jpg
 Card: SOK/Shifting Borders.jpg
 
@@ -6651,6 +6882,7 @@ Card: PEMN/Imprisoned in the Moon.jpg
 
 Card: ALA/Sigil of Distinction.jpg
 Card: ALA/Goblin Mountaineer.jpg
+Card: ALA/Bloodpyre Elemental.jpg
 Card: ALA/Coma Veil.jpg
 Card: ALA/Cloudheath Drake.jpg
 Card: ALA/Qasali Ambusher.jpg
@@ -6682,6 +6914,7 @@ Card: 8ED/Foratog.jpg
 Card: 8ED/Vernal Bloom.jpg
 Card: 8ED/Sizzle.jpg
 Card: 8ED/Elite Archers.jpg
+Card: 8ED/Blessed Reversal.jpg
 Card: 8ED/Inferno.jpg
 Card: 8ED/Bird      .jpg
 Card: 8ED/Elvish Lyrist.jpg
@@ -6714,15 +6947,20 @@ Card: FRF/Sultai Emissary.jpg
 Card: FRF/Lotus Path Djinn.jpg
 Card: FRF/Abzan Beastmaster.jpg
 Card: FRF/Abzan Skycaptain.jpg
+Card: FRF/Mindscour Dragon.jpg
 Card: FRF/Arashin War Beast.jpg
 Card: FRF/Archers of Qarsi.jpg
 Card: FRF/Battlefront Krushok.jpg
 
 
+Card: HTR/Chandra, Gremlin Wrangler.jpg
 Card: HTR/Dungeon Master.jpg
 
 
 Card: PM20/Vilis, Broker of Blood.jpg
+Card: PM20/Leyline of Combustion.jpg
+Card: PM20/Chandra, Awakened Inferno.jpg
+Card: PM20/Chandra, Acolyte of Flame.jpg
 Card: PM20/Sephara, Sky's Blade.jpg
 Card: PM20/Icon of Ancestry.jpg
 Card: PM20/Repeated Reverberation.jpg
@@ -6731,6 +6969,7 @@ Card: PM20/Bag of Holding.jpg
 Card: PM20/Shifting Ceratops.jpg
 Card: PM20/Leyline of the Void.jpg
 Card: PM20/Field of the Dead.jpg
+Card: PM20/Chandra's Regulator.jpg
 Card: PM20/Leyline of Sanctity.jpg
 Card: PM20/Knight of the Ebon Legion.jpg
 Card: PM20/Leyline of Anticipation.jpg
@@ -6740,6 +6979,7 @@ Card: PM20/Brought Back.jpg
 Card: PM20/Mu Yanling, Sky Dancer.jpg
 Card: PM20/Tale's End.jpg
 Card: PM20/Atemsis, All-Seeing.jpg
+Card: PM20/Agent of Treachery.jpg
 Card: PM20/Leyline of Abundance.jpg
 Card: PM20/Steel Overseer.jpg
 Card: PM20/Grafdigger's Cage.jpg
@@ -6750,6 +6990,7 @@ Card: PM20/Rotting Regisaur.jpg
 Card: PM20/Elvish Reclaimer.jpg
 
 
+Card: DRK/Fire and Brimstone.jpg
 Card: DRK/Whippoorwill.jpg
 Card: DRK/Niall Silvain.jpg
 Card: DRK/Cleansing.jpg
@@ -6766,6 +7007,7 @@ Card: 2XM/Hanna, Ship's Navigator.jpg
 Card: 2XM/Karn Liberated.jpg
 Card: 2XM/Rage Reflection.jpg
 Card: 2XM/Ash Barrens.jpg
+Card: 2XM/Engineered Explosives.jpg
 Card: 2XM/Wooded Bastion.jpg
 Card: 2XM/Orcish Vandal.jpg
 Card: 2XM/Graven Cairns.jpg
@@ -6887,6 +7129,7 @@ Card: 2XM/Crib Swap.jpg
 Card: 2XM/Maze of Ith.jpg
 Card: 2XM/Academy Ruins.jpg
 Card: 2XM/Mystic Gate.jpg
+Card: 2XM/Greater Good.jpg
 Card: 2XM/Time Sieve.jpg
 Card: 2XM/Oblivion Stone.jpg
 Card: 2XM/Magus of the Will.jpg
@@ -6910,10 +7153,12 @@ Card: 2XM/Kuldotha Flamefiend.jpg
 Card: 2XM/Mana Crypt.jpg
 Card: 2XM/Urza's Tower.jpg
 Card: 2XM/Skullmulcher.jpg
+Card: 2XM/Eldrazi Spawn.png
 Card: 2XM/Blood Moon.jpg
 Card: 2XM/Doomed Necromancer.jpg
 Card: 2XM/Doubling Season.jpg
 Card: 2XM/Dire Fleet Hoarder.jpg
+Card: 2XM/Boon Reflection.jpg
 Card: 2XM/Kozilek's Predator.jpg
 Card: 2XM/Basalt Monolith.jpg
 Card: 2XM/Imperial Recruiter.jpg
@@ -6927,11 +7172,14 @@ Card: 2XM/Thespian's Stage.jpg
 Card: PRIX/Sanctum of the Sun.jpg
 Card: PRIX/Angrath, the Flame-Chained.jpg
 Card: PRIX/Sphinx's Decree.jpg
+Card: PRIX/Journey to Eternity.jpg
 Card: PRIX/Tomb of the Dusk Rose.jpg
 Card: PRIX/Huatli, Radiant Champion.jpg
 Card: PRIX/Azor, the Lawbringer.jpg
+Card: PRIX/Awakened Amalgam.jpg
 Card: PRIX/Gold-Forge Garrison.jpg
 Card: PRIX/Atzal, Cave of Eternity.jpg
+Card: PRIX/Warkite Marauder.jpg
 Card: PRIX/Radiant Destiny.jpg
 Card: PRIX/Winged Temple of Orazca.jpg
 Card: PRIX/Vault of Catlacan.jpg
@@ -6981,6 +7229,7 @@ Card: C20/Bird Illusion.png
 Card: C20/Isperia, Supreme Judge.jpg
 Card: C20/Melek, Izzet Paragon.jpg
 Card: C20/Increasing Devotion.jpg
+Card: C20/Niv-Mizzet, the Firemind.jpg
 Card: C20/Battlefield Forge.jpg
 Card: C20/Murmuring Mystic.jpg
 Card: C20/Nomad Outpost.jpg
@@ -7011,6 +7260,7 @@ Card: C20/Llanowar Wastes.jpg
 Card: C20/Deadly Rollick.jpg
 Card: C20/Jace, Architect of Thought.jpg
 Card: C20/Exotic Orchard.jpg
+Card: C20/Decoy Gambit.jpg
 Card: C20/Verge Rangers.jpg
 Card: C20/Wilderness Reclamation.jpg
 Card: C20/Halimar Depths.jpg
@@ -7057,6 +7307,7 @@ Card: C20/Krosan Grip.jpg
 Card: C20/Elemental  .png
 Card: C20/Trynn, Champion of Freedom.jpg
 Card: C20/Grim Backwoods.jpg
+Card: C20/Mind Spring.jpg
 Card: C20/Dearly Departed.jpg
 Card: C20/Goblin Dark-Dwellers.jpg
 Card: C20/Fluctuator.jpg
@@ -7070,13 +7321,18 @@ Card: OGW/Abstruse Interference.jpg
 Card: OGW/Maw of Kozilek.jpg
 Card: OGW/Ayli, Eternal Pilgrim.jpg
 Card: OGW/Birthing Hulk.jpg
+Card: OGW/Akoum Flameseeker.jpg
 Card: OGW/Angel  .jpg
+Card: OGW/Thought Harvester.jpg
 Card: OGW/Walker of the Wastes.jpg
 Card: OGW/Warping Wail.jpg
+Card: OGW/Cyclone Sire.jpg
+Card: OGW/Pyromancer's Assault.jpg
 Card: OGW/Holdout Settlement.jpg
 Card: OGW/Allied Reinforcements.jpg
 Card: OGW/Kozilek's Shrieker.jpg
 Card: OGW/Harvester Troll.jpg
+Card: OGW/Eldrazi Scion.jpg
 Card: OGW/Wastes (a).jpg
 Card: OGW/Crumbling Vestige.jpg
 Card: OGW/Kozilek's Translator.jpg
@@ -7106,6 +7362,7 @@ Card: MMQ/Sandstone Needle.jpg
 Card: MMQ/Renounce.jpg
 Card: MMQ/Reverent Mantra.jpg
 Card: MMQ/Cavern Crawler.jpg
+Card: MMQ/Puffer Extract.jpg
 Card: MMQ/Thermal Glider.jpg
 Card: MMQ/General's Regalia.jpg
 Card: MMQ/Tower of the Magistrate.jpg
@@ -7119,6 +7376,7 @@ Card: MMQ/Ramosian Lieutenant.jpg
 Card: MMQ/Aerial Caravan.jpg
 Card: MMQ/Thrashing Wumpus.jpg
 Card: MMQ/Karn's Touch.jpg
+Card: MMQ/Worry Beads.jpg
 Card: MMQ/War Tax.jpg
 Card: MMQ/Mercadian Bazaar.jpg
 Card: MMQ/Ramosian Sergeant.jpg
@@ -7209,9 +7467,12 @@ Card: J21/Nicol Bolas, the Ravager.jpg
 
 
 Card: ALL/Sheltered Valley.jpg
+Card: ALL/Agent of Stromgald (b).jpg
 Card: ALL/Insidious Bookworms (b).jpg
+Card: ALL/Benthic Explorers (b).jpg
 Card: ALL/Bestial Fury (b).jpg
 Card: ALL/School of the Unseen.jpg
+Card: ALL/Agent of Stromgald.jpg
 Card: ALL/Swamp Mosquito (b).jpg
 Card: ALL/Scarab of the Unseen.jpg
 Card: ALL/Soldevi Steam Beast.jpg
@@ -7237,15 +7498,18 @@ Card: PXTC/Lost Vale.jpg
 
 Card: NEM/Topple.jpg
 Card: NEM/Mind Swords.jpg
+Card: NEM/Air Bladder.jpg
 Card: NEM/Parallax Dementia.jpg
 Card: NEM/Lin Sivvi, Defiant Hero.jpg
 Card: NEM/Skyshroud Poacher.jpg
 Card: NEM/Animate Land.jpg
 Card: NEM/Flowstone Armor.jpg
 Card: NEM/Defender en-Vec.jpg
+Card: NEM/Kill Switch.jpg
 Card: NEM/Rath's Edge.jpg
 Card: NEM/Flowstone Thopter.jpg
 Card: NEM/Eye of Yawgmoth.jpg
+Card: NEM/Angelic Favor.jpg
 
 
 Card: J20/Gamble.jpg
@@ -7322,6 +7586,9 @@ Card: PS19/Nicol Bolas, Dragon-God.jpg
 Card: PS19/God-Eternal Kefnet.jpg
 
 
+Card: H17/Grimlock, Dinobot Leader.jpg
+
+
 Card: GN2/Decision Paralysis.jpg
 Card: GN2/Dramatic Reversal.jpg
 Card: GN2/Akoum Hellkite.jpg
@@ -7337,10 +7604,12 @@ Card: PDOM/Woodland Cemetery.jpg
 Card: PDOM/Karn's Temporal Sundering.jpg
 Card: PDOM/Josu Vess, Lich Knight.jpg
 Card: PDOM/Cabal Stronghold.jpg
+Card: PDOM/Adeliz, the Cinder Wind.jpg
 Card: PDOM/Isolated Chapel.jpg
 Card: PDOM/Zhalfirin Void.jpg
 Card: PDOM/Clifftop Retreat.jpg
 Card: PDOM/Sulfur Falls.jpg
+Card: PDOM/Baird, Steward of Argive.jpg
 Card: PDOM/Jodah, Archmage Eternal.jpg
 Card: PDOM/Verdant Force.jpg
 Card: PDOM/Oath of Teferi.jpg
@@ -7425,13 +7694,18 @@ Card: DDT/Goblin Wardriver.jpg
 
 
 Card: DTK/Secure the Wastes.jpg
+Card: DTK/Ambuscade Shaman.jpg
+Card: DTK/Atarka Monument.jpg
 Card: DTK/Lightning Berserker.jpg
 Card: DTK/Spidersilk Net.jpg
 Card: DTK/Servant of the Scale.jpg
 Card: DTK/Narset Transcendent.jpg
 Card: DTK/Sidisi's Faithful.jpg
+Card: DTK/Dromoka Monument.jpg
+Card: DTK/Ojutai Monument.jpg
 Card: DTK/Obscuring Aether.jpg
 Card: DTK/Narset Transcendent (Emblem).jpg
+Card: DTK/Silumgar Monument.jpg
 
 
 Card: PLC/Dust Corona.jpg
@@ -7446,6 +7720,7 @@ Card: PLC/Chronozoa.jpg
 Card: PLC/Insect   .jpg
 
 
+Card: XANA/Chaos Maw.jpg
 Card: XANA/Titanic Pelagosaur.jpg
 Card: XANA/Blinding Radiance.jpg
 
@@ -7482,6 +7757,7 @@ Card: BRB/Catastrophe.jpg
 
 
 Card: MBS/Red Sun's Zenith.jpg
+Card: MBS/Koth's Courier.jpg
 Card: MBS/Cryptoplasm.jpg
 Card: MBS/Glissa's Courier.jpg
 Card: MBS/Phyrexian Crusader.jpg
@@ -7513,6 +7789,8 @@ Card: DDQ/Tribute to Hunger.jpg
 
 Card: SCG/Vengeful Dead.jpg
 Card: SCG/Astral Steel.jpg
+Card: SCG/Accelerated Mutation.jpg
+Card: SCG/Aphetto Runecaster.jpg
 Card: SCG/Decree of Savagery.jpg
 Card: SCG/Ageless Sentinels.jpg
 Card: SCG/Cabal Interrogator.jpg
@@ -7546,6 +7824,7 @@ Card: 9ED/Vengeance.jpg
 Card: 9ED/Reverse Damage.jpg
 Card: 9ED/Kami of Old Stone.jpg
 Card: 9ED/Persecute.jpg
+Card: 9ED/Mindslicer.jpg
 Card: 9ED/Flowstone Shambler.jpg
 Card: 9ED/Rogue Kavu.jpg
 Card: 9ED/Exhaustion.jpg
@@ -7580,8 +7859,10 @@ Card: BBD/Evil Twin.jpg
 Card: BBD/Angel of Retribution.jpg
 Card: BBD/Mind's Eye.jpg
 Card: BBD/Mycosynth Lattice.jpg
+Card: BBD/Sower of Temptation.jpg
 Card: BBD/Spell Snare.jpg
 Card: BBD/Diabolic Intent.jpg
+Card: BBD/Rhox Brute.jpg
 Card: BBD/Kraken Hatchling.jpg
 Card: BBD/Goblin Razerunners.jpg
 Card: BBD/Thrilling Encore.jpg
@@ -7592,6 +7873,7 @@ Card: BBD/Angelic Chorus.jpg
 
 
 Card: GRN/Dawn of Hope.jpg
+Card: GRN/Ral, Izzet Viceroy.jpg
 Card: GRN/Elf Knight.png
 Card: GRN/Rhizome Lurcher.jpg
 Card: GRN/Soldier   .png

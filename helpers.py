@@ -8,7 +8,7 @@ def stripExt(filename):
     return name, ext
 
 # Function to remove punctuation from names
-def simplifyName(name):
+def simplifyString(name):
     punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*~ '''
     newname = ""
     for l in name:
@@ -117,11 +117,8 @@ def findSimilar(cards, name, N=7):
     top = {}
     for card in cards:
         try:
-            # get the two names to lowercase no punctuation
-            c = simplifyName(card)
-            n = simplifyName(name)
             # Gets edit distance
-            dist = eDistC.edist(c, n, len(c), len(n))
+            dist = eDistC.edist(card, name, len(card), len(name))
             # Adds edit distance to top
             tops[card] = dist
         except:

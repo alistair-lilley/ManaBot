@@ -84,7 +84,17 @@ async def on_message(message):
         if cmd == "!rule":
             rulekey = ' '.join(contParsed[1:])
             ruledata = RulesManager.runCmd(rulekey)
-            await channel.send(ruledata)
+            r = [ruledata]
+            if len(ruledata) > 2000:
+                r = [ruledata[:2000],ruledata[2000:]]
+                i = 1
+                while len(r[-1]) > 2000:
+                    newstuff = [r[-1][:2000],r[-1][2000:]]
+                    r = r[:i]+newstuff
+                    i += 1
+            ruledata = r
+            for r in ruledata:
+                await channel.send(r)
 
 
 

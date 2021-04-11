@@ -85,7 +85,6 @@ class CardMgr:
             # sends cardpic
             cardpic = InlineQueryResultCachedPhoto(id=pic_result_id, photo_file_id=photoid)
         else:
-            print(path)
             # send file
             with open(path, 'rb') as f:
                 cardpic = discord.File(f)

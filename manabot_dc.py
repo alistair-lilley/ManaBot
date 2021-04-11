@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from convertDecks import convert
 
 from cardmanager import CardMgr
+from rulesmanager import RulesMgr
 
 from helpers import *
 
@@ -29,6 +30,7 @@ client = discord.Client()
 
 
 CardManager = CardMgr(path_to_images,path_to_cards,path_to_bot,me)
+RulesManager = RulesMgr("rules.txt")
 
 ########################################################################################################################
 ########################################################################################################################
@@ -78,6 +80,12 @@ async def on_message(message):
 
             cardData = await CardManager.searchDescription(cardname)
             await channel.send(cardData)
+
+        if cmd == "!rule":
+            rulekey = ' '.join(contParsed[1:])
+            ruledata = RulesManager.runCmd(rulekey)
+            await channel.send(ruledata)
+
 
 
     # Convert .toparse and .decs to .txts

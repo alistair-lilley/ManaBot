@@ -12,6 +12,7 @@ from datetime import datetime
 
 from helpers import *
 from cardmanager import CardMgr
+from rulesmanager import RulesMgr
 
 # Load all environment variables
 load_dotenv()
@@ -35,6 +36,7 @@ dp = Dispatcher(bot)
 # This will load image & name dicts, card list, exists set, searchable card list, and merge sort them
 # It will also store found cards for searching/checking
 CardManager = CardMgr(path_to_images,path_to_cards,path_to_bot,me,bot=bot)
+RulesManager = RulesMgr("rules.txt",bot)
 
 ########################################################################################################################
 ########################################################################################################################
@@ -58,35 +60,42 @@ async def on_startup(d: Dispatcher):
 # This was one hell of a mess, so lets clean it up!
 @dp.inline_handler()
 async def on_inline(message: InlineQuery):
-    simplified = simplifyString(message.query)
-    if simplified == '':
+    if message.query == '' or len(message.query.split()) == 1:
         return
-    cardpic, cardd = None, None # just in case
+    cmd = simplifyString(message.query.split()[0])
+    query = ' '.join(simplifyString(message.query.split()[1:]))
+    if cmd == "rule":
+        ruledata = RulesManager.runCmd(query)
+        await bot.answer_inline_query(message.id,results=ruledata,cache_time=1)
+        return
 
-    try:
-        cardpic = await CardManager.searchImage(simplified)
-    except:
-        await bot.send_message(me,"Whoa! Big error in card pic search\nNext is card data search")
+    if cmd == "card":
+        cardpic, cardd = None, None # just in case
 
-    try:
-        cardd = await CardManager.searchDescription(simplified)
-    except:
-        await bot.send_message(me,"Whoa! Big error in card data search")
+        try:
+            cardpic = await CardManager.searchImage(query)
+        except:
+            await bot.send_message(me,"Whoa! Big error in card pic search\nNext is card data search")
 
-    # Results array
-    # Store cardpic and cardd if they are found; if they failed, ignore them
-    res = []
-    if cardpic != None:
-        res.append(cardpic)
-    if cardd != None:
-        res.append(cardd)
+        try:
+            cardd = await CardManager.searchDescription(query)
+        except:
+            await bot.send_message(me,"Whoa! Big error in card data search")
 
-    # Try sending the data, and if it cant just throw an error
-    if len(res) > 0:
-        await bot.answer_inline_query(message.id, results=res, cache_time=1)
-    else:
-        await bot.send_message(me, f"There was an issue with sending a response to this query: {message}.\n"
-                                   f"EVERYTHING went wrong, bro. Everything.")
+        # Results array
+        # Store cardpic and cardd if they are found; if they failed, ignore them
+        res = []
+        if cardpic != None:
+            res.append(cardpic)
+        if cardd != None:
+            res.append(cardd)
+
+        # Try sending the data, and if it cant just throw an error
+        if len(res) > 0:
+            await bot.answer_inline_query(message.id, results=res, cache_time=1)
+        else:
+            await bot.send_message(me, f"There was an issue with sending a response to this query: {message}.\n"
+                                       f"EVERYTHING went wrong, bro. Everything.")
 
 
 

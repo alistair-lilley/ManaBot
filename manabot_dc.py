@@ -6,7 +6,7 @@ import os, discord, requests
 from datetime import datetime
 from dotenv import load_dotenv
 
-from convertDecks import convert
+from convertDecks import convert, getDecks
 
 from cardmanager import CardMgr
 from rulesmanager import RulesMgr
@@ -49,7 +49,7 @@ async def on_ready():
     )
 
 
-    dt = datetime.now().strftime("%d-%m-%Y %H:%M ")
+    dt = datetime.now().strftime("%d-%m-%Y %H:%M")
     errs = dt#+loadingErrors
 
     user = await client.fetch_user(me)
@@ -72,27 +72,17 @@ async def on_message(message):
     if len(contParsed):
         # Get the command
         cmd = contParsed[0].lower()
+
         if cmd == "!card":
-            # Get the cardname
             cardname = simplifyString(' '.join(contParsed[1:]))
             cardpic = await CardManager.searchImage(cardname)
             await channel.send(file=cardpic)
-
             cardData = await CardManager.searchDescription(cardname)
             await channel.send(cardData)
 
         if cmd == "!rule":
-            rulekey = ' '.join(contParsed[1:])
-            ruledata = RulesManager.runCmd(rulekey)
-            r = [ruledata]
-            if len(ruledata) > 2000:
-                r = [ruledata[:2000],ruledata[2000:]]
-                i = 1
-                while len(r[-1]) > 2000:
-                    newstuff = [r[-1][:2000],r[-1][2000:]]
-                    r = r[:i]+newstuff
-                    i += 1
-            ruledata = r
+            query = ' '.join(contParsed[1:])
+            ruledata = RulesManager.runCmd(query)
             for r in ruledata:
                 await channel.send(r)
 
@@ -100,22 +90,19 @@ async def on_message(message):
 
     # Convert .toparse and .decs to .txts
     if message.attachments:
-        # get filename
         fullname = message.attachments[0].filename
-        # get name w/o ext and ext w/o name
-        name, ext = stripExt(fullname)
-        # if the ext is .cod, convert it
-        if ext in ['.cod','.mwDeck']:
-            # get url
-            furl = message.attachments[0].url
-            # download file
-            r = requests.get(furl)
-            open(path_to_bot+"/toparse/"+fullname, 'wb').write(r.content)
-            # convert file
-            convert(path_to_bot,name,ext)
-            # reupload file
-            with open(path_to_bot+"/txts/"+name+".txt",'rb') as upload:
-                await channel.send(file=discord.File(upload,name+".txt"))
+        furl = message.attachments[0].url
+        r = requests.get(furl)
+        srcpath = path_to_bot+"/toparse/"+fullname
+        open(srcpath, 'wb').write(r.content)
+        decks = convert(path_to_bot,fullname)
+        for f in decks:
+            if f == None:
+                continue
+            with open(f[0],'rb') as upload:
+                await channel.send(file=discord.File(upload,f[1]))
+
+
 
 
 

@@ -112,17 +112,17 @@ def mS(arr):
     mergeSort(arr, 0, len(arr)-1)
 
 
-def findSimilar(cards, name, N=7):
+def findSimilar(L, name, N=7):
     tops = {}
     top = {}
-    for card in cards:
+    for l in L:
         try:
             # Gets edit distance
-            dist = eDistC.edist(card, name, len(card), len(name))
+            dist = eDistC.edist(l, name, len(l), len(name))
             # Adds edit distance to top
-            tops[card] = dist
+            tops[l] = dist
         except:
-            print(f"Uh-oh! {card} had an error")
+            print(f"Uh-oh! {l} had an error")
     # If there are more than N names in top, remove the one with the highest edit distance
     while len(top) < N:
         maxCard = min(tops, key=tops.get)
@@ -131,7 +131,16 @@ def findSimilar(cards, name, N=7):
     toplist = list(sorted(top,key=top.get))
     return toplist
 
-def findMostSimilar(cards, name):
-    similars = findSimilar(cards, name)
+def findMostSimilar(L, name):
+    similars = findSimilar(L, name)
     return similars[0]
 
+
+def fixSpaces(s):
+    news = ''
+    for l in s:
+        if l == ' ':
+            news += '_'
+        else:
+            news += l
+    return news

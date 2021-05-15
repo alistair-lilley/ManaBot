@@ -1,4 +1,5 @@
 import eDistC
+import threading
 
 # strips extensions
 def stripExt(filename):
@@ -34,20 +35,6 @@ def firstdiff(nameL, nameR):
     if(len(nameL) < len(nameR)):
         return True
     return False
-
-
-# NO LONGER USED
-def binarySearch(cardlist, name):
-    if len(cardlist) == 1:
-        if cardlist[0] == name:
-            return cardlist[0]
-        return None
-    m = len(cardlist) // 2
-    if cardlist[m].name == name:
-        return cardlist[m]
-    elif firstdiff(name, cardlist[m].name):
-        return binarySearch(cardlist[:m], name)
-    return binarySearch(cardlist[m+1:], name)
 
 
 def merge(arr, l, m, r):
@@ -112,9 +99,19 @@ def mS(arr):
     mergeSort(arr, 0, len(arr)-1)
 
 
-def findSimilar(L, name, N=7):
-    tops = {}
-    top = {}
+global tops
+tops = {}
+
+class simThread(threading.Thread):
+    def __init__(self, threadID, name, L):
+        threading.Thread.__init__(self)
+        self.threadID = threadID
+        self.name = name
+        self.L = L
+    def run(self):
+        runEdist(self.L, self.name)
+
+def runEdist(L, name):
     for l in L:
         try:
             # Gets edit distance
@@ -123,6 +120,15 @@ def findSimilar(L, name, N=7):
             tops[l] = dist
         except:
             print(f"Uh-oh! {l} had an error")
+
+def findSimilar(L, name, N=7):
+    top = {}
+    div = 100
+    partl = len(L)//div
+    subL = [L[n*(partl):(n+1)*(partl)] for n in range(div)]
+    threads = [simThread(n+1,name,subL[n]) for n in range(len(subL))]
+    for thread in threads:
+        thread.start()
     # If there are more than N names in top, remove the one with the highest edit distance
     while len(top) < N:
         maxCard = min(tops, key=tops.get)

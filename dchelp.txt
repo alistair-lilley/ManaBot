@@ -1,0 +1,6 @@
+**Bot commands:**
+- *!help* -- Post this
+- *!card* -- Posts image and oracle text of a card found by name.
+- *!rule* -- Posts a rule. Search either by keyword (i.e. Flying, Extort, etc.) or number (i.e. 200, 702.1, etc.)
+- *!checkban* -- Send the bot a deck in DMs with the caption *!checkban*, and it will respond with a list of banned cards in it by format.
+- convert -- If you send the bot a .cod, it will automatically convert it to a .txt

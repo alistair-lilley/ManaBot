@@ -1,15 +1,3 @@
-Magic: The Gathering Comprehensive Rules
-
-These rules are effective as of February 15, 2021.
-
-Introduction
-
-This document is the ultimate authority for Magic: The Gathering® competitive game play. It consists of a series of numbered rules followed by a glossary. Many of the numbered rules are divided into subrules, and each separate rule and subrule of the game has its own number. (Note that subrules skip the letters “l” and “o” due to potential confusion with the numbers “1” and “0”; subrule 704.5k is followed by 704.5m, then 704.5n, then 704.5p, for example.)
-
-Changes may have been made to this document since its publication. You can download the most recent version from the Magic rules website at Magic.Wizards.com/Rules. If you have questions, you can get the answers from us at Support.Wizards.com.
-
-Contents
-
 1. Game Concepts
 100. General
 101. The Magic Golden Rules
@@ -161,11 +149,7 @@ Contents
 904. Archenemy
 905. Conspiracy Draft
 
-Glossary
 
-Credits
-
-1. Game Concepts
 
 100. General
 
@@ -1111,7 +1095,7 @@ Example: A player casts Lightning Bolt, an instant that says “Lightning Bolt d
 
 122.8. If a triggered ability instructs a player to put one object’s counters on another object and that ability’s trigger condition or effect checks that the object with those counters left the battlefield, the player doesn’t move counters from one object to the other. Rather, the player puts the same number of each kind of counter the first object had onto the second object.
 
-2. Parts of a Card
+
 
 200. General
 
@@ -1377,7 +1361,7 @@ Example: Veteran Motorist has the ability “Whenever Veteran Motorist crews a V
 
 212.1f Legal text (the fine print at the bottom or bottom-right of the card) lists the trademark and copyright information.
 
-3. Card Types
+
 
 300. General
 
@@ -1648,7 +1632,7 @@ Example: “Basic Land — Mountain” means the card is a land with the subtype
 313.7. At any time, you may look at a face-down conspiracy card you control. You can’t look at face-down conspiracy cards controlled by other players.
 
 
-4. Zones
+
 
 400. General
 
@@ -1820,7 +1804,7 @@ Example: Exquisite Archangel has an ability which reads “If you would lose the
 408.3. In the Planechase, Vanguard, Commander, Archenemy, and Conspiracy Draft casual variants, nontraditional Magic cards and/or specially designated cards start the game in the command zone. Each variant has its own rules regarding such cards. See section 9, “Casual Variants.”
 
 
-5. Turn Structure
+
 
 500. General
 
@@ -2141,7 +2125,7 @@ Example: Squadron Hawk (a 1/1 creature with flying) and Goblin Piker (a 2/1 crea
 514.3a At this point, the game checks to see if any state-based actions would be performed and/or any triggered abilities are waiting to be put onto the stack (including those that trigger “at the beginning of the next cleanup step”). If so, those state-based actions are performed, then those triggered abilities are put on the stack, then the active player gets priority. Players may cast spells and activate abilities. Once the stack is empty and all players pass in succession, another cleanup step begins.
 
 
-6. Spells, Abilities, and Effects
+
 
 600. General
 
@@ -2837,7 +2821,7 @@ Example: A player is instructed to create a token that’s a copy of Voice of Al
 Example: One effect reads “If you would gain life, draw that many cards instead,” and another reads “If you would draw a card, return a card from your graveyard to your hand instead.” Both effects combine (regardless of the order they came into existence): Instead of gaining 1 life, the player puts a card from their graveyard into their hand.
 
 
-7. Additional Rules
+
 
 700. General
 
@@ -5073,7 +5057,7 @@ Example: A player controls Seal of Cleansing, an enchantment that reads, “Sacr
 
 723.2. When reversing illegal spells and abilities, the player who had priority retains it and may take another action or pass. The player may redo the reversed action in a legal way or take any other action allowed by the rules.
 
-8. Multiplayer Rules
+
 
 800. General
 
@@ -5479,7 +5463,7 @@ Example: In an Alternating Teams game with three teams, A, B, and C, the seating
 811.5. In the Alternating Teams variant, a team’s resources (cards in hand, mana, and so on) are not shared. Teammates can’t review each other’s hands unless they are sitting next to each other. Teammates may discuss strategies at any time. Teammates can’t manipulate each other’s cards or permanents.
 
 
-9. Casual Variants
+
 
 900. General
 
@@ -7534,31 +7518,3 @@ A place where objects can be during a game. See section 4, “Zones.”
 
 Zone-Change Triggers
 Trigger events that involve objects changing zones. See rule 603.6.
-
-
-Credits
-
-Magic: The Gathering Original Game Design: Richard Garfield
-Comprehensive Rules Design and Development: Paul Barclay, Mark L. Gottlieb, Beth Moursund, Bill Rose, Eli Shiffrin, and Matt Tabak, with contributions from Charlie Cátinò, John Carter, Elaine Chase, Laurie Cheers, Stephen D’Angelo, Dave DeLaney, Brady Dommermuth, Mike Donais, Skaff Elias, Mike Elliott, Richard Garfield, Dan Gray, Robert Gutschera, Collin Jackson, William Jockusch, Jeff Jordan, Yonemura Kaoru, Russell Linnemann, Jim Lin, Steve Lord, Sheldon Menery, Michael Phoenix, Mark Rosewater, David Sachs, Lee Sharpe, Henry Stern, Donald X. Vaccarino, Thijs van Ommen, Ingo Warnke, Tom Wylie, and Bryan Zembruski
-Editing: Del Laugel (lead), Gregg Luben, Nat Moes, Matt Tabak, Michael Zhang, and Hans Ziegler
-Magic Rules Management: Jess Dunks, Eli Shiffrin, and Matt Tabak
-
-The Magic: The Gathering game was designed by Richard Garfield, with contributions from Charlie Cátinò, Skaff Elias, Don Felice, Tom Fontaine, Jim Lin, Joel Mick, Chris Page, Dave Pettey, Barry “Bit” Reich, Bill Rose, and Elliott Segal. The mana symbols were designed by Christopher Rush.
-
-Thanks to all our project team members and the many others too numerous to mention who have contributed to this product.
-
-
-
-
-
-
-
-
-
-
-
-
-These rules are effective as of February 15, 2021.
-
-Published by Wizards of the Coast LLC, PO Box 707, Renton, WA 98057-0707, USA. Wizards of the Coast, Magic: The Gathering, Magic, their respective logos, Mirrodin, Kamigawa, Lorwyn, Zendikar, Innistrad, Ravnica, Khans of Tarkir, Magic Origins, Magic: The Gathering—Conspiracy, Ixalan, Unglued, Unstable, Dominaria, Ikoria, Kaldheim, and Planeswalker Decks are trademarks of Wizards of the Coast LLC in the USA and other countries. ©2021 Wizards. U.S. Pat. No. RE 37,957.
-

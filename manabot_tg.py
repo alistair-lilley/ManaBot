@@ -20,6 +20,7 @@ TOKEN = os.getenv('TGTOKEN')
 path_to_cards = os.getenv('CARDPATH')
 path_to_bot = os.getenv('BOTPATH')
 path_to_images = os.getenv('IMAGEPATH')
+rules = os.getenv("RULES")
 me = os.getenv('KOKITG')
 
 # Start logging and initialize bot and dispatcher objects
@@ -36,7 +37,7 @@ dp = Dispatcher(bot)
 # This will load image & name dicts, card list, exists set, searchable card list, and merge sort them
 # It will also store found cards for searching/checking
 CardManager = CardMgr(path_to_images,path_to_cards,path_to_bot,me,bot=bot)
-RulesManager = RulesMgr("rules.txt",bot)
+RulesManager = RulesMgr(rules,bot)
 
 ########################################################################################################################
 ########################################################################################################################

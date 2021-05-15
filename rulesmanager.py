@@ -109,7 +109,7 @@ def chunkMessage(data):
     if len(data) > 2000:
         r = [data[:2000], data[2000:]]
         while len(r[-1]) > 2000:
-            r = r[:-1] + r[-1][:2000] + r[-1][2000:]
+            r = r[:-1] + [r[-1][:2000]] + [r[-1][2000:]]
     return r
 
 
@@ -126,7 +126,6 @@ class RulesMgr:
     def runCmd(self,query):
         title = "No match"
         FR = "No results"
-        similars = []
         simplequery = simplifyString(query)
         # Keyword
         if simplequery in self.simplekeywords:

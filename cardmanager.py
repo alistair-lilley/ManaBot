@@ -7,8 +7,10 @@ from PIL import Image
 # Aiogram imports
 from aiogram.types import InputTextMessageContent, InlineQueryResultArticle, InlineQueryResultCachedPhoto, InputFile
 # Custom file imports
-from card import parseXML, loadAllImages
+from card import XMLParser, loadAllImages
 from helpers import *
+
+XMLP = XMLParser()
 
 def checkNamesDict(l,d):
     for item in l:
@@ -26,7 +28,7 @@ class CardMgr:
         self.image_path_d, self.image_name_d = loadAllImages(image_path)
         self.prevcards = {} # Records cards previously searched for quicker lookup
         # Data loading info
-        self.cards = {simplifyString(c.name):c for c in parseXML(data_path)}
+        self.cards = {simplifyString(c.name):c for c in XMLP.parseXML(data_path)}
         self.cardnames = [card for card in self.cards] # A sorted list of the cards for quick searching
         mS(self.cardnames)
         # The recent similars search, so that its callable by both search functions
@@ -35,22 +37,47 @@ class CardMgr:
         #    print(item)
         self.similars = []
 
+    ############################################################################
+    ############################################################################
+    ############################################################################
+
+    # Get both parts of card
+    async def getCard(self,cardname):
+        try:
+            cardpic = await self._searchImage(cardname)
+        except:
+            await self.bot.send_message(self.me,"Whoa! Big error in card pic search\nNext is card data search")
+            cardpic = None
+
+        try:
+            cardd = await self._searchDescription(cardname)
+        except:
+            await self.bot.send_message(self.me, "Whoa! Big error in card data search")
+            cardd = None
+        return [cardpic, cardd]
+
+        ############################################################################
+        ############################################################################
+        ############################################################################
+        ############################################################################
+        ############################################################################
+        ############################################################################
 
             # Image section
 
     # Initialize image search
-    async def searchImage(self,cardname):
+    async def _searchImage(self,cardname):
         self.similars = findSimilar(self.cardnames, cardname)
         setting = "Card image" # For default function
         pic_result_id = hashlib.md5(cardname.encode()).hexdigest() # Get hashcode for message id number
         try:
-            cardpic = await self.getImage(cardname,pic_result_id)
+            cardpic = await self._getImage(cardname,pic_result_id)
         except:
-            cardpic = await self.getDefault(cardname,pic_result_id,setting)
+            cardpic = await self._getDefault(cardname,pic_result_id,setting)
         return cardpic
 
 
-    async def getImage(self,cardname,pic_result_id):
+    async def _getImage(self,cardname,pic_result_id):
         # gets the proper name
         if cardname in self.image_name_d:
             propName = self.image_name_d[cardname]
@@ -90,21 +117,23 @@ class CardMgr:
                 cardpic = discord.File(f)
         return cardpic
 
-
+        ############################################################################
+        ############################################################################
+        ############################################################################
 
         # Description section
 
-    async def searchDescription(self,cardname):
+    async def _searchDescription(self,cardname):
         setting = "Card data"
         data_result_id = hashlib.sha256((cardname).encode()).hexdigest()
         try:
-            carddata = await self.getDescription(cardname,data_result_id)
+            carddata = await self._getDescription(cardname,data_result_id)
         except:
-            carddata = await self.getDefault(cardname,data_result_id,setting)
+            carddata = await self._getDefault(cardname,data_result_id,setting)
         return carddata
 
 
-    async def getDescription(self,cardname,data_result_id):
+    async def _getDescription(self,cardname,data_result_id):
         try:
             card = self.cards[cardname]
             simstr = ''
@@ -137,11 +166,13 @@ class CardMgr:
         self.similars = []
         return carddata
 
-
+        ############################################################################
+        ############################################################################
+        ############################################################################
 
         # Default
 
-    async def getDefault(self,cardname,result_id,setting):
+    async def _getDefault(self,cardname,result_id,setting):
         err = f"{setting} for {cardname} not found."
         if self.bot:
             await self.bot.send_message(self.me, f"A {setting} error occurred with this query: {cardname}")

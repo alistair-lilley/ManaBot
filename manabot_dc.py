@@ -6,7 +6,7 @@ import os, discord, asyncio
 from datetime import datetime
 from dotenv import load_dotenv
 
-from deckManager import DeckMgr
+from deckmanager import DeckMgr
 from cardmanager import CardMgr
 from rulesmanager import RulesMgr
 
@@ -52,12 +52,11 @@ async def on_ready():
         f'{guild.name}(id: {guild.id})'
     )
 
+    dt = datetime.now().strftime("%d-%m-%Y %H:%M") # get online time
 
-    dt = datetime.now().strftime("%d-%m-%Y %H:%M")
-    errs = dt#+loadingErrors
-
+    # Send me uptime log
     user = await client.fetch_user(me)
-    await user.send(f'{client.user} is connected to the following guild:\n{guild.name}(id: {guild.id})\n{errs})')
+    await user.send(f'{client.user} is connected to the following guild:\n{guild.name}(id: {guild.id})\n{dt})')
     asyncio.create_task(DeckManager.scheduledClear())
 
 # React to messages
@@ -75,15 +74,41 @@ async def on_message(message):
     contParsed = content.split()
     # Get the command
 
-    # if it contains anything:
-    if len(contParsed):
+    # work with deck files
+    if message.attachments:
+        msgatt = message.attachments[0]
+
+        if len(contParsed):  # gets command
+            cmd = contParsed[0].lower()
+        else:
+            cmd = None
+
+
+        # converts decks and gets list of deck file names *or* baned card lists
+        decks = DeckManager.handle(attached=[msgatt.filename, msgatt.url], cmd=cmd)
+
+        for f in decks:
+            if f == None:
+                continue
+            #elif cmd == "!checkban" or type(decks[0]) == str:  # sends cardban lists
+            #    await channel.send(f)
+            else:  # send txt files of decks
+                if type(f) == str:
+                    await channel.send(f)
+                    continue
+                with open(f[0], 'rb') as upload:
+                    await channel.send(f"**{f[1]}**")
+                    await channel.send(file=discord.File(upload, f[1]))
+                await channel.send(open(clr).read())
+
+    # if it's a command
+    elif len(contParsed):
         cmd = contParsed[0].lower()
         if cmd == "!card":
             cardname = simplifyString(' '.join(contParsed[1:]))
-            cardpic = await CardManager.searchImage(cardname)
-            await channel.send(file=cardpic)
-            cardData = await CardManager.searchDescription(cardname)
-            await channel.send(cardData)
+            carddata = await CardManager.getCard(cardname) # format [discordfile, cardtext]
+            await channel.send(file=carddata[0])
+            await channel.send(carddata[1])
 
         if cmd == "!rule":
             query = ' '.join(contParsed[1:])
@@ -100,27 +125,7 @@ async def on_message(message):
 
 
 
-    # Convert .toparse and .decs to .txts
-    if message.attachments:
-        msgatt = message.attachments[0]
 
-        if len(contParsed):
-            cmd = contParsed[0].lower()
-        else:
-            cmd = None
-
-        decks = DeckManager.handle(attached=[msgatt.filename,msgatt.url],cmd=cmd)
-
-        for f in decks:
-            if f == None:
-                continue
-            elif cmd == "!checkban" and not message.guild:
-                await channel.send(f)
-            else:
-                with open(f[0],'rb') as upload:
-                    await channel.send(f"**{f[1]}**")
-                    await channel.send(file=discord.File(upload,f[1]))
-                await channel.send(open(clr).read())
 
 
 

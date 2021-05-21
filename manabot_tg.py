@@ -61,35 +61,25 @@ async def on_startup(d: Dispatcher):
 # This was one hell of a mess, so lets clean it up!
 @dp.inline_handler()
 async def on_inline(message: InlineQuery):
+    # Ends on_inline if there's no query or if there's only 1 word query (i.e. card or rule)
     if message.query == '' or len(message.query.split()) == 1:
         return
-    cmd = simplifyString(message.query.split()[0])
-    query = ' '.join(simplifyString(message.query.split()[1:]))
-    if cmd == "rule":
+    cmd = simplifyString(message.query.split()[0]) # Since you can search *either* card or rule, we use command
+    query = ' '.join(simplifyString(message.query.split()[1:])) # Then the whole string query
+
+    # temp down while rules are being fixed
+    '''if cmd == "rule":
         ruledata = RulesManager.runCmd(query)
-        await bot.answer_inline_query(message.id,results=ruledata,cache_time=1)
-        return
+        await bot.answer_inline_query(message.id,results=ruledata,cache_time=1)'''
 
+    #elif cmd == "card":
     if cmd == "card":
-        cardpic, cardd = None, None # just in case
 
-        try:
-            cardpic = await CardManager.searchImage(query)
-        except:
-            await bot.send_message(me,"Whoa! Big error in card pic search\nNext is card data search")
-
-        try:
-            cardd = await CardManager.searchDescription(query)
-        except:
-            await bot.send_message(me,"Whoa! Big error in card data search")
+        data = await CardManager.getCard(query)
 
         # Results array
         # Store cardpic and cardd if they are found; if they failed, ignore them
-        res = []
-        if cardpic != None:
-            res.append(cardpic)
-        if cardd != None:
-            res.append(cardd)
+        res = [d for d in data if d]
 
         # Try sending the data, and if it cant just throw an error
         if len(res) > 0:

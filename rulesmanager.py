@@ -17,8 +17,9 @@ from helpers import *
 from aiogram.types import InputTextMessageContent, InlineQueryResultArticle
 
 # Some basic globals for quick lookup later on
-NUMERALS = {str(i) for i in range(0,10)}
-ALPH = set(list('abcdefghijklmnopqrstuvwxyz'))
+NUMERALS = set([str(i) for i in range(0,10)]+["."])
+alph = 'abcdefghijklmnopqrstuvwxyz'
+ALPH = set(list(alph+alph.upper()))
 
 # Read in rules file to get two dicts: a rules:rulecontent dict and a keyword:keywordcontent dict
 # This was a pain
@@ -41,82 +42,24 @@ ALPH = set(list('abcdefghijklmnopqrstuvwxyz'))
     Extort
     Extort rules with #
 '''
-# To parse it, we gotta account for how the file is constructed which is ANNOYING lol
-def readRules(filename):
-    with open(filename) as f:
-        text = [line.strip() for line in f]
-
-    rules = {}
-    keywords = {}
-    curRule = ''
-    curKeyw = []
-    for rule in text:
-        # If the rule is empty, reset current rule and keyword, then keep goin
-        if not rule:
-            curRule = ''
-            curKeyw = []
-            continue
-        # Get the rule as the first word of the rules
-        r = rule.split()[0]
-        # If there is a current rule, add this line to the rule
-        if len(curRule) > 0:
-            rules[curRule] += '\n'+rule
-        # If there is a current keyword, add this line to the keywords
-        elif len(curKeyw) > 0:
-            for k in curKeyw:
-                keywords[k] += '\n'+rule
-        # If the first character is number, its a rule
-        elif set(r[0]).issubset(NUMERALS):
-            curRule, rules = addRule(rules, rule)
-        # If the first character isn't a number, its a keyword
-        else:
-            # Add it to the keyword dict
-            curKeyw = [k for k in rule.split(', ')]
-            for k in curKeyw:
-                keywords[k] = rule
-
-    return rules, keywords
-
 
 # Shit this was tricky
 # Possible combinations:
-# 1. --> ['1','']
-# 100. --> ['100'.'']
-# 100.2. --> ['100','2','']
-# 100.2a --> ['100','2a']
-def addRule(rules, rule):
-    rname = rule.split()[0]
-    rtext = ' '.join(rule.split()[1:])
-    r = rname.split('.')
-    if len(r) == 2: # 1. ; 100. ; 100.1a
-        if len(r[0]) == 1: # 1.
-            rules[rname] = rtext
-        elif len(r[0]) == 3 and len(r[1]) == 0: # 100.
-            rules[r[0][0]+'.'] += "\nSubrule: "+rule # Add as subrule to 1.
-            rules[rname] = rtext
-        else: # 100.1a
-            rules[r[0]+'.'] += "\nSubrule: "+rule # Add as subrule to 100.
-            rules[r[0]+'.'+r[1][:-1]+'.'] += "\nSubrule: "+rule # Add as subrule to 100.1.
-            rules[rname] = rtext
-    elif len(r) == 3: # 100.1.
-        rules[r[0]+'.'] += "\nSubrule: "+rule # Add as subrule to 100.
-        rules[rname] = rtext
-    return rname, rules
+# 1. --> ['1',''] --> len(2), [0] len(1) --> adds to 3
+# 100. --> ['100',''] --> len(2), [0] len(3) --> adds to 5
+# 100.2. --> ['100','1',''] --> len(3), [0] len(3), [1] len(1+) --> adds to 7+
+# 100.2a --> ['100','1a'] --> len(2), [1].endswith(alpha)
 
-# Chunkify it in case discord cant handle the LENGTH
-def chunkMessage(data):
-    r = [data]
-    if len(data) > 2000:
-        r = [data[:2000], data[2000:]]
-        while len(r[-1]) > 2000:
-            r = r[:-1] + [r[-1][:2000]] + [r[-1][2000:]]
-    return r
+# calculate: len(arr)+sum([len(a) for a in arr])
+
+
+
 
 
 class RulesMgr:
     def __init__(self,filename,bot=None):
         self.bot = bot
-        self.rules, self.keywords = readRules(filename)
+        self.rules, self.keywords = self._readRules(filename)
         # Simple string stuff to make sure it can handle irregular punctuation and capitalization
         self.simplerules = {simplifyString(rule):rule for rule in self.rules}
         self.simplekeywords = {simplifyString(keyword):keyword for keyword in self.keywords}
@@ -129,7 +72,6 @@ class RulesMgr:
         simplequery = simplifyString(query)
         # Keyword
         if simplequery in self.simplekeywords:
-            print(simplequery)
             fullr = self.simplekeywords[simplequery]
             fullrule = self.keywords[fullr]
             FR = fullrule
@@ -164,6 +106,85 @@ class RulesMgr:
             FR = [FR]
         # Discord
         else:
-            FR = chunkMessage(FR)
+            FR = self._chunkMessage(FR)
 
         return FR
+    
+    def _getRuleType(self,rule):
+        if rule[-1] not in NUMERALS:
+            return -1
+        rulesplit = rule.split('.')
+        return len(rulesplit)+sum([len(r) for r in rulesplit])
+    
+    
+    # 0 = break, 1 = keep goin, 2 = skip (continue)
+    def _checkBreakSkip(self,ruletype,rtext):
+        if rtext == '': # gets out or keeps goin if theres a break
+            return ((2,0)[ruletype in [3,-1]])
+    
+        subrulesplit = rtext.split()[0].split('.') # get the rule split on .
+    
+        if len(subrulesplit[0]) == 1:
+            return 1
+    
+        elif ruletype == 5:
+            newsubr = (subrulesplit+["1"],subrulesplit)[subrulesplit[-1] != ''] # get a new subrule if necessary
+    
+            # Big block
+            return ((((int(newsubr[-1][-1] in ALPH) + 1, # gets the return val if has alpha (1 to keep goin, 2 to skip)
+                       not len(subrulesplit) == 2)[not subrulesplit[-1]]), # gets val if theres no end
+                     2)[rtext.split() == "Example:"]) # skips if example
+    
+        # otherwise check if its ["100","1",""]
+        elif ruletype >= 7:
+            return subrulesplit[-1]
+    
+    
+    def _getRule(self,rule,rtext,rules):
+        ruletype = self._getRuleType(rule)
+        subrules = ""
+        text = ' '.join(rtext.split()[1:])
+        for sub in rules:
+            bs = self._checkBreakSkip(ruletype,sub)
+            if bs == 0:
+                break
+            elif bs == 2:
+                continue
+            subrules += "\nSubrule: "+sub
+        return text+subrules
+    
+    
+    def _readRules(self,filename):
+        with open(filename) as f:
+            text = [line.strip() for line in f]
+    
+        rules = {}
+        keywords = {}
+    
+        # If the rule is empty, reset current rule and keyword, then keep goin
+        for l in range(len(text)):
+            line = text[l]
+            if not line:
+                continue
+    
+            # Get the rule as the first word of the rules
+            first = line.split()[0]
+    
+            if set(first[0]).issubset(NUMERALS):
+                rules[first] = self._getRule(first, line, text[l+1:])
+    
+            elif first != "Example:":
+                keywords[first] = self._getRule(first, line, text[l+1:])
+    
+        return rules, keywords
+    
+    
+    
+    # Chunkify it in case discord cant handle the LENGTH
+    def _chunkMessage(self,data):
+        r = [data]
+        if len(data) > 2000:
+            r = [data[:2000], data[2000:]]
+            while len(r[-1]) > 2000:
+                r = r[:-1] + [r[-1][:2000]] + [r[-1][2000:]]
+        return r

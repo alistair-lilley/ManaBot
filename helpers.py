@@ -99,19 +99,9 @@ def mS(arr):
     mergeSort(arr, 0, len(arr)-1)
 
 
-global tops
-tops = {}
-
-class simThread(threading.Thread):
-    def __init__(self, threadID, name, L):
-        threading.Thread.__init__(self)
-        self.threadID = threadID
-        self.name = name
-        self.L = L
-    def run(self):
-        runEdist(self.L, self.name)
-
-def runEdist(L, name):
+def findSimilar(L, name, N=7):
+    top = {}
+    tops = {}
     for l in L:
         try:
             # Gets edit distance
@@ -120,15 +110,6 @@ def runEdist(L, name):
             tops[l] = dist
         except:
             print(f"Uh-oh! {l} had an error")
-
-def findSimilar(L, name, N=7):
-    top = {}
-    div = 100
-    partl = len(L)//div
-    subL = [L[n*(partl):(n+1)*(partl)] for n in range(div)]
-    threads = [simThread(n+1,name,subL[n]) for n in range(len(subL))]
-    for thread in threads:
-        thread.start()
     # If there are more than N names in top, remove the one with the highest edit distance
     while len(top) < N:
         maxCard = min(tops, key=tops.get)
@@ -136,11 +117,6 @@ def findSimilar(L, name, N=7):
         del(tops[maxCard])
     toplist = list(sorted(top,key=top.get))
     return toplist
-
-def findMostSimilar(L, name):
-    similars = findSimilar(L, name)
-    return similars[0]
-
 
 def fixSpaces(s):
     news = ''

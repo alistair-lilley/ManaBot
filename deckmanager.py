@@ -20,16 +20,30 @@ class DeckMgr:
             if cmd == "!cleardecks":
                 self._cleardecks()
         if attached:
+            # Get file data stuff; name, url, raw data
             fullname = attached[0]
             furl = attached[1]
             r = requests.get(furl)
+            # Save the file data
             srcpath = self.ptb+"/toparse/"+fullname
             open(srcpath, 'wb').write(r.content)
+            # Convert!
             decks = self._convert(fullname)
-            if cmd and cmd == "!checkban":
-                return [self._checkbanned(d[0]) for d in decks]
+            # Checks for command and throws error if wrong cmd
+            if cmd:
+                if cmd == "!checkban":
+                    return [self._checkbanned(d[0]) for d in decks]
+                else:
+                    return [f"Command {cmd} not found. Did you mean '!checkban'?"]
+            # otherwise just spit out the decklists as txt's
             else:
                 return decks
+
+    ###############################################################
+    ###############################################################
+    ###############################################################
+
+    # Convert overall
 
     # Main convert function
     def _convert(self, f):
@@ -43,13 +57,20 @@ class DeckMgr:
         if ext in ['.cod', '.mwDeck', '.txt']:
             self._convertDeck(srcpath, textpath, name, ext)
             flist = [(textpath + name + '.txt', name + '.txt')]
+        elif ext == '.mwDeck':
+            flist = []
         elif ext == '.zip':
-            flist = self._convertZip(self.ptb, f)
+            flist = self._convertZip(f)
         else:
             flist = [None]
         # return list of file paths
         return flist
-    
+
+    ###############################################################
+    ###############################################################
+    ###############################################################
+
+    # Convert the zips
     
     # Converts a whole zip by unzipping it, then converting each file within the unzipped dir
     # There may be filename collisions but... that's a later project
@@ -83,12 +104,19 @@ class DeckMgr:
             # Convert if it's a cod or mwDeck
             else:
                 fname, fext = stripExt(df)
-                if fext in ['.cod', '.mwDeck']:
+                if fext in ['.cod']:
                     self._convertDeck(dirpath + '/', textpath + '/', fname, fext)
                     flist.append((textpath + '/' + fname + '.txt', fname + '.txt'))
+                elif fext == '.mwDeck':
+                    flist.append("Currently .mwDecks are not supported.")
         # return list of file paths
         return flist
-    
+
+    ###############################################################
+    ###############################################################
+    ###############################################################
+
+    # Convert individual decks
     
     # Convert a deck
     # Basically goes through each possible extension and runs convert on it
@@ -105,8 +133,8 @@ class DeckMgr:
         # Write joined list of cards
         with open(textpath + name + '.txt', 'w') as wf:
             wf.write('\n'.join(cards))
-    
-    
+
+
     # Converts a .cod file, which is basically an .xml file
     def _convertCod(self, filepath, namefull):
         fullpath = filepath + namefull
@@ -116,7 +144,8 @@ class DeckMgr:
         # Loop through etree
         for child in root:
             if child.tag in ['deckname','comments'] and child.text:
-                cards.append("//"+child.text+'\n')
+                for t in child.text.split('\n'):
+                    cards.append("//"+t)
             # Loop through children of a card zone
             if child.tag == 'zone':
                 for c in child:
@@ -147,7 +176,12 @@ class DeckMgr:
         # return as list of cards
         return cards
     
-    
+    ###############################################################
+    ###############################################################
+    ###############################################################
+
+    # Bans
+
     # Checks cards against a banlist; only works for EDH
     def _checkbanned(self, f):
         # load banlists and decklist
@@ -165,7 +199,6 @@ class DeckMgr:
         sbans = ''.join(sbans)
         mbans = ["*Multiplayer EDH bans:*\n"]
         check = list(set(deck).intersection(set(multibanned)))
-        print(check)
         if not check:
             mbans.append("None")
         else:

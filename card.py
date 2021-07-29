@@ -36,42 +36,18 @@ def loadAllImages(imageDir):
 # Card class
 class Card:
     def __init__(self, featDict):
-        self.text, self.colors, self.colorid, self.cost, self.pt,self.related = "","","","","",""
-        self.name = featDict["Name"]
-        if "Text" in featDict:
-            self.text = featDict["Text"]
-        if "Colors" in featDict:
-            self.colors = featDict["Colors"]
-        if "Color ID" in featDict:
-            self.colorid = featDict["Color ID"]
-        if "Mana cost" in featDict:
-            self.cost = featDict["Mana cost"]
-        self.cardtype = featDict["Type"]
-        if "P/T" in featDict:
-            self.pt = featDict["P/T"]
-        if "Related" in featDict:
-            self.related = featDict["Related"]
+        self.feats = featDict
+
+    def sendRaw(self):
+        toget = ["Mana Cost","Color ID","Type"]
+        return {f:self.feats[f] for f in self.feats if f in toget}
 
     # Print data of a card
     # Prints.... the data from a card
     # but actually returns it as a string
     def printData(self):
-        datas = []
-        datas.append("Name: "+self.name)
-        if self.cost != "":
-            datas.append("Mana Cost: "+self.cost)
-        if self.colors != "":
-            datas.append("Color(s): "+self.colors)
-        if self.colorid != "":
-            datas.append("Color ID: "+self.colorid)
-        datas.append("Type: "+self.cardtype)
-        if self.pt != "":
-            datas.append("P/T: "+self.pt)
-        if self.text != "":
-            datas.append("Text: "+self.text)
-        if self.related != "":
-            datas.append("Related cards: "+self.related)
-        return "\n".join(datas)
+        ordered = ["Name", "Mana Cost", "Color(s)", "Color ID", "Type", "P/T", "Text", "Related cards"]
+        return "\n".join([f'{o}: {self.feats[o]}' for o in ordered if o in self.feats])
 
 #######################################################################################################################
 #######################################################################################################################
@@ -89,9 +65,9 @@ class XMLParser:
         propeles = {}
         for subele in elem:
             if subele.tag == "colors":
-                propeles["Colors"] = subele.text
+                propeles["Color(s)"] = subele.text
             elif subele.tag == "manacost":
-                propeles["Mana cost"] = subele.text
+                propeles["Mana Cost"] = subele.text
             elif subele.tag == "coloridentity":
                 propeles["Color ID"] = subele.text
             elif subele.tag == "type":
@@ -116,7 +92,7 @@ class XMLParser:
             if elem.tag == "text":
                 elems["Text"] = elem.text
             if elem.tag == "related":
-                elems["Related"] = elem.text
+                elems["Related cards"] = elem.text
         return elems
 
     # Parse the whole tree

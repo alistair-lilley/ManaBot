@@ -1,19 +1,18 @@
 import eDistC
-import threading
+import string
 
 # strips extensions
 def stripExt(filename):
     split = filename.split('.')
     ext = '.'+split[-1]
-    name = ' '.join(split[:-1])
+    name = '.'.join(split[:-1])
     return name, ext
 
 # Function to remove punctuation from names
 def simplifyString(name):
-    punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*~ '''
     newname = ""
     for l in name:
-        if l not in punctuations:
+        if l not in string.punctuation+" " or l == "_":
             newname += l
     newname = newname.lower()
     return newname

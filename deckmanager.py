@@ -6,13 +6,15 @@
 import os, shutil, asyncio, requests
 import xml.etree.ElementTree as ET
 from zipfile import ZipFile
-from helpers import stripExt
+from helpers import stripExt, simplifyString
 
+NUMERALS = {str(i) for i in range(0, 9)}
 
 class DeckMgr:
-    def __init__(self, path_to_bot, deckDirs):
+    def __init__(self, path_to_bot, deckDirs, CardManager):
         self.ptb = path_to_bot
         self.dirs = deckDirs
+        self.cm = CardManager
 
     # Generic command handler. It processing attachments and/or commands as needed
     def handle(self,attached=None,cmd=None):
@@ -33,8 +35,10 @@ class DeckMgr:
             if cmd:
                 if cmd == "!checkban":
                     return [self._checkbanned(d[0]) for d in decks]
+                elif cmd == "!analyze":
+                    return [self._analyze(d[0]) for d in decks]
                 else:
-                    return [f"Command {cmd} not found. Did you mean '!checkban'?"]
+                    return [f"Command {cmd} not found. Did you mean '!checkban' or '!analyze'?"]
             # otherwise just spit out the decklists as txt's
             else:
                 return decks
@@ -207,7 +211,78 @@ class DeckMgr:
         allbans = sbans + mbans + '\n\n'
         # return as string
         return allbans
-    
+
+    ###############################################################
+    ###############################################################
+    ###############################################################
+
+    # analyze
+
+    def _analyze(self, f):
+        # get decklist
+        deck = [line.strip() for line in open(f)]
+        datatypes = ["color","costs","converted","avgcost","lands","cardtypes"]
+        data = {dat:dict() for dat in datatypes}
+        for c in deck:
+            if c[0] not in NUMERALS:
+                continue
+            card = c.split()[1:]
+            card = simplifyString(' '.join(card))
+            carddata = self.cm.getRaw(card)
+            print(f'\n{c}, {card}\n{carddata}')
+            # get color IDs
+            if "Color ID" in carddata:
+                if "Land" in carddata["Type"]:
+                    data["lands"][carddata["Color ID"]] = data["lands"].get(carddata["Color ID"],0)+1
+                for col in carddata["Color ID"]:
+                    data["color"][col] = data["color"].get(col,0)+1
+            else:
+                data["color"]["C"] = data["color"].get("C",0)+1
+            # get costs
+            if "Mana Cost" in carddata:
+                for cos in carddata["Mana Cost"]:
+                    if "Land" in carddata["Type"]:
+                        continue
+                    if cos in NUMERALS:
+                        data["costs"]["N"] = data["costs"].get("N",0)
+                        data["costs"]["N"] = data["costs"]["N"]*10+int(cos)
+                    if cos in "{/}":
+                        continue
+                    else:
+                        data["costs"][cos] = data["costs"].get("cos",0)+1
+            for cardtype in carddata:
+                data["cardtypes"][cardtype] = data["cardtypes"].get(cardtype,0)+1
+        data["converted"] = sum([data["costs"][t] for t in data["costs"]])
+        data["avgcost"] = data["converted"] - sum([data["lands"][t] for t in data["lands"]])
+        for d in data:
+            if type(data[d]) == dict:
+                data[d] = d + ": " + ', '.join([subd for subd in data[d]])
+            else:
+                data[d] = d + ": " + str(data[d])
+        return '\n'.join([data[d] for d in data])
+
+
+    def _combineCost(self,mana):
+        ttl = 0
+        i = 0
+        while i < len(mana):
+            if i in NUMERALS:
+                ttl += int(i)
+            elif i != "{":
+                while i != "}":
+                    i += 1
+            ttl += 1
+            i += 1
+        return ttl
+
+
+
+
+    ###############################################################
+    ###############################################################
+    ###############################################################
+
+    # clear
     
     # Clears all decks from parse and text dirs
     def _cleardecks(self):

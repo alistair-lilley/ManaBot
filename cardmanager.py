@@ -64,6 +64,18 @@ class CardMgr:
         except:
             return None
 
+    # Tells the user what commands to use
+    def cmdInfo(self,id):
+        data_result_id = hashlib.md5(id.encode()).hexdigest()
+        instruct = f'For results, enter "card cardname" or "rule rulename".'
+        input_content = InputTextMessageContent(instruct)
+        info = InlineQueryResultArticle(
+            id=data_result_id,
+            title=instruct,
+            input_message_content=input_content,
+        )
+        return [info]
+
         ############################################################################
         ############################################################################
         ############################################################################

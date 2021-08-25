@@ -12,14 +12,12 @@
     unfortunately they're just gonna be part of the keywords. Won't affect much tho, they don't take up too much space &
     they don't interfere with seardching.
 '''
-import hashlib
+import hashlib, re
 from helpers import *
 from aiogram.types import InputTextMessageContent, InlineQueryResultArticle
 
 # Some basic globals for quick lookup later on
 NUMERALS = set([str(i) for i in range(0,10)]+["."])
-alph = 'abcdefghijklmnopqrstuvwxyz'
-ALPH = set(list(alph+alph.upper()))
 
 # Read in rules file to get two dicts: a rules:rulecontent dict and a keyword:keywordcontent dict
 # This was a pain
@@ -43,148 +41,142 @@ ALPH = set(list(alph+alph.upper()))
     Extort rules with #
 '''
 
+
 # Shit this was tricky
 # Possible combinations:
-# 1. --> ['1',''] --> len(2), [0] len(1) --> adds to 3
-# 100. --> ['100',''] --> len(2), [0] len(3) --> adds to 5
-# 100.2. --> ['100','1',''] --> len(3), [0] len(3), [1] len(1+) --> adds to 7+
-# 100.2a --> ['100','1a'] --> len(2), [1].endswith(alpha)
-
-# calculate: len(arr)+sum([len(a) for a in arr])
-
-
+# 1. --> ['1','']
+# 100. --> ['100','']
+# 100.2. --> ['100','1','']
+# 100.2a --> ['100','1a']
 
 
 
 class RulesMgr:
-    def __init__(self,filename,bot=None):
-        self.bot = bot
-        self.rules, self.keywords = self._readRules(filename)
-        # Simple string stuff to make sure it can handle irregular punctuation and capitalization
-        self.simplerules = {simplifyString(rule):rule for rule in self.rules}
-        self.simplekeywords = {simplifyString(keyword):keyword for keyword in self.keywords}
-        self.kwlist = list(self.simplekeywords)
+    def __init__(self,filename):
+        # get rules and kws
+        self.rules, self.kws = self._readRules(filename)
+        # make a list for edit dist
+        self.kwlist = list(self.kws)
+        # merge sort list
         mS(self.kwlist)
 
-    def runCmd(self,query):
-        title = "No match"
-        FR = "No results"
-        simplequery = simplifyString(query)
-        # Keyword
-        if simplequery in self.simplekeywords:
-            fullr = self.simplekeywords[simplequery]
-            fullrule = self.keywords[fullr]
-            FR = fullrule
-            title = "Keyword: "+fullr
-        # Rule
-        elif simplequery in self.simplerules:
-            fullr = self.simplerules[simplequery]
-            fullrule = self.rules[fullr]
-            FR = fullr + ' ' + fullrule
-            title = "Rule: "+fullr
-        # In case its neither
-        elif simplequery[0] not in NUMERALS:
-            similars = findSimilar(self.kwlist,simplequery)
-            mostsim = similars[0]
-            fullr = self.simplekeywords[mostsim]
-            FR = "Closest match: "+self.keywords[fullr]+"\n\n Similar matches:\n"+\
-                 '\n'.join([self.simplekeywords[sim] for sim in similars[1:]])
-            title = "Closest match: "+fullr
-
-        # Telegram
-        if self.bot:
-            # Get message id for sending
-            data_result_id = hashlib.sha256((query).encode()).hexdigest()
-            # Creates message content from card data
-            input_content = InputTextMessageContent(FR)
-            # Creates result article to send
-            FR = InlineQueryResultArticle(
-                id=data_result_id,
-                title=f'{title}',
-                input_message_content=input_content,
-            )
-            FR = [FR]
-        # Discord
+    def handle(self,query):
+        query = simplifyString(query)
+        # If in rules, return rule
+        if query in self.rules:
+            r = self.rules[query]
+        # If in kws, return kw
+        elif query in self.kws:
+            r = self.kws[query]
+        # If it's a number but not a rule, say rule not found
+        elif query[0] in NUMERALS:
+            r = "Rule not found"
+        # If it's clearly a keyword mistype, return similar keywords
         else:
-            FR = self._chunkMessage(FR)
+            r = "Keyword not found... Did you mean:\n"+"\n".join(findSimilar(self.kwlist,query))
+        return self._chunkMessage(r)
 
-        return FR
-    
-    def _getRuleType(self,rule):
-        if rule[-1] not in NUMERALS:
-            return -1
-        rulesplit = rule.split('.')
-        return len(rulesplit)+sum([len(r) for r in rulesplit])
-    
-    
-    # 0 = break, 1 = keep goin, 2 = skip (continue)
-    def _checkBreakSkip(self,ruletype,rtext):
-        if rtext == '': # gets out or keeps goin if theres a break
-            return ((2,0)[ruletype in [3,-1]])
-    
-        subrulesplit = rtext.split()[0].split('.') # get the rule split on .
-    
-        if len(subrulesplit[0]) == 1:
-            return 1
-    
-        elif ruletype == 5:
-            newsubr = (subrulesplit+["1"],subrulesplit)[subrulesplit[-1] != ''] # get a new subrule if necessary
-    
-            # Big block
-            return ((((int(newsubr[-1][-1] in ALPH) + 1, # gets the return val if has alpha (1 to keep goin, 2 to skip)
-                       not len(subrulesplit) == 2)[not subrulesplit[-1]]), # gets val if theres no end
-                     2)[rtext.split() == "Example:"]) # skips if example
-    
-        # otherwise check if its ["100","1",""]
-        elif ruletype >= 7:
-            return subrulesplit[-1]
-    
-    
-    def _getRule(self,rule,rtext,rules):
-        ruletype = self._getRuleType(rule)
-        subrules = ""
-        text = ' '.join(rtext.split()[1:])
-        for sub in rules:
-            bs = self._checkBreakSkip(ruletype,sub)
-            if bs == 0:
-                break
-            elif bs == 2:
-                continue
-            subrules += "\nSubrule: "+sub
-        return text+subrules
-    
-    
+    # Read in rules as list, then get the stuff from _addAllRules
     def _readRules(self,filename):
-        with open(filename) as f:
-            text = [line.strip() for line in f]
-    
-        rules = {}
-        keywords = {}
-    
-        # If the rule is empty, reset current rule and keyword, then keep goin
-        for l in range(len(text)):
-            line = text[l]
-            if not line:
+        lines = [line.strip() for line in open(filename)]
+        return self._addAllRules(lines)
+
+    # Get the rule type
+    def _ruleType(self,line):
+        # Skip line if its empty or if its "example"
+        if not line or line.split()[0] == "Example:":
+            return "SKIP"
+        rule = line.split()[0].split('.')
+        # catch if keyword, not rule
+        if rule[0][0] not in NUMERALS:
+            return "KW"
+        # catch if there are 3 periods
+        elif len(rule) == 3:
+            return "###.#."
+        # catch if it only has 1
+        elif len(rule[0]) == 1:
+            return "#."
+        # catch if theres a letter
+        elif len(rule) > 1 and re.search("[a-z]", rule[1]):
+            return "###.#A"
+        # else just 3
+        elif len(rule[0]) == 3:
+            return "###."
+
+    # Get all of the rules and keywords as 2 dicts
+    def _addAllRules(self,rules):
+        # initilaize dicts
+        allRules = dict()
+        allKWs = dict()
+        r = 0
+        # For each line
+        while r < len(rules):
+            # get rule and rule type
+            rule = rules[r]
+            rtype = self._ruleType(rule)
+            # If it's a newline or if it's "Example:", skip
+            if rtype == "SKIP":
+                pass
+            # If it's a keyword, add keyword
+            elif rtype == "KW":
+                allKWs.update(self._addRule(rule.lower(), rtype, r, rules))
+                # Once you're in KW section, skip lines until you pass a newline
+                while r+1 < len(rules):
+                    if not rules[r+1]:
+                        r += 1
+                        break
+                    r += 1
+            # otherwise, add the rule
+            else:
+                allRules.update(self._addRule(simplifyString(rule.split()[0]), rtype, r, rules))
+                #print(allRules)
+            r += 1
+        # gib bacc
+        return allRules, allKWs
+
+    # Add a single rule/kw
+    def _addRule(self, rule, rtype, idx, allrules):
+        # setup: start dict, get rule type of original rule, and get ruletype of curr line
+        d = dict()
+        currt = self._ruleType(allrules[idx])
+        # Do while simulation
+        while True:
+            # If it's not a keyword, or if its a ###.#A, a newline, or a SKIP in a ###. rule, skip this line
+            if (rtype == "###." and currt in ["###.#A","SKIP"]) or not allrules[idx]:
+                idx += 1
+                currt = self._ruleType(allrules[idx])
                 continue
-    
-            # Get the rule as the first word of the rules
-            first = line.split()[0]
-    
-            if set(first[0]).issubset(NUMERALS):
-                rules[first] = self._getRule(first, line, text[l+1:])
-    
-            elif first != "Example:":
-                keywords[first] = self._getRule(first, line, text[l+1:])
-    
-        return rules, keywords
-    
-    
-    
+            # Otherwise, add the rule
+            else:
+                d[rule] = d.get(rule, "") + allrules[idx] + '\n'
+            # Increment and get the next rule
+            idx += 1
+            # Break out if you're at the end of the rules
+            if idx == len(allrules):
+                break
+            # If its a kewyord, end on newline
+            if not allrules[idx] and rtype == "KW":
+                break
+            # Skip newlines
+            while not allrules[idx]:
+                idx += 1
+            currt = self._ruleType(allrules[idx])
+            # Break if the new rule is the same as the current rule
+            if (rtype != "KW" and currt == rtype) or allrules[idx] == "Glossary":
+                break
+        # Return the dict
+        return d
+
+
+
     # Chunkify it in case discord cant handle the LENGTH
     def _chunkMessage(self,data):
-        r = [data]
+        chunk = [data]
+        # If the data is more than 2000 characters,
         if len(data) > 2000:
-            r = [data[:2000], data[2000:]]
-            while len(r[-1]) > 2000:
-                r = r[:-1] + [r[-1][:2000]] + [r[-1][2000:]]
-        return r
+            # break it into two
+            chunk = [data[:2000], data[2000:]]
+            # Then break it until it's in chunks of 2000 characters
+            while len(chunk[-1]) > 2000:
+                chunk = chunk[:-1] + [chunk[-1][:2000]] + [chunk[-1][2000:]]
+        return chunk

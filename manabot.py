@@ -9,7 +9,7 @@
 import os, discord, asyncio, logging
 
 # Bot-oriented imports
-from aiogram import Bot, Dispatcher, executor
+from aiogram import Bot, Dispatcher
 from aiogram.types import InlineQuery
 
 from datetime import datetime
@@ -58,7 +58,7 @@ dp = Dispatcher(tgbot)
 # This will load image & name dicts, card list, exists set, searchable card list, and merge sort them
 # It will also store found cards for searching/checking
 CardManager = CardMgr(path_to_images,path_to_cards,path_to_bot,metg,tgbot)
-RulesManager = RulesMgr(rules,tgbot)
+RulesManager = RulesMgr(rules)
 DeckManager = DeckMgr(path_to_bot,["/toparse/", "/txts/"], CardManager)
 
 ########################################################################################################################
@@ -112,18 +112,20 @@ async def on_ready():
 # This was one hell of a mess, so lets clean it up!
 @dp.inline_handler()
 async def on_inline(message: InlineQuery):
-    # Ends on_inline if there's no query or if there's only 1 word query (i.e. card or rule)
-    if message.query == '' or len(message.query.split()) == 1:
+    # If there's no correct command query or no query info, show an "instructional" result
+    if len(message.query.split()) < 2:
+        info = CardManager.cmdInfo(message.id)
+        await tgbot.answer_inline_query(message.id,results=info,cache_time=1)
         return
+
+    # get commands and queries
     cmd = simplifyString(message.query.split()[0]) # Since you can search *either* card or rule, we use command
     query = ' '.join(simplifyString(message.query.split()[1:])) # Then the whole string query
-
     # temp down while rules are being fixed
     '''if cmd == "rule":
         ruledata = RulesManager.runCmd(query)
         await bot.answer_inline_query(message.id,results=ruledata,cache_time=1)'''
 
-    #elif cmd == "card":
     if cmd == "card":
 
         data = await CardManager.getCard(query,metg)
@@ -138,8 +140,11 @@ async def on_inline(message: InlineQuery):
         else:
             await tgbot.send_message(metg, f"There was an issue with sending a response to this query: {message}.\n"
                                        f"EVERYTHING went wrong, bro. Everything.")
+        return
 
-
+    # If there's no correct command query or no query info, show an "instructional" result
+    info = CardManager.cmdInfo(message.id)
+    await tgbot.answer_inline_query(message.id,results=info,cache_time=1)
 
 
 ########################################################################################################################
@@ -200,11 +205,11 @@ async def on_message(message):
             await channel.send(carddata[1])
 
         if cmd == "!rule":
-            '''query = ' '.join(contParsed[1:])
-            ruledata = RulesManager.runCmd(query)
+            query = ' '.join(contParsed[1:])
+            ruledata = RulesManager.handle(query)
             for r in ruledata:
-                await channel.send(r)'''
-            await channel.send("Rules down")
+                await channel.send(r)
+            #await channel.send("Rules down")
 
         if cmd == "!cleardecks" and not message.guild:
             DeckManager.handle(attached=None,cmd=cmd)

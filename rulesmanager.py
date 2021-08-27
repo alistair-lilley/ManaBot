@@ -16,8 +16,6 @@ import hashlib, re
 from helpers import *
 from aiogram.types import InputTextMessageContent, InlineQueryResultArticle
 
-# Some basic globals for quick lookup later on
-NUMERALS = set([str(i) for i in range(0,10)]+["."])
 
 # Read in rules file to get two dicts: a rules:rulecontent dict and a keyword:keywordcontent dict
 # This was a pain
@@ -160,7 +158,8 @@ class RulesMgr:
             # Skip newlines
             while not allrules[idx]:
                 idx += 1
-            currt = self._ruleType(allrules[idx])
+            # Get the new rule (aka first word of line)
+            currt = self._ruleType(allrules[idx].split()[0])
             # Break if the new rule is the same as the current rule
             if (rtype != "KW" and currt == rtype) or allrules[idx] == "Glossary":
                 break

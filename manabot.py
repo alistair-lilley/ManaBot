@@ -6,11 +6,12 @@
 '''
     Mana Bot main (discord implementation)
 '''
-import os, discord, asyncio, logging
+import os, discord, asyncio, logging, hashlib
 
 # Bot-oriented imports
 from aiogram import Bot, Dispatcher
 from aiogram.types import InlineQuery
+from aiogram.types import InputTextMessageContent, InlineQueryResultArticle
 
 from datetime import datetime
 
@@ -19,6 +20,7 @@ from dotenv import load_dotenv
 from deckmanager import DeckMgr
 from cardmanager import CardMgr
 from rulesmanager import RulesMgr
+from dice import DiceMgr
 
 from helpers import *
 
@@ -60,6 +62,7 @@ dp = Dispatcher(tgbot)
 CardManager = CardMgr(path_to_images,path_to_cards,path_to_bot,metg,tgbot)
 RulesManager = RulesMgr(rules)
 DeckManager = DeckMgr(path_to_bot,["/toparse/", "/txts/"], CardManager)
+DiceManager = DiceMgr()
 
 ########################################################################################################################
 ########################################################################################################################
@@ -122,9 +125,17 @@ async def on_inline(message: InlineQuery):
     cmd = simplifyString(message.query.split()[0]) # Since you can search *either* card or rule, we use command
     query = ' '.join(simplifyString(message.query.split()[1:])) # Then the whole string query
     # temp down while rules are being fixed
-    '''if cmd == "rule":
-        ruledata = RulesManager.runCmd(query)
-        await bot.answer_inline_query(message.id,results=ruledata,cache_time=1)'''
+    if cmd == "rule":
+        ruledata = RulesManager.handle(query)
+        input_content = InputTextMessageContent(''.join(ruledata))
+        data_result_id = hashlib.md5(message.id.encode()).hexdigest()
+        fullrule = InlineQueryResultArticle(
+            id=data_result_id,
+            title=f'Information for {query!r}',
+            input_message_content=input_content,
+        )
+        await tgbot.answer_inline_query(message.id,results=[fullrule],cache_time=1)
+        return
 
     if cmd == "card":
 
@@ -209,7 +220,6 @@ async def on_message(message):
             ruledata = RulesManager.handle(query)
             for r in ruledata:
                 await channel.send(r)
-            #await channel.send("Rules down")
 
         if cmd == "!cleardecks" and not message.guild:
             DeckManager.handle(attached=None,cmd=cmd)
@@ -217,6 +227,10 @@ async def on_message(message):
 
         if cmd == "!help":
             await channel.send(open(bothelp).read())
+
+        if cmd == "!roll":
+            query = ' '.join(contParsed[1:])
+            await channel.send(DiceManager.handle(cmd,query))
 
 
 

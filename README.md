@@ -10,7 +10,7 @@ decks, and checking deck lists against ban lists.
 The bot runs both on Telegram through the @LF_Mana_Bot *rule/card* `rulename/cardname` command 
 and on Discord via the @ManaBot#3013 account.
 
-##Current functionality
+## Current functionality
 
 Discord:
 1. *!card* `cardname`; searches for a card's image and text and posts it

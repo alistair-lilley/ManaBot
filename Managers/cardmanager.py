@@ -7,8 +7,8 @@ from PIL import Image
 # Aiogram imports
 from aiogram.types import InputTextMessageContent, InlineQueryResultArticle, InlineQueryResultCachedPhoto, InputFile
 # Custom file imports
-from card import XMLParser, loadAllImages
-from helpers import *
+from setupfiles.card import XMLParser, loadAllImages
+from setupfiles.helpers import *
 
 XMLP = XMLParser()
 
@@ -19,6 +19,7 @@ def checkNamesDict(l,d):
 
 class CardMgr:
     def __init__(self,image_path,data_path,bot_path,metg,bot):
+        self.cmds = ['!card']
         self.bot = bot
         self.metg = metg
         self.image_path = image_path
@@ -41,20 +42,30 @@ class CardMgr:
     ############################################################################
     ############################################################################
 
+    async def handle(self,cmd,query):
+        if cmd == "!card":
+            return await self.getCard(query)+[None]
+
+    ############################################################################
+    ############################################################################
+    ############################################################################
+
+    # Getting basic data
+
     # Get both parts of card
-    async def getCard(self,cardname,id):
+    async def getCard(self,cardname):
         try:
-            cardpic = await self._searchImage(cardname,id)
+            cardpic = await self._searchImage(cardname)
         except:
             await self.bot.send_message(self.metg,"Whoa! Big error in card pic search\nNext is card data search")
             cardpic = None
 
         try:
-            cardd = await self._searchDescription(cardname,id)
+            cardd = await self._searchDescription(cardname)
         except:
             await self.bot.send_message(self.metg, "Whoa! Big error in card data search")
             cardd = None
-        return [cardpic, cardd]
+        return [cardd, cardpic]
 
 
     # Get raw dict data from card
@@ -64,40 +75,30 @@ class CardMgr:
         except:
             return None
 
-    # Tells the user what commands to use
-    def cmdInfo(self,id):
-        data_result_id = hashlib.md5(id.encode()).hexdigest()
-        instruct = f'For results, enter "card cardname" or "rule rulename".'
-        input_content = InputTextMessageContent(instruct)
-        info = InlineQueryResultArticle(
-            id=data_result_id,
-            title=instruct,
-            input_message_content=input_content,
-        )
-        return [info]
+        ############################################################################
+        ############################################################################
+        ############################################################################
+        ############################################################################
+        ############################################################################
+        ############################################################################
 
-        ############################################################################
-        ############################################################################
-        ############################################################################
-        ############################################################################
-        ############################################################################
-        ############################################################################
+
+
 
             # Image section
 
     # Initialize image search
-    async def _searchImage(self,cardname,id):
+    async def _searchImage(self,cardname):
         self.similars = findSimilar(self.cardnames, cardname)
         setting = "Card image" # For default function
-        pic_result_id = hashlib.md5(cardname.encode()).hexdigest() # Get hashcode for message id number
         try:
-            cardpic = await self._getImage(cardname,pic_result_id,id)
+            cardpic = await self._getImage(cardname)
         except:
-            cardpic = await self._getDefault(cardname,pic_result_id,setting,id)
+            cardpic = await self._getDefault(cardname,setting)
         return cardpic
 
 
-    async def _getImage(self,cardname,pic_result_id,id):
+    async def _getImage(self,cardname):
         # gets the proper name
         if cardname in self.image_name_d:
             propName = self.image_name_d[cardname]
@@ -107,53 +108,38 @@ class CardMgr:
             propName = self.image_name_d[self.similars[0]]
         # gets the path to image via proper name
         path = self.image_path + '/' + self.image_path_d[propName] #+ '/' + propName + '.jpg'
-        if id == self.metg:
-            # This try tries finding the file id in the dictionary and load the card if it's already been sent
-            if propName in self.prevcards:
-                photoid = self.prevcards[propName]
-            # Its except loads or reloads the image if it cant find the file id
-            else:
-                # Checks to see if the file is too beeg
-                sizecheck = Image.open(path)
-                if sizecheck.size[0] > 350:
-                    # and resizes it to 350 if so
-                    resized = sizecheck.resize((350, 466), Image.ANTIALIAS)
-                    # if it resizes, it saves the resized pic to /resizedpics and gets the path
-                    path = self.bot_path + '/resizedpics/' + propName + '.jpg'
-                    resized.save(path)
-                # That part is specifically to make sure it CAN send the file, cuz if it's too big it wont send
-                cardphoto = InputFile(path)
-                # Sends the pic to me, saves the file id, and deletes the photo
-                pic = await self.bot.send_photo(self.metg, cardphoto)
-                self.prevcards[propName] = pic.photo[0].file_id
-                await self.bot.delete_message(self.metg, pic.message_id)
-                photoid = self.prevcards[propName]
-                # Creates the cardpic variable for sending the file
-            # sends cardpic
-            cardpic = InlineQueryResultCachedPhoto(id=pic_result_id, photo_file_id=photoid)
-        else:
-            # send file
-            with open(path, 'rb') as f:
-                cardpic = discord.File(f)
-        return cardpic
+        # Checks to see if the file is too beeg
+        sizecheck = Image.open(path)
+        if sizecheck.size[0] > 350:
+            # and resizes it to 350 if so
+            resized = sizecheck.resize((350, 466), Image.ANTIALIAS)
+            # if it resizes, it saves the resized pic to /resizedpics and gets the path
+            path = self.bot_path + '/data/resizedpics/' + propName + '.jpg'
+            resized.save(path)
+        # That part is specifically to make sure it CAN send the file, cuz if it's too big it wont send
+        # then return the path
+        return path
+
 
         ############################################################################
         ############################################################################
         ############################################################################
+
+
+
 
         # Description section
 
-    async def _searchDescription(self,cardname,id):
+    async def _searchDescription(self,cardname):
         setting = "Card data"
-        data_result_id = hashlib.sha256((cardname).encode()).hexdigest()
         try:
-            carddata = await self._getDescription(cardname,data_result_id,id)
+            carddata = await self._getDescription(cardname)
         except:
-            carddata = await self._getDefault(cardname,data_result_id,setting,id)
+            carddata = await self._getDefault(cardname,setting)
         return carddata
 
 
-    async def _getDescription(self,cardname,data_result_id,id):
+    async def _getDescription(self,cardname):
         try:
             card = self.cards[cardname]
             simstr = ''
@@ -165,48 +151,22 @@ class CardMgr:
             card = self.cards[self.similars[0]]
             propSims = [self.cards[sim].feats["Name"] for sim in self.similars]
             simstr = '\n'.join(propSims[1:])
-        propName = card.feats["Name"]
         cardData = card.printData()
         if cardData == '':
             cardData = "No data for this card."
         if simstr:
             cardData = f'Card not found. Closest match:\n{cardData}\n\nDid you mean...\n{simstr}'
-        if id == self.metg:
-            # Creates message content from card data
-            input_content = InputTextMessageContent(cardData)
-            # Creates result article to send-
-            carddata = InlineQueryResultArticle(
-                id=data_result_id,
-                title=f'Information for {propName!r}',
-                input_message_content=input_content,
-            )
-            # clear similars for the next search
-        else:
-            carddata = cardData
         self.similars = []
-        return carddata
+        return cardData
 
         ############################################################################
         ############################################################################
         ############################################################################
+
+
+
 
         # Default
 
-    async def _getDefault(self,cardname,result_id,setting,id):
-        err = f"{setting} for {cardname} not found."
-        if id == self.metg:
-            await self.bot.send_message(self.metg, f"A {setting} error occurred with this query: {cardname}")
-            # Prints a debugging error
-            #print(f"{setting} not found: {cardname}")
-            # Creates a card image error to send
-            if setting == "Card image":
-                err += f" Cockatrice does not have an image for this card."
-            input_content = InputTextMessageContent(err)
-            result = InlineQueryResultArticle(
-                id=result_id,
-                title=err,
-                input_message_content=input_content,
-            )
-        else:
-            result = err
-        return result
+    async def _getDefault(self,cardname,setting):
+        return f"{setting} for {cardname} not found."

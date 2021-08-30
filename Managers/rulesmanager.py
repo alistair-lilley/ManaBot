@@ -12,10 +12,8 @@
     unfortunately they're just gonna be part of the keywords. Won't affect much tho, they don't take up too much space &
     they don't interfere with seardching.
 '''
-import hashlib, re
-from helpers import *
-from aiogram.types import InputTextMessageContent, InlineQueryResultArticle
-
+import re
+from setupfiles.helpers import *
 
 # Read in rules file to get two dicts: a rules:rulecontent dict and a keyword:keywordcontent dict
 # This was a pain
@@ -50,7 +48,9 @@ from aiogram.types import InputTextMessageContent, InlineQueryResultArticle
 
 
 class RulesMgr:
-    def __init__(self,filename):
+    def __init__(self,filename,bothelp):
+        self.cmds = ['!rule','!rules','!help']
+        self.bothelp = open(bothelp).read()
         # get rules and kws
         self.rules, self.kws = self._readRules(filename)
         # make a list for edit dist
@@ -58,21 +58,24 @@ class RulesMgr:
         # merge sort list
         mS(self.kwlist)
 
-    def handle(self,query):
-        query = simplifyString(query)
-        # If in rules, return rule
-        if query in self.rules:
-            r = self.rules[query]
-        # If in kws, return kw
-        elif query in self.kws:
-            r = self.kws[query]
-        # If it's a number but not a rule, say rule not found
-        elif query[0] in NUMERALS:
-            r = "Rule not found"
-        # If it's clearly a keyword mistype, return similar keywords
-        else:
-            r = "Keyword not found... Did you mean:\n"+"\n".join(findSimilar(self.kwlist,query))
-        return self._chunkMessage(r)
+    async def handle(self,cmd,query):
+        if cmd in ['!rule','!rules']:
+            # If in rules, return rule
+            if query in self.rules:
+                r = self.rules[query]
+            # If in kws, return kw
+            elif query in self.kws:
+                r = self.kws[query]
+            # If it's a number but not a rule, say rule not found
+            elif query[0] in NUMERALS:
+                r = "Rule not found"
+            # If it's clearly a keyword mistype, return similar keywords
+            else:
+                r = "Keyword not found... Did you mean:\n"+"\n".join(findSimilar(self.kwlist,query))
+            return [r,None,None]
+        elif cmd in ['!help']:
+            return [self.bothelp,None,None]
+
 
     # Read in rules as list, then get the stuff from _addAllRules
     def _readRules(self,filename):
@@ -143,6 +146,9 @@ class RulesMgr:
             if (rtype == "###." and currt in ["###.#A","SKIP"]) or not allrules[idx]:
                 idx += 1
                 currt = self._ruleType(allrules[idx])
+                # Break out if it hath found the same rule
+                if (rtype != "KW" and currt == rtype) or allrules[idx] == "Glossary":
+                    break
                 continue
             # Otherwise, add the rule
             else:
@@ -159,7 +165,7 @@ class RulesMgr:
             while not allrules[idx]:
                 idx += 1
             # Get the new rule (aka first word of line)
-            currt = self._ruleType(allrules[idx].split()[0])
+            currt = self._ruleType(allrules[idx])
             # Break if the new rule is the same as the current rule
             if (rtype != "KW" and currt == rtype) or allrules[idx] == "Glossary":
                 break
@@ -170,12 +176,13 @@ class RulesMgr:
 
     # Chunkify it in case discord cant handle the LENGTH
     def _chunkMessage(self,data):
+        msgmax = 1999
         chunk = [data]
         # If the data is more than 2000 characters,
-        if len(data) > 2000:
+        if len(data) > msgmax:
             # break it into two
-            chunk = [data[:2000], data[2000:]]
+            chunk = [data[:msgmax], data[msgmax:]]
             # Then break it until it's in chunks of 2000 characters
-            while len(chunk[-1]) > 2000:
-                chunk = chunk[:-1] + [chunk[-1][:2000]] + [chunk[-1][2000:]]
+            while len(chunk[-1]) > msgmax:
+                chunk = chunk[:-1] + [chunk[-1][:msgmax]] + [chunk[-1][msgmax:]]
         return chunk

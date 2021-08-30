@@ -1,4 +1,4 @@
-import eDistC
+from setupfiles import eDistC
 import string
 
 NUMERALS = set([str(i) for i in range(0,10)]+["."])

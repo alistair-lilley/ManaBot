@@ -1,0 +1,1 @@
+For results, enter "card cardname" or "rule rulename".

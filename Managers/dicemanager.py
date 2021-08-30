@@ -6,7 +6,7 @@
     XdY[dk][hl]Z+N
 '''
 from random import randint
-from helpers import *
+from setupfiles.helpers import *
 
 
 # Manage dicies!!
@@ -14,11 +14,12 @@ class DiceMgr:
 
     # We're gonna put bot-oriented stuff here
     def __init__(self):
-        pass
+        self.cmds = ['!roll','!r']
 
     # Handle, but no need for cmd yet
-    def handle(self,cmd,query):
-        return self._roll(query)
+    async def handle(self,tgdc,cmd,query):
+        if cmd in ['!roll','!r']:
+            return [self._roll(query),None,None]
 
     # Dropping system
     def _drop(self,nums,dklh,dropnum):

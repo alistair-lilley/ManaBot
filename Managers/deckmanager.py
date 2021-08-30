@@ -6,42 +6,44 @@
 import os, shutil, asyncio, requests
 import xml.etree.ElementTree as ET
 from zipfile import ZipFile
-from helpers import stripExt, simplifyString
+from setupfiles.helpers import stripExt, simplifyString
 
 NUMERALS = {str(i) for i in range(0, 9)}
 
 class DeckMgr:
     def __init__(self, path_to_bot, deckDirs, CardManager):
+        self.cmds = ['!cleardecks','!checkban','!checkbans','!analyze']
         self.ptb = path_to_bot
         self.dirs = deckDirs
         self.cm = CardManager
 
     # Generic command handler. It processing attachments and/or commands as needed
-    def handle(self,attached=None,cmd=None):
-        if cmd and not attached:
-            if cmd == "!cleardecks":
-                self._cleardecks()
+    async def handle(self,cmd,query,attached=None):
+        # Might not be working?
+        if cmd and cmd == "!cleardecks":
+            self._cleardecks()
+            return ["Decks cleared.",None,None]
         if attached:
             # Get file data stuff; name, url, raw data
             fullname = attached[0]
             furl = attached[1]
             r = requests.get(furl)
             # Save the file data
-            srcpath = self.ptb+"/toparse/"+fullname
+            srcpath = self.ptb+"/data/toparse/"+fullname
             open(srcpath, 'wb').write(r.content)
             # Convert!
             decks = self._convert(fullname)
             # Checks for command and throws error if wrong cmd
             if cmd:
-                if cmd == "!checkban":
-                    return [self._checkbanned(d[0]) for d in decks]
+                if cmd in ["!checkban","!checkbans"]:
+                    return ['\n'.join([self._checkbanned(d[0]) for d in decks]),None,None]
                 elif cmd == "!analyze":
-                    return [self._analyze(d[0]) for d in decks]
+                    return ['\n'.join([self._analyze(d[0]) for d in decks]),None,None]
                 else:
-                    return [f"Command {cmd} not found. Did you mean '!checkban' or '!analyze'?"]
+                    return [f"Command {cmd} not found. Did you mean '!checkban' or '!analyze'?",None,None]
             # otherwise just spit out the decklists as txt's
             else:
-                return decks
+                return [None,None,decks]
 
     ###############################################################
     ###############################################################
@@ -53,8 +55,8 @@ class DeckMgr:
     def _convert(self, f):
         # parse name and get paths
         name, ext = stripExt(f)
-        srcpath = self.ptb + "/toparse/"
-        textpath = self.ptb + "/txts/"
+        srcpath = self.ptb + "/data/toparse/"
+        textpath = self.ptb + "/data/txts/"
     
         # flist is a list of tuples of (path, filename) so that it uploads the file and a palatable name for it
         # Collect it dynamically
@@ -81,8 +83,8 @@ class DeckMgr:
     def _convertZip(self, Z):
         zipname, zext = stripExt(Z)
         # mkdir with same name as zip
-        subparse = self.ptb + "/toparse/" + zipname
-        subtext = self.ptb + "/txts/" + zipname
+        subparse = self.ptb + "/data/toparse/" + zipname
+        subtext = self.ptb + "/data/txts/" + zipname
         # Make sure there aren't any of these dirs, then make them
         # Baseically ensure they exist and are empty
         if os.path.exists(subparse):
@@ -92,7 +94,7 @@ class DeckMgr:
         os.mkdir(subparse)
         os.mkdir(subtext)
         # extract all to that dir
-        with ZipFile(self.ptb + "/toparse/" + Z) as zf:
+        with ZipFile(self.ptb + "/data/toparse/" + Z) as zf:
             zf.extractall(subparse)
         # Convert all the files and collect their paths,names
         flist = []
@@ -189,8 +191,8 @@ class DeckMgr:
     # Checks cards against a banlist; only works for EDH
     def _checkbanned(self, f):
         # load banlists and decklist
-        singlebanned = [line for line in open(self.ptb + "/bans/EDHsingleban.txt")]
-        multibanned = [line for line in open(self.ptb + "/bans/EDHmultiban.txt")]
+        singlebanned = [line for line in open(self.ptb + "/data/bans/EDHsingleban.txt")]
+        multibanned = [line for line in open(self.ptb + "/data/bans/EDHmultiban.txt")]
         deck = [line[2:] for line in open(f)]
         # go through sp bans
         sbans = [f"**Deck: {f.split('/')[-1]}**\n*Single player EDH bans:*\n"]
@@ -229,7 +231,6 @@ class DeckMgr:
             card = c.split()[1:]
             card = simplifyString(' '.join(card))
             carddata = self.cm.getRaw(card)
-            print(f'\n{c}, {card}\n{carddata}')
             # get color IDs
             if "Color ID" in carddata:
                 if "Land" in carddata["Type"]:

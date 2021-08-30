@@ -17,7 +17,7 @@ class DiceMgr:
         self.cmds = ['!roll','!r']
 
     # Handle, but no need for cmd yet
-    async def handle(self,tgdc,cmd,query):
+    async def handle(self,cmd,query):
         if cmd in ['!roll','!r']:
             return [self._roll(query),None,None]
 

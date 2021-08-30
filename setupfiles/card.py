@@ -3,10 +3,10 @@
     This file contains all the major functions for laoding card information, as well as the card class
 '''
 
+import os
 import xml.etree.ElementTree as ET
 from dotenv import load_dotenv
-from setupfiles.helpers import *
-import os
+from setupfiles.helpers import stripExt, simplifyString
 
 
 load_dotenv()

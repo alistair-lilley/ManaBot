@@ -2,10 +2,8 @@
 '''
     This file is designed to create a singular, all-encompassing card manager object.
 '''
-import hashlib, discord
 from PIL import Image
 # Aiogram imports
-from aiogram.types import InputTextMessageContent, InlineQueryResultArticle, InlineQueryResultCachedPhoto, InputFile
 # Custom file imports
 from setupfiles.card import XMLParser, loadAllImages
 from setupfiles.helpers import *
@@ -44,7 +42,8 @@ class CardMgr:
 
     async def handle(self,cmd,query):
         if cmd == "!card":
-            return await self.getCard(query)+[None]
+            card = await self._getCard(query)
+            return [card[0],card[1],None]
 
     ############################################################################
     ############################################################################
@@ -53,7 +52,7 @@ class CardMgr:
     # Getting basic data
 
     # Get both parts of card
-    async def getCard(self,cardname):
+    async def _getCard(self,cardname):
         try:
             cardpic = await self._searchImage(cardname)
         except:

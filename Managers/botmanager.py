@@ -3,10 +3,10 @@
     This is a fancy file to manage the differences between the two bot sides
     i.e. reformatting code between the two bots, and sending files to discord properly
 '''
-import hashlib, discord
+import hashlib
 from aiogram.types import InputTextMessageContent, InlineQueryResultArticle, InlineQueryResultCachedPhoto, InputFile
 
-from setupfiles.helpers import *
+from init import *
 
 
 
@@ -16,7 +16,6 @@ class BotMgr:
         self.clr = clrtext
         self.tgbot = tgbot
         self.metg = metg
-
 
 
     # Alright, we got a WHOLE lot of named variables, but for good reason
@@ -37,6 +36,8 @@ class BotMgr:
     ##########################################################################
     ##########################################################################
 
+
+
     # Telegram
 
     async def _toTelegram(self,message,content,photo):
@@ -44,14 +45,14 @@ class BotMgr:
         # get message id hash and set up an empty article container
         newhash = hashlib.md5(message.id.encode()).hexdigest()
         arts = []
-        # Turn the text input into a text article that telegrm can handle
-        if content:
-            textart = self._textArticle(query,newhash,content)
-            arts.append(textart)
         # Same with photo content
         if photo:
             photoart = await self._photoArticle(newhash,photo)
             arts.append(photoart)
+        # Turn the text input into a text article that telegrm can handle
+        if content:
+            textart = self._textArticle(query,newhash,content)
+            arts.append(textart)
         # Send whichever is available
         if arts:
             await self.tgbot.answer_inline_query(message.id,results=arts,cache_time=1)
@@ -74,12 +75,16 @@ class BotMgr:
         await self.tgbot.delete_message(self.metg, pic.message_id)
         # Catches telegram id of photo and turns it into file for me
         photoid = pic.photo[0].file_id
-        cardpic = InlineQueryResultCachedPhoto(id=newhash+1, photo_file_id=photoid)
+        cardpic = InlineQueryResultCachedPhoto(id=newhash+"1", photo_file_id=photoid)
         return cardpic
 
 
+
+
     ##########################################################################
     ##########################################################################
+
+
 
     # Discord
 
@@ -102,15 +107,14 @@ class BotMgr:
                 await channel.send(file=discord.File(ndf[0], ndf[1])) # text file, title name
                 await channel.send(self.clr) #clear spaces
 
+
     # Get the names and discord files as tuples
     def _getNameDfs(self,deckfiles):
         namedfs = []
         for f in deckfiles:
             if f == None:
                 continue
-            # Pair (file,name), tuples
-            with open(f[0], 'rb') as upload:
-                namedfs.append((upload,f[1]))
+            namedfs.append((open(f[0],'rb'),f[1]))
         return namedfs
 
 

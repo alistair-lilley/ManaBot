@@ -7,8 +7,8 @@ and rule texts, searching a local database for game rules, rolling dice (RNG bas
 rolling descriptors), converting .cod (aka .xml) files to .txt files for easier importing of 
 decks, and checking deck lists against ban lists.
 
-The bot runs both on Telegram through the @LF_Mana_Bot *rule/card* `rulename/cardname` command 
-and on Discord via the @ManaBot#3013 account.
+The bot runs both on Telegram through the **inline** @LF_Mana_Bot *rule/card* `rulename/cardname`
+command and on Discord via the @ManaBot#3013 account.
 
 ## Current functionality
 

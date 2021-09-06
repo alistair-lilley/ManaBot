@@ -3,12 +3,9 @@
     This is a fancy file to manage the differences between the two bot sides
     i.e. reformatting code between the two bots, and sending files to discord properly
 '''
-import hashlib
+import hashlib, discord
 from aiogram.types import InputTextMessageContent, InlineQueryResultArticle, InlineQueryResultCachedPhoto, InputFile
-
-from init import *
-
-
+from setupfiles.helpers import simplifyString
 
 class BotMgr:
 
@@ -91,7 +88,6 @@ class BotMgr:
     async def _toDiscord(self,channel,content,photo,deckfiles):
         # Photo block
         if photo:
-            print(photo)
             photof = discord.File(photo)
             await channel.send(file=photof)
         # Text block

@@ -33,7 +33,6 @@ class CardMgr:
         # The recent similars search, so that its callable by both search functions
         print(f"Lengths: cardnames {len(self.cardnames)}, cards {len(self.cards)}, image paths {len(self.image_path_d)}"
               f", image names {len(self.image_name_d)}")
-        #    print(item)
         self.similars = []
 
     ############################################################################

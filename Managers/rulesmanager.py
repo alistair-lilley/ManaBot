@@ -131,7 +131,6 @@ class RulesMgr:
             # otherwise, add the rule
             else:
                 allRules.update(self._addRule(simplifyString(rule.split()[0]), rtype, r, rules))
-                #print(allRules)
             r += 1
         # gib bacc
         return allRules, allKWs

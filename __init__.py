@@ -3,6 +3,8 @@
     This file covers imports and envs, and setting up the managers and bots
 '''
 
+__all__ = ["datetime","tgbot","metg","Dispatcher","asyncio","client","dp","GUILD","medc","managers","InlineQuery",
+           "tgbothelp","simplifyString","BotManager","DCTOKEN"]
 
 import os, discord, logging, asyncio
 from aiogram.types import InlineQuery

@@ -5,7 +5,7 @@
     The one! the only!!! MANABOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOT
 '''
 
-from init import *
+from __init__ import *
 
 ########################################################################################################################
 ########################################################################################################################
@@ -46,7 +46,7 @@ async def on_ready():
     # Send me uptime log
     user = await client.fetch_user(medc)
     await user.send(f'{client.user} is connected to the following guild:\n{guild.name}(id: {guild.id})\n{dt})')
-    asyncio.create_task(DeckManager.scheduledClear())
+    asyncio.create_task(managers[0].scheduledClear())
 
 ########################################################################################################################
 ########################################################################################################################

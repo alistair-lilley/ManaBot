@@ -3,7 +3,7 @@
         This file converts .cod files to .txt files; .cod files are an .xml format file
         Specifically, it will take a filepath for a .cod and write a new file as a .txt with the same name
 '''
-import os, shutil, asyncio, requests
+import os, shutil, asyncio, requests, re
 import xml.etree.ElementTree as ET
 from zipfile import ZipFile
 from setupfiles.helpers import stripExt, simplifyString
@@ -64,7 +64,8 @@ class DeckMgr:
             self._convertDeck(srcpath, textpath, name, ext)
             flist = [(textpath + name + '.txt', name + '.txt')]
         elif ext == '.mwDeck':
-            flist = []
+            self._convertDeck(srcpath, textpath, name, ext)
+            flist = [(textpath + name + '.txt', name + '.txt')]
         elif ext == '.zip':
             flist = self._convertZip(f)
         else:
@@ -127,11 +128,11 @@ class DeckMgr:
     # Convert a deck
     # Basically goes through each possible extension and runs convert on it
     def _convertDeck(self, srcpath, textpath, name, ext):
+        # -elif ext == '.mwDeck':
+        # cards = self._convertmwDeck(srcpath + name + ext)
         if ext == '.cod':
             cards = self._convertCod(srcpath, name + ext)
-        elif ext == '.mwDeck':
-            cards = self._convertmwDeck(srcpath + name + ext)
-        elif ext == '.txt':
+        elif ext in ['.txt','.mwDeck']:
             cards = [line for line in open(srcpath + name + ext)]
         # Just in case, so it doesn't completely crash
         else:
@@ -168,17 +169,17 @@ class DeckMgr:
     # Converts .mwDeck, which is basically a .txt file formatted differently from how Cockatrice likes them pasted in
     def _convertmwDeck(self, filepath):
         # Process it like a .txt
-        deckFile = [line.strip().split() for line in open(filepath)]
+        deckFile = [line.split() for line in open(filepath)]
         cards = []
         for line in deckFile:
             # ignores comment lines
             if line[0] == '//':
-                continue
+                cards.append(" ".join(line)+'\n')
             # Adjusts SB lines since its a little different
             elif line[0] == 'SB:':
                 cards.append(' '.join(line[:2] + line[3:]))
             else:
-                cards.append(' '.join([line[0]] + line[2:]))
+                cards.append(' '.join(line))
         # return as list of cards
         return cards
     
@@ -223,43 +224,65 @@ class DeckMgr:
     def _analyze(self, f):
         # get decklist
         deck = [line.strip() for line in open(f)]
+        basictypes = ["Artifact","Instant","Sorcery","Creature","Land","Enchantment","Planeswalker"]
         datatypes = ["color","costs","converted","avgcost","lands","cardtypes"]
         data = {dat:dict() for dat in datatypes}
         for c in deck:
+            # Make this a fn - A
             if c[0] not in NUMERALS:
                 continue
+            # Make this a fn - B
             card = c.split()[1:]
             card = simplifyString(' '.join(card))
             carddata = self.cm.getRaw(card)
+            # end B
+            # Make this a fn - C
             # get color IDs
             if "Color ID" in carddata:
                 if "Land" in carddata["Type"]:
-                    data["lands"][carddata["Color ID"]] = data["lands"].get(carddata["Color ID"],0)+1
+                    data["lands"][carddata["Color ID"]] = data["lands"].get(carddata["Color ID"],0)+int(c.split()[0])
                 for col in carddata["Color ID"]:
                     data["color"][col] = data["color"].get(col,0)+1
             else:
+                if "Land" in carddata["Type"]:
+                    data["lands"]["C"] = data["lands"].get("C",0)+int(c.split()[0])
                 data["color"]["C"] = data["color"].get("C",0)+1
+            # end C
+            # Make this a fn - D
             # get costs
             if "Mana Cost" in carddata:
                 for cos in carddata["Mana Cost"]:
-                    if "Land" in carddata["Type"]:
-                        continue
+                    '''if "Land" in carddata["Type"]:
+                        continue'''
                     if cos in NUMERALS:
                         data["costs"]["N"] = data["costs"].get("N",0)
-                        data["costs"]["N"] = data["costs"]["N"]*10+int(cos)
-                    if cos in "{/}":
+                        data["costs"]["N"] = data["costs"]["N"]+int(cos)
+                    elif cos in "{/}":
                         continue
                     else:
-                        data["costs"][cos] = data["costs"].get("cos",0)+1
-            for cardtype in carddata:
-                data["cardtypes"][cardtype] = data["cardtypes"].get(cardtype,0)+1
+                        data["costs"][cos] = data["costs"].get(cos,0)+1
+            # end D
+            # make this a fn - E
+            found = False
+            for t in basictypes:
+                if re.search(t,carddata["Type"]):
+                    data["cardtypes"][t] = data["cardtypes"].get(t,0)+1
+                    found = True
+            if not found:
+                data["cardtypes"][carddata["Type"]] = data["cardtypes"].get(carddata["Type"],0)+1
+            # end E
+        # Make this a fn - F
         data["converted"] = sum([data["costs"][t] for t in data["costs"]])
-        data["avgcost"] = data["converted"] - sum([data["lands"][t] for t in data["lands"]])
+        data["avgcost"] = round(data["converted"] / (sum([int(c[0]) for c in deck if c[0] in NUMERALS]) - sum([data["lands"][t] for t in data["lands"]])), 2)
+        # end F
+        # Make this a fn - G
         for d in data:
             if type(data[d]) == dict:
-                data[d] = d + ": " + ', '.join([subd for subd in data[d]])
+                data[d] = d + ": " + ', '.join([f"**{subd}**: {str(data[d][subd])}" for subd in data[d]])
             else:
                 data[d] = d + ": " + str(data[d])
+        # end G
+        # end A
         return '\n'.join([data[d] for d in data])
 
 

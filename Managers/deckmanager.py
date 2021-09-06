@@ -132,8 +132,13 @@ class DeckMgr:
         # cards = self._convertmwDeck(srcpath + name + ext)
         if ext == '.cod':
             cards = self._convertCod(srcpath, name + ext)
+<<<<<<< HEAD
         elif ext in ['.txt','.mwDeck']:
             cards = [line for line in open(srcpath + name + ext)]
+=======
+        elif ext in ['.mwDeck',".txt"]:
+            cards = self._convertmwDeckTxt(srcpath + name + ext)
+>>>>>>> 54db6f8e4a9570683b88a187e743dfe9fe8c2991
         # Just in case, so it doesn't completely crash
         else:
             cards = ['error']
@@ -167,7 +172,7 @@ class DeckMgr:
         return cards
 
     # Converts .mwDeck, which is basically a .txt file formatted differently from how Cockatrice likes them pasted in
-    def _convertmwDeck(self, filepath):
+    def _convertmwDeckTxt(self, filepath):
         # Process it like a .txt
         deckFile = [line.split() for line in open(filepath)]
         cards = []
@@ -176,13 +181,14 @@ class DeckMgr:
             if line[0] == '//':
                 cards.append(" ".join(line)+'\n')
             # Adjusts SB lines since its a little different
-            elif line[0] == 'SB:':
-                cards.append(' '.join(line[:2] + line[3:]))
             else:
-                cards.append(' '.join(line))
+                cards.append(self._cutBrackets(line))
         # return as list of cards
         return cards
-    
+
+    def _cutBrackets(self,line):
+        return ' '.join([l for l in line if l[0] != '['])
+
     ###############################################################
     ###############################################################
     ###############################################################
@@ -221,6 +227,41 @@ class DeckMgr:
 
     # analyze
 
+    def _colorID(self,carddata,data):
+        if "Color ID" in carddata:
+            if "Land" in carddata["Type"]:
+                data["lands"][carddata["Color ID"]] = data["lands"].get(carddata["Color ID"],0)+1
+            for col in carddata["Color ID"]:
+                data["color"][col] = data["color"].get(col,0)+1
+        else:
+            data["color"]["C"] = data["color"].get("C",0)+1
+        return data["color"]
+
+    def _manaCost(self,carddata,data):
+        for cos in carddata["Mana Cost"]:
+            if "Land" in carddata["Type"]:
+                continue
+            if cos in NUMERALS:
+                data["costs"]["N"] = data["costs"].get("N",0)
+                data["costs"]["N"] = data["costs"]["N"]*10+int(cos)
+            if cos in "{/}":
+                continue
+            else:
+                data["costs"][cos] = data["costs"].get("cos",0)+1
+        return data["costs"]
+
+    def _getColornCost(self,c,data):
+        card = c.split()[1:]
+        card = simplifyString(' '.join(card))
+        carddata = self.cm.getRaw(card)
+        # get color IDs
+        data["color"] = self._colorID(carddata,data)
+        # get costs
+        data["costs"] = self._manaCost(carddata,data)
+        for cardtype in carddata:
+            data["cardtypes"][cardtype] = data["cardtypes"].get(cardtype,0)+1
+        return data
+
     def _analyze(self, f):
         # get decklist
         deck = [line.strip() for line in open(f)]
@@ -230,6 +271,7 @@ class DeckMgr:
         for c in deck:
             # Make this a fn - A
             if c[0] not in NUMERALS:
+<<<<<<< HEAD
                 continue
             # Make this a fn - B
             card = c.split()[1:]
@@ -272,6 +314,10 @@ class DeckMgr:
                 data["cardtypes"][carddata["Type"]] = data["cardtypes"].get(carddata["Type"],0)+1
             # end E
         # Make this a fn - F
+=======
+                return False
+            data = self._getColornCost(c,data)
+>>>>>>> 54db6f8e4a9570683b88a187e743dfe9fe8c2991
         data["converted"] = sum([data["costs"][t] for t in data["costs"]])
         data["avgcost"] = round(data["converted"] / (sum([int(c[0]) for c in deck if c[0] in NUMERALS]) - sum([data["lands"][t] for t in data["lands"]])), 2)
         # end F

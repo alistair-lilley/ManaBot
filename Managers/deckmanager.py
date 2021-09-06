@@ -235,19 +235,27 @@ class DeckMgr:
         return data["color"]
 
     def _manaCost(self,carddata,data):
-        for cos in carddata["Mana Cost"]:
-            if "Land" in carddata["Type"]:
-                continue
-            if cos in NUMERALS:
-                data["costs"]["N"] = data["costs"].get("N",0)
-                data["costs"]["N"] = data["costs"]["N"]*10+int(cos)
-            if cos in "{/}":
-                continue
-            else:
-                data["costs"][cos] = data["costs"].get("cos",0)+1
+        if "Mana Cost" in carddata:
+            for cos in carddata["Mana Cost"]:
+                if cos in NUMERALS:
+                    data["costs"]["N"] = data["costs"].get("N", 0)
+                    data["costs"]["N"] = data["costs"]["N"] + int(cos)
+                elif cos in "{/}":
+                    continue
+                else:
+                    data["costs"][cos] = data["costs"].get(cos, 0) + 1
         return data["costs"]
 
+    def _parseData(self,data):
+        for d in data:
+            if type(data[d]) == dict:
+                data[d] = d + ": " + ', '.join([f"**{subd}**: {str(data[d][subd])}" for subd in data[d]])
+            else:
+                data[d] = d + ": " + str(data[d])
+        return data
+
     def _getColornCost(self,c,data):
+        basictypes = ["Artifact","Instant","Sorcery","Creature","Land","Enchantment","Planeswalker"]
         card = c.split()[1:]
         card = simplifyString(' '.join(card))
         carddata = self.cm.getRaw(card)
@@ -255,77 +263,30 @@ class DeckMgr:
         data["color"] = self._colorID(carddata,data)
         # get costs
         data["costs"] = self._manaCost(carddata,data)
-        for cardtype in carddata:
-            data["cardtypes"][cardtype] = data["cardtypes"].get(cardtype,0)+1
-        return data
+        found = False
+        for t in basictypes:
+            if re.search(t,carddata["Type"]):
+                data["cardtypes"][t] = data["cardtypes"].get(t,0)+1
+                found = True
+        if not found:
+            data["cardtypes"][carddata["Type"]] = data["cardtypes"].get(carddata["Type"],0)+1
+        return data, found
 
     def _analyze(self, f):
         # get decklist
         deck = [line.strip() for line in open(f)]
-        basictypes = ["Artifact","Instant","Sorcery","Creature","Land","Enchantment","Planeswalker"]
         datatypes = ["color","costs","converted","avgcost","lands","cardtypes"]
         data = {dat:dict() for dat in datatypes}
         for c in deck:
             # Make this a fn - A
             if c[0] not in NUMERALS:
-<<<<<<< HEAD
                 continue
-            # Make this a fn - B
-            card = c.split()[1:]
-            card = simplifyString(' '.join(card))
-            carddata = self.cm.getRaw(card)
-            # end B
-            # Make this a fn - C
-            # get color IDs
-            if "Color ID" in carddata:
-                if "Land" in carddata["Type"]:
-                    data["lands"][carddata["Color ID"]] = data["lands"].get(carddata["Color ID"],0)+int(c.split()[0])
-                for col in carddata["Color ID"]:
-                    data["color"][col] = data["color"].get(col,0)+1
-            else:
-                if "Land" in carddata["Type"]:
-                    data["lands"]["C"] = data["lands"].get("C",0)+int(c.split()[0])
-                data["color"]["C"] = data["color"].get("C",0)+1
-            # end C
-            # Make this a fn - D
-            # get costs
-            if "Mana Cost" in carddata:
-                for cos in carddata["Mana Cost"]:
-                    '''if "Land" in carddata["Type"]:
-                        continue'''
-                    if cos in NUMERALS:
-                        data["costs"]["N"] = data["costs"].get("N",0)
-                        data["costs"]["N"] = data["costs"]["N"]+int(cos)
-                    elif cos in "{/}":
-                        continue
-                    else:
-                        data["costs"][cos] = data["costs"].get(cos,0)+1
-            # end D
-            # make this a fn - E
-            found = False
-            for t in basictypes:
-                if re.search(t,carddata["Type"]):
-                    data["cardtypes"][t] = data["cardtypes"].get(t,0)+1
-                    found = True
+            data, found = self._getColornCost(c,data)
             if not found:
-                data["cardtypes"][carddata["Type"]] = data["cardtypes"].get(carddata["Type"],0)+1
-            # end E
-        # Make this a fn - F
-=======
                 return False
-            data = self._getColornCost(c,data)
->>>>>>> 54db6f8e4a9570683b88a187e743dfe9fe8c2991
         data["converted"] = sum([data["costs"][t] for t in data["costs"]])
         data["avgcost"] = round(data["converted"] / (sum([int(c[0]) for c in deck if c[0] in NUMERALS]) - sum([data["lands"][t] for t in data["lands"]])), 2)
-        # end F
-        # Make this a fn - G
-        for d in data:
-            if type(data[d]) == dict:
-                data[d] = d + ": " + ', '.join([f"**{subd}**: {str(data[d][subd])}" for subd in data[d]])
-            else:
-                data[d] = d + ": " + str(data[d])
-        # end G
-        # end A
+        data = self._parseData(data)
         return '\n'.join([data[d] for d in data])
 
 

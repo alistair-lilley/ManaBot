@@ -132,13 +132,10 @@ class DeckMgr:
         # cards = self._convertmwDeck(srcpath + name + ext)
         if ext == '.cod':
             cards = self._convertCod(srcpath, name + ext)
-<<<<<<< HEAD
         elif ext in ['.txt','.mwDeck']:
             cards = [line for line in open(srcpath + name + ext)]
-=======
         elif ext in ['.mwDeck',".txt"]:
             cards = self._convertmwDeckTxt(srcpath + name + ext)
->>>>>>> 54db6f8e4a9570683b88a187e743dfe9fe8c2991
         # Just in case, so it doesn't completely crash
         else:
             cards = ['error']

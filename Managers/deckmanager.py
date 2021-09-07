@@ -220,7 +220,7 @@ class DeckMgr:
         check = list(set(deck).intersections(set(duelbanned)))
         if not check:
                 dbans.append("None")
-         else:
+        else:
                 dbans += check
 	dbans = ''.join(dbans)
         allbans = sbans + mbans + dbans + '\n\n'

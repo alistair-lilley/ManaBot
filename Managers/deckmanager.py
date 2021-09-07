@@ -198,7 +198,7 @@ class DeckMgr:
         # load banlists and decklist
         singlebanned = [line for line in open(self.ptb + "/data/bans/EDHsingleban.txt")]
         multibanned = [line for line in open(self.ptb + "/data/bans/EDHmultiban.txt")]
-	duelbanned = [line for line in open(self.ptb + "/data/bans/EDHduelban.txt")]
+        duelbanned = [line for line in open(self.ptb + "/data/bans/EDHduelban.txt")]
         deck = [line[2:] for line in open(f)]
         # go through sp bans
         sbans = [f"**Deck: {f.split('/')[-1]}**\n*Single player EDH bans:*\n"]

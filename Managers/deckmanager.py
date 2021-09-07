@@ -1,3 +1,4 @@
+
 '''                             COD to TXT converter                            '''
 '''
         This file converts .cod files to .txt files; .cod files are an .xml format file
@@ -197,6 +198,7 @@ class DeckMgr:
         # load banlists and decklist
         singlebanned = [line for line in open(self.ptb + "/data/bans/EDHsingleban.txt")]
         multibanned = [line for line in open(self.ptb + "/data/bans/EDHmultiban.txt")]
+	duelbanned = [line for line in open(self.ptb + "/data/bans/EDHduelban.txt")]
         deck = [line[2:] for line in open(f)]
         # go through sp bans
         sbans = [f"**Deck: {f.split('/')[-1]}**\n*Single player EDH bans:*\n"]
@@ -214,7 +216,14 @@ class DeckMgr:
         else:
             mbans += check
         mbans = ''.join(mbans)
-        allbans = sbans + mbans + '\n\n'
+	dbans = ["*Duel EDH bans:*\n"]
+	check = list(set(deck).intersections(set(duelbanned)))
+	if not check:
+		dbans.append("None")
+	else:
+		dbans += check
+	dbans = ''.join(dbans)
+        allbans = sbans + mbans + dbans + '\n\n'
         # return as string
         return allbans
 

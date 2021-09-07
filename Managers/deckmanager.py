@@ -216,12 +216,12 @@ class DeckMgr:
         else:
             mbans += check
         mbans = ''.join(mbans)
-	dbans = ["*Duel EDH bans:*\n"]
-	check = list(set(deck).intersections(set(duelbanned)))
-	if not check:
-		dbans.append("None")
-	else:
-		dbans += check
+        dbans = ["*Duel EDH bans:*\n"]
+        check = list(set(deck).intersections(set(duelbanned)))
+        if not check:
+                dbans.append("None")
+         else:
+                dbans += check
 	dbans = ''.join(dbans)
         allbans = sbans + mbans + dbans + '\n\n'
         # return as string

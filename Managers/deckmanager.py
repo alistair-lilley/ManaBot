@@ -212,17 +212,17 @@ class DeckMgr:
         mbans = ["*Multiplayer EDH bans:*\n"]
         check = list(set(deck).intersection(set(multibanned)))
         if not check:
-            mbans.append("None")
+            mbans.append("None\n")
         else:
             mbans += check
         mbans = ''.join(mbans)
         dbans = ["*Duel EDH bans:*\n"]
-        check = list(set(deck).intersections(set(duelbanned)))
+        check = list(set(deck).intersection(set(duelbanned)))
         if not check:
                 dbans.append("None")
         else:
                 dbans += check
-	dbans = ''.join(dbans)
+        dbans = ''.join(dbans)
         allbans = sbans + mbans + dbans + '\n\n'
         # return as string
         return allbans

@@ -275,7 +275,7 @@ class DeckMgr:
         found = False
         for t in basictypes:
             if re.search(t,carddata["Type"]):
-                data["cardtypes"][t] = data["cardtypes"].get(t,0)+1
+                data["cardtypes"][t] = data["cardtypes"].get(t,0)+int(c.split()[0])
                 found = True
         if not found:
             data["cardtypes"][carddata["Type"]] = data["cardtypes"].get(carddata["Type"],0)+1

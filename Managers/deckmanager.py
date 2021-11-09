@@ -212,7 +212,7 @@ class DeckMgr:
         mbans = ["*Multiplayer EDH bans:*\n"]
         check = list(set(deck).intersection(set(multibanned)))
         if not check:
-            mbans.append("None")
+            mbans.append("None\n")
         else:
             mbans += check
         mbans = ''.join(mbans)

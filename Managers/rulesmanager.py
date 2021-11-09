@@ -171,18 +171,3 @@ class RulesMgr:
                 break
         # Return the dict
         return d
-
-
-
-    # Chunkify it in case discord cant handle the LENGTH
-    def _chunkMessage(self,data):
-        msgmax = 1999
-        chunk = [data]
-        # If the data is more than 2000 characters,
-        if len(data) > msgmax:
-            # break it into two
-            chunk = [data[:msgmax], data[msgmax:]]
-            # Then break it until it's in chunks of 2000 characters
-            while len(chunk[-1]) > msgmax:
-                chunk = chunk[:-1] + [chunk[-1][:msgmax]] + [chunk[-1][msgmax:]]
-        return chunk

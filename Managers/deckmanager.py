@@ -217,7 +217,7 @@ class DeckMgr:
             mbans += check
         mbans = ''.join(mbans)
         dbans = ["*Duel EDH bans:*\n"]
-        check = list(set(deck).intersections(set(duelbanned)))
+        check = list(set(deck).intersection(set(duelbanned)))
         if not check:
                 dbans.append("None")
         else:
@@ -287,7 +287,6 @@ class DeckMgr:
         datatypes = ["color","costs","converted","avgcost","lands","cardtypes"]
         data = {dat:dict() for dat in datatypes}
         for c in deck:
-            # Make this a fn - A
             if c[0] not in NUMERALS:
                 continue
             data, found = self._getColornCost(c,data)

@@ -29,11 +29,15 @@ class JSONManager:
         # insert cardname with spaces as %20 between these two strings;
         self.picURL2 = "&type=card"
 
+    # Works
+    # resets hash for testing purposes
     def resetHash(self):
         with open(self.hashFile,'w') as f:
             f.write("none")
         print("Hash reset")
 
+    # works
+    # updates hash to check for updates to deck
     def updateHash(self):
         hashreq = requests.get(self.dataUrl+'.sha256')
         if not os.path.isfile(self.hashFile):
@@ -48,13 +52,15 @@ class JSONManager:
         print("Updating JSON")
         self._updateJSON()
 
-
+    # works
+    # downloads the updated json
     def _updateJSON(self):
         JSONdata = requests.get(self.dataUrl)
         with open(self.dataFile,'wb') as f:
             f.write(JSONdata.content)
         print("JSON Downloaded")
 
+    # HERE COMES THE HARD ONE
     def simplifyJSON(self):
         pass
 

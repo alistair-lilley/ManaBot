@@ -41,7 +41,7 @@ class Tokenizer:
         elif token == ']':
             return EndArr(token)
         elif token == '"':
-            token = self.F.read(1)
+            token = self._next()
             while self._peek() != '"':
                 t = self._next()
                 if t == '\\':
@@ -74,9 +74,6 @@ class BeginArr(Token):
     pass
 
 class EndArr(Token):
-    pass
-
-class BeginLiteral(Token):
     pass
 
 class Literal(Token):

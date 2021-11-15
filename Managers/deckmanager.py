@@ -7,7 +7,7 @@
 import os, shutil, asyncio, requests, re
 import xml.etree.ElementTree as ET
 from zipfile import ZipFile
-from setupfiles.helpers import stripExt, simplifyString
+from helpers.helpers import stripExt, simplifyString
 
 NUMERALS = {str(i) for i in range(0, 9)}
 

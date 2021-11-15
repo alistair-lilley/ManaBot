@@ -3,8 +3,23 @@
     This file covers imports and envs, and setting up the managers and bots
 '''
 
-__all__ = ["datetime","tgbot","metg","Dispatcher","asyncio","client","dp","GUILD","medc","managers","InlineQuery",
-           "tgbothelp","simplifyString","BotManager","DCTOKEN"]
+__all__ = [
+    "asyncio",
+    "datetime",
+    "simplifyString",
+    "tgbothelp",
+    "tgbot",
+    "DCTOKEN",
+    "metg",
+    "medc",
+    "GUILD",
+    "Dispatcher",
+    "client",
+    "dp",
+    "InlineQuery",
+    "managers",
+    "BotManager",
+    "UpdateManager"]
 
 import os, discord, logging, asyncio
 from aiogram.types import InlineQuery
@@ -22,7 +37,9 @@ from Managers.dicemanager import DiceMgr
 
 from Managers.botmanager import BotMgr
 
-from setupfiles.helpers import simplifyString
+from Managers.updatemanager import Updater
+
+from helpers.helpers import simplifyString
 
 # Load all environment variables
 load_dotenv()
@@ -32,17 +49,22 @@ TGTOKEN = os.getenv('TGTOKEN')
 # The discord guild
 GUILD = os.getenv('GUILD')
 # The data paths
-path_to_cards = os.getenv('CARDPATH')
-path_to_bot = os.getenv('BOTPATH')
-path_to_images = os.getenv('IMAGEPATH')
-path_to_decks = os.getenv('DECKSPATH')
+path_to_bot = "/home/kokio/.local/share/Cockatrice/Cockatrice/decks/ManaBot"
+path_to_cards = "/home/kokio/.local/share/Cockatrice/Cockatrice/cards.xml"
+path_to_images = "/home/kokio/.local/share/Cockatrice/Cockatrice/pics/downloadedPics"
+path_to_decks = path_to_bot+"data"
 # The help and rules files
-dcbothelp = os.getenv('DCBOTHELP')
-tgbothelp = os.getenv('TGBOTHELP')
-rules = os.getenv('RULES')
+dcbothelp = path_to_bot+"data/readintexts/dchelp.txt"
+tgbothelp = path_to_bot+"data/readintexts/tghelp.txt"
+path_to_rules = "/home/kokio/.local/share/Cockatrice/Cockatrice/decks/ManaBot/data/readintexts/rules.txt"
 # My ids
 medc = os.getenv('KOKIDC')
 metg = os.getenv('KOKITG')
+# Updater stuff
+path_to_json = path_to_bot+"data/json/AllCardsJSON.json"
+path_to_json_hash = path_to_bot+"data/json/hash.txt"
+path_to_json_images = path_to_bot+"data/images"
+path_to_blacklist = path_to_bot+"data/json/blacklist.txt"
 # clear stuff idr
 clr = path_to_bot+'/readintexts/clr.txt'
 # Get dicord client
@@ -71,7 +93,7 @@ for p in paths:
 # This will load image & name dicts, card list, exists set, searchable card list, and merge sort them
 # It will also store found cards for searching/checking
 CardManager = CardMgr(path_to_images,path_to_cards,path_to_bot,metg,tgbot)
-RulesManager = RulesMgr(rules,dcbothelp)
+RulesManager = RulesMgr(path_to_rules,dcbothelp)
 DeckManager = DeckMgr(path_to_bot,["/data/toparse/","/data/txts/"], CardManager)
 DiceManager = DiceMgr()
 
@@ -79,3 +101,6 @@ managers = [DeckManager, CardManager, RulesManager, DiceManager]
 
 # Special manager -- manages sending the messages through the two bots, for cleanliness
 BotManager = BotMgr(tgbot,open(clr).read(),metg)
+
+# Special manager -- updates the database very 24hr
+UpdateManager = Updater(path_to_json,path_to_rules,path_to_blacklist,path_to_json_images)

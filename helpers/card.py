@@ -6,7 +6,7 @@
 import os
 import xml.etree.ElementTree as ET
 from dotenv import load_dotenv
-from setupfiles.helpers import stripExt, simplifyString
+from helpers.helpers import stripExt, simplifyString
 
 
 load_dotenv()

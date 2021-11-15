@@ -7,7 +7,7 @@
                 ***IF AND ONLY IF THERE IS NO WHITELIST ON THAT LEVEL***
 '''
 import json, sys
-from setupfiles.jsontokenizer import *
+from helpers.jsontokenizer import *
 
 
 class SelectiveJSON:

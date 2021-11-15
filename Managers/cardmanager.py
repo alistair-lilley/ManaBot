@@ -5,8 +5,8 @@
 from PIL import Image
 # Aiogram imports
 # Custom file imports
-from setupfiles.card import XMLParser, loadAllImages
-from setupfiles.helpers import *
+from helpers.card import XMLParser, loadAllImages
+from helpers.helpers import *
 
 XMLP = XMLParser()
 

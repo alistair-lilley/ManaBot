@@ -3,7 +3,7 @@
     FUCK
 '''
 import sys
-from setupfiles.jsontokenizer import *
+from helpers.jsontokenizer import *
 
 MAX = 10000
 

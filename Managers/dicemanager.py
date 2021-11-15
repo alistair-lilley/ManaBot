@@ -6,7 +6,7 @@
     XdY[dk][hl]Z+N
 '''
 from random import randint
-from setupfiles.helpers import *
+from helpers.helpers import *
 
 
 # Manage dicies!!

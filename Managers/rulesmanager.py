@@ -14,7 +14,7 @@
 '''
 import re
 
-from setupfiles.helpers import *
+from helpers.helpers import *
 
 # Read in rules file to get two dicts: a rules:rulecontent dict and a keyword:keywordcontent dict
 # This was a pain

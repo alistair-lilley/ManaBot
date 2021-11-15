@@ -5,7 +5,7 @@
 '''
 import hashlib, discord
 from aiogram.types import InputTextMessageContent, InlineQueryResultArticle, InlineQueryResultCachedPhoto, InputFile
-from setupfiles.helpers import simplifyString
+from helpers.helpers import simplifyString
 
 class BotMgr:
 

@@ -1,0 +1,12 @@
+# Misc files
+.env
+*.c
+Manazip.zip
+
+# Select data dir files
+# We're taking these out because they will literally overwhelm github
+data/resizedpics/*
+data/toparse/*
+data/txts/*
+data/json/*
+data/images/*

@@ -49,24 +49,24 @@ TGTOKEN = os.getenv('TGTOKEN')
 # The discord guild
 GUILD = os.getenv('GUILD')
 # The data paths
-path_to_bot = "/home/kokio/.local/share/Cockatrice/Cockatrice/decks/ManaBot"
-path_to_cards = "/home/kokio/.local/share/Cockatrice/Cockatrice/cards.xml"
-path_to_images = "/home/kokio/.local/share/Cockatrice/Cockatrice/pics/downloadedPics"
-path_to_decks = path_to_bot+"data"
+path_to_bot = "/home/akiahala/.local/share/Cockatrice/Cockatrice/decks/ManaBot"
+path_to_cards = "/home/akiahala/.local/share/Cockatrice/Cockatrice/cards.xml"
+path_to_images = "/home/akiahala/.local/share/Cockatrice/Cockatrice/pics/downloadedPics"
+path_to_decks = path_to_bot+"/data"
 # The help and rules files
-dcbothelp = path_to_bot+"data/readintexts/dchelp.txt"
-tgbothelp = path_to_bot+"data/readintexts/tghelp.txt"
-path_to_rules = "/home/kokio/.local/share/Cockatrice/Cockatrice/decks/ManaBot/data/readintexts/rules.txt"
+dcbothelp = path_to_bot+"/data/readintexts/dchelp.txt"
+tgbothelp = path_to_bot+"/data/readintexts/tghelp.txt"
+path_to_rules = path_to_bot+"/data/readintexts/rules.txt"
 # My ids
 medc = os.getenv('KOKIDC')
 metg = os.getenv('KOKITG')
 # Updater stuff
-path_to_json = path_to_bot+"data/json/AllCardsJSON.json"
-path_to_json_hash = path_to_bot+"data/json/hash.txt"
-path_to_json_images = path_to_bot+"data/images"
-path_to_blacklist = path_to_bot+"data/json/blacklist.txt"
+path_to_json = path_to_bot+"/data/json/AllCardsJSON.json"
+path_to_json_hash = path_to_bot+"/data/json/hash.txt"
+path_to_json_images = path_to_bot+"/data/images"
+path_to_blacklist = path_to_bot+"/data/json/blacklist.txt"
 # clear stuff idr
-clr = path_to_bot+'/readintexts/clr.txt'
+clr = path_to_bot+'/data/readintexts/clr.txt'
 # Get dicord client
 client = discord.Client()
 # Start logging and initialize bot and dispatcher objects
@@ -79,7 +79,7 @@ dp = Dispatcher(tgbot)
 ########################################################################################################################
 
 # Check that all the required directories exist and make them if not
-
+    
 paths = [path_to_bot+d for d in ["/data/"+r for r in ["toparse/","txts/","json/","bans/"]]]
 for p in paths:
     if not os.path.isdir(p):

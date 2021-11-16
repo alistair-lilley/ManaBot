@@ -4,44 +4,41 @@
         and requires less space 
     (It simplifies based on a blacklist fed into it)
 '''
-import json
 
 class JSONSimplifier:
 
     def __init__(self,blacklist):
-        self.blacklist = set(blacklist)
+        self.blacklist = set([line.strip() for line in open(blacklist)])
 
     # Start the program!
-    def simplify(self,jsonfile):
-        fullobj = json.loads(open(jsonfile).read())
-        return self._parseObj(fullobj)
+    def simplify(self,jsonobj):
+        print("Simplifying JSON")
+        return self._parseObj(jsonobj)
 
     # Parses dict-like objects
     def _parseObj(self,obj):
         makeObj = dict()
-        key = None
         for item in obj:
-            if item in self.blacklist:
+            if type(item) not in [list,dict] and item in self.blacklist:
                 continue
-            if key:
-                if type(obj[item]) == dict:
-                    makeObj[key] = self._parseObj(obj[item])
-                elif type(obj[item]) == list:
-                    makeObj[key] = self._parseList(obj[item])
-                else:
-                    makeObj[key] = item
+            elif type(obj[item]) == dict:
+                makeObj[item] = self._parseObj(obj[item])
+            elif type(obj[item]) == list:
+                makeObj[item] = self._parseList(obj[item])
             else:
-                key = item
+                makeObj[item] = obj[item]
         return makeObj
 
     # Parses list-like objects
     def _parseList(self,L):
         makeList = []
         for item in L:
-            if item in self.blacklist:
+            if type(item) not in [list,dict] and item in self.blacklist:
                 continue
-            if type(item) == dict:
-                makeList.append(self._parseObj(L[item]))
-            if type(item) == list:
-                makeList.append(self._parseList(L[item]))
+            elif type(item) == dict:
+                makeList.append(self._parseObj(item))
+            elif type(item) == list:
+                makeList.append(self._parseList(item))
+            else:
+                makeList.append(item)
         return makeList

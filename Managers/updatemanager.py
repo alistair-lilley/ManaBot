@@ -6,7 +6,7 @@
     
     Once the basics are set up, it will also run the update check daily at 00:00 (in the running computer's timezone)
 '''
-import hashlib, json, os, requests, asyncio, filetype, sys
+import hashlib, json, os, requests, asyncio, filetype, sys, aiohttp
 from helpers.simplifyjson import JSONSimplifier
 from helpers.helpers import simplifyString
 
@@ -16,6 +16,7 @@ HOUR = 3600
 class Updater:
 
     def __init__(self,jsonpath,rulespath,blacklist,picspath):
+        self.session = aiohttp.ClientSession()
         self.jsonpath = jsonpath
         self.rulespath = rulespath
         self.rulesurl = "https://media.wizards.com/2021/downloads/MagicCompRules%20202109224.txt"
@@ -36,41 +37,49 @@ class Updater:
     async def checkUpdate(self):
         while True:
             try:
+                # Section for getting json updates
+                resp = await self.session.get(self.jsonurl+'.sha256')
+                urlhash = await resp.text()
                 if not os.path.isfile(self.jsonpath+".hash.txt") or \
-                        not open(self.jsonpath+".hash.txt").read() ==  requests.get(self.jsonurl+'.sha256').text:
+                        not open(self.jsonpath+".hash.txt").read() == urlhash:
                     print("New JSON hash found. updating.")
-                    self._updateJSON()
+                    await self._updateJSON()
                 else:
                     print("JSON hash not updated")
-                self._downloadPics()
+                # updaitng card images
+                await self._downloadPics()
+                # section for getting rules updates
+                resp = await self.session.get(self.rulesurl)
+                urlhash = await resp.read()
                 if not os.path.isfile(self.rulespath+".hash.txt") or \
-                        not open(self.rulespath+".hash.txt").read() == hashlib.sha224( requests.get(self.rulesurl).content).hexdigest():
+                        not open(self.rulespath+".hash.txt").read() == hashlib.sha224(urlhash).hexdigest():
                     print("New rules hash found. updating.")
-                    self._updateRules()
+                    await self._updateRules()
                 await asyncio.sleep(DAY)
-            except requests.exceptions.RequestException:
+            except:
                 print("Wizards offline, waiting one hours")
                 await asyncio.sleep(HOUR)
 
     # Update the json if necesasry
-    def _updateJSON(self):
+    async def _updateJSON(self):
         try:
             print("Downloading full json")
-            download = self.simplifier.simplify(requests.get(self.jsonurl).json())
-        except requests.exceptions.RequestException:
+            resp = await self.session.get(self.jsonurl)
+            download = self.simplifier.simplify(await resp.json())
+        except:
             print("Problem in downloading JSON file.")
             raise
         with open(self.jsonpath,'w') as jsonfile:
             print("Saving modified JSON")
             json.dump(download,jsonfile)
         with open(self.jsonpath + ".hash.txt", 'w') as f:
-            f.write(requests.get(self.jsonurl + '.sha256').text)
+            resp = await self.session.get(self.jsonurl + '.sha256')
+            f.write(await resp.text())
             print("Updated JSON hash")
 
     # Download pics one by one
-    # This saves them into folders based on their set, kinna like cockatrice
-    # Might want to try to reduce repeat card images?
-    def _downloadPics(self):
+    # Saves them all in one dir so there are no duplicates
+    async def _downloadPics(self):
         print("Loading JSON file")
         download = json.load(open(self.jsonpath))
         newcards = 0
@@ -84,34 +93,33 @@ class Updater:
             for s in setlevel:
                 print(s,end=" ")
                 sys.stdout.flush()
-                #currpath = self.picspath+'/'+s+'/'
-                currpath = self.picspath+'/ALLPICS/'
-                if not os.path.isdir(currpath):
-                    os.mkdir(currpath)
                 # c will be a dictionary of the card itself
                 for c in setlevel[s]['cards']:
-                    cardpath = currpath+simplifyString(c['name'])
+                    cardpath = self.picspath+'/'+simplifyString(c['name'])
                     if os.path.isfile(cardpath+'.jpg') or os.path.isfile(cardpath+'.png'):
                         existingcards += 1
                         continue
                     newcards += 1
-                    downfile = requests.get(self.picURL1+c['name']+self.picURL2).content
+                    resp = await self.session.get(self.picURL1+c['name']+self.picURL2)
+                    downfile = await resp.read()
                     with open(cardpath+'.'+filetype.guess(downfile).extension,'wb') as f:
                         f.write(downfile)
-        except requests.exceptions.RequestException:
+        except:
             print("Wizards is down. Retrying later.")
             raise
         print(f"\nCards downloaded. New cards: {newcards}. Existing cards: {existingcards}")
 
     # This downloads the rules...
-    def _updateRules(self):
+    async def _updateRules(self):
         print("Saving new rules")
-        newrules = self._simplifyRules([line.strip() for line in  requests.get(self.rulesurl).text])
+        resp = await self.session.get(self.rulesurl)
+        newrules = self._simplifyRules([line.strip() for line in await resp.text()])
         with open(self.rulespath,'w') as f:
             f.write(newrules)
             print("New rules saved")
         with open(self.rulespath+".hash.txt",'w') as f:
-            f.write(hashlib.sha224( requests.get(self.rulesurl).content).hexdigest())
+            resp = await self.session.get(self.rulesurl)
+            f.write(hashlib.sha224(await resp.read()).hexdigest())
             print("Rules hash updatd")
 
     # ... and this is just to cut all the non-rules text out of the rules file, like the credits and stuff

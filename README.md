@@ -22,7 +22,7 @@ command and on Discord via the @ManaBot#3013 account.
 
 Creation of initial bot
 
-### Between March 2021 and November 2021
+### Between March 2021 and Fall 2021
 
 Features added and optimized:
 1. card image search
@@ -33,11 +33,23 @@ Features added and optimized:
 6. cross-platform design (Telegram and Discord)
 7. dice rolling (minimal, somewhat buggy)
 
-### November 2021 (in progress)
+### Fall 2021 
 
 Conversion from dependence on Cockatrice data files to independent database
 
+### November 16 2021
+
+Rapberry ManaBot is here! 
+
+The bot is now fully capable of functioning independent of Cockatrice, by periodically checking for updates and 
+downloading rules and card database updates as necessary. It can now run on an indepndent server or mini-server.
+Once I have acquired a Raspberry Pi, it will be moved over so it can run indefinitely, not depending on my desktop.
+
+This doesn't need any more edits to put on the RP, but I'm temporarily leaving in the tokenizer files so that
+I have a basis for converting that to Java.
+
 ---
+
 
 ## Current functionality
 

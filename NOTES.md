@@ -38,3 +38,4 @@ The things we'll want to focus on are:
 - types
 - uuid
 
+### update: there might be others i missed

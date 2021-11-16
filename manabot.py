@@ -47,7 +47,14 @@ async def on_ready():
     user = await client.fetch_user(medc)
     await user.send(f'{client.user} is connected to the following guild:\n{guild.name}(id: {guild.id})\n{dt})')
     asyncio.create_task(managers[0].scheduledClear())
-    asyncio.create_task(UpdateManager.checkUpdate())
+    if sys.argv and "clearhash" in sys.argv:
+        print("Clearing hash")
+        UpdateManager.clearHash()
+    if not sys.argv or "noupdate" not in sys.argv:
+        print("Updating database")
+        asyncio.create_task(UpdateManager.checkUpdate())
+    else:
+        print("Skipping database update")
 
 ########################################################################################################################
 ########################################################################################################################

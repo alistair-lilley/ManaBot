@@ -4,10 +4,9 @@
 '''
 from PIL import Image
 # Custom file imports
-from helpers.card import XMLParser, JSONParser, loadAllImages
+from helpers.card import JSONParser, loadAllImages
 from helpers.helpers import *
 
-#XMLP = XMLParser()
 JSONP = JSONParser()
 
 def checkNamesDict(l,d):
@@ -27,14 +26,14 @@ class CardMgr:
         self.image_path_d, self.image_name_d = loadAllImages(image_path)
         self.prevcards = {} # Records cards previously searched for quicker lookup
         # Data loading info
-        #self.cards = {simplifyString(c.feats["Name"]):c for c in XMLP.parseXML(data_path)}
-        self.cards = {simplifyString(c.feats["name"]):c for c in JSONP.parseJSON(data_path)}
+        self.cards = {simplifyString(c.feats["Name"]):c for c in JSONP.parseJSON(data_path)}
         self.cardnames = [card for card in self.cards] # A sorted list of the cards for quick searching
         mS(self.cardnames)
         # The recent similars search, so that its callable by both search functions
         print(f"Lengths: cardnames {len(self.cardnames)}, cards {len(self.cards)}, image paths {len(self.image_path_d)}"
               f", image names {len(self.image_name_d)}")
         self.similars = []
+
 
     ############################################################################
     ############################################################################
@@ -93,6 +92,7 @@ class CardMgr:
         try:
             cardpic = await self._getImage(cardname)
         except:
+            print("Whoa! Big error in getting card image.")
             cardpic = await self._getDefault(cardname,setting)
         return cardpic
 
@@ -100,13 +100,12 @@ class CardMgr:
     async def _getImage(self,cardname):
         # gets the proper name
         if cardname in self.image_name_d:
-            propName = self.image_name_d[cardname]
+            propName = cardname
         else:
             # Get the most similar name if can't find it...
-            self.similars = findSimilar(self.cardnames, cardname)
-            propName = self.image_name_d[self.similars[0]]
+            propName = self.similars[0]
         # gets the path to image via proper name
-        path = self.image_path + '/' + self.image_path_d[propName] #+ '/' + propName + '.jpg'
+        path = self.image_path_d[propName]
         # Checks to see if the file is too beeg
         sizecheck = Image.open(path)
         if sizecheck.size[0] > 350:
@@ -139,12 +138,10 @@ class CardMgr:
 
 
     async def _getDescription(self,cardname):
-        try:
+        if cardname in self.cards:
             card = self.cards[cardname]
             simstr = ''
-        except:
-            if not self.similars:
-                self.similars = findSimilar(self.cardnames, cardname)
+        else:
             # If it couldn't find the card...
             # Add onto cardData the similar results
             card = self.cards[self.similars[0]]

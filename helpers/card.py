@@ -21,17 +21,12 @@ path_to_cards = os.getenv('CARDPATH')
 # Get a dictionary of name:path and a dictionary of simplename:propername by looping through the entire image
 # directory and subdirectories
 def loadAllImages(imageDir):
-    paths, names = {}, {}
-    '''for d in os.listdir(imageDir):
-        for c in os.listdir(imageDir+'/'+d):
-            propName, ext = stripExt(c)
-            paths[propName] = d+'/'+c
-            simpleName = simplifyString(propName)
-            names[simpleName] = propName'''
+    names = set()
+    paths = {}
     for c in os.listdir(imageDir):
         name, ext = stripExt(c)
         paths[name] = imageDir+'/'+c
-        names[name] = name
+        names.add(name)
     return paths, names
 
 #######################################################################################################################
@@ -43,80 +38,15 @@ class Card:
         self.feats = featDict
 
     def sendRaw(self):
-        #toget = ["Mana Cost","Color ID","Type"]
-        toget = ["convertedManaCost", "colorIdentity", "type"]
+        toget = ["Mana Cost","Color ID","Type"]
         return {f:self.feats[f] for f in self.feats if f in toget}
 
     # Print data of a card
     # Prints.... the data from a card
     # but actually returns it as a string
     def printData(self):
-        #ordered = ["Name", "Mana Cost", "Color(s)", "Color ID", "Type", "P/T", "Text", "Related cards"]
-        ordered = ["name", "convertedManaCost", "colors", "colorIdentity", "type",
-                   "power", "toughness", "text"] # fix related cards later
+        ordered = ["Name", "Mana Cost", "Color(s)", "Color ID", "Type", "P/T", "Text"] #, "Related cards"; get that l8r
         return "\n".join([f'{o}: {self.feats[o]}' for o in ordered if o in self.feats])
-
-#######################################################################################################################
-#######################################################################################################################
-
-# Deprecating this
-
-# XML Parser class
-# Cuz why not, let's make EVERYTHING an object!!!
-class XMLParser:
-    def __init__(self):
-        self.NAME="XMLParser"
-
-    # Parse the <prop> subtags
-    # Just get all of the subtag data
-    def _parseProps(self, elem):
-        propeles = {}
-        for subele in elem:
-            if subele.tag == "colors":
-                propeles["Color(s)"] = subele.text
-            elif subele.tag == "manacost":
-                propeles["Mana Cost"] = subele.text
-            elif subele.tag == "coloridentity":
-                propeles["Color ID"] = subele.text
-            elif subele.tag == "type":
-                propeles["Type"] = subele.text
-            elif subele.tag == "pt":
-                propeles["P/T"] = subele.text
-        return propeles
-
-
-    # Parsing the XML file of card data
-
-    # Parse the <card> subtag
-    # juuuuust get the data
-    def _parseCard(self, card):
-        elems = {}
-        for elem in card:
-            if elem.tag == "name":
-                elems["Name"] = elem.text
-            elif elem.tag == "prop":
-                elems.update(self._parseProps(elem))
-        for elem in card:
-            if elem.tag == "text":
-                elems["Text"] = elem.text
-            if elem.tag == "related":
-                elems["Related cards"] = elem.text
-        return elems
-
-    # Parse the whole tree
-    # loop through the tree, make each card into a prefix node, then add it to the prefix tree
-    def parseXML(self, codfile):
-        CODtree = ET.parse(codfile)
-        CODroot = CODtree.getroot()
-        cards = []
-        for child in CODroot:
-            if child.tag != "cards":
-                continue
-            for card in child:
-                nodeEles = self._parseCard(card)
-                newEle = Card(nodeEles)
-                cards.append(newEle)
-        return cards
 
 #######################################################################################################################
 #######################################################################################################################
@@ -129,13 +59,36 @@ class JSONParser:
     def __init__(self):
         self.NAME = "JSONParser"
 
+    def _extractCard(self,card):
+        c = dict()
+        c["Name"] = card['name']
+        c["Mana Cost"] = str(int(card['convertedManaCost']))
+        if 'colors' in card:
+            c["Color(s)"] = ''.join(card['colors'])
+        else:
+            c["Color(s)"] = 'C'
+        if 'colorIdentity' in card:
+            c["color ID"] = ''.join(card['colorIdentity'])
+        else:
+            c["Color ID"] = 'C'
+        if 'power' in card:
+            c["P/T"] = str(card['power'])+'/'+str(card['toughness'])
+        else:
+            c["P/T"] = "-/-"
+        if 'text' in card:
+            c["Text"] = card['text']
+        else:
+            c["Text"] = ""
+        return c
+
+
     def parseJSON(self,datapath):
-        alldata = json.load(datapath)
+        alldata = json.load(open(datapath))
         allcards = []
         setlevel = alldata['data']
         for s in setlevel:
-            for c in alldata['data'][s]:
+            for c in setlevel[s]['cards']:
                 if 'faceName' in c:
                     continue
-                allcards.append(c)
+                allcards.append(Card(self._extractCard(c)))
         return allcards

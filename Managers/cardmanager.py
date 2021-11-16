@@ -3,12 +3,12 @@
     This file is designed to create a singular, all-encompassing card manager object.
 '''
 from PIL import Image
-# Aiogram imports
 # Custom file imports
-from helpers.card import XMLParser, loadAllImages
+from helpers.card import XMLParser, JSONParser, loadAllImages
 from helpers.helpers import *
 
-XMLP = XMLParser()
+#XMLP = XMLParser()
+JSONP = JSONParser()
 
 def checkNamesDict(l,d):
     for item in l:
@@ -27,7 +27,8 @@ class CardMgr:
         self.image_path_d, self.image_name_d = loadAllImages(image_path)
         self.prevcards = {} # Records cards previously searched for quicker lookup
         # Data loading info
-        self.cards = {simplifyString(c.feats["Name"]):c for c in XMLP.parseXML(data_path)}
+        #self.cards = {simplifyString(c.feats["Name"]):c for c in XMLP.parseXML(data_path)}
+        self.cards = {simplifyString(c.feats["name"]):c for c in JSONP.parseJSON(data_path)}
         self.cardnames = [card for card in self.cards] # A sorted list of the cards for quick searching
         mS(self.cardnames)
         # The recent similars search, so that its callable by both search functions

@@ -49,9 +49,9 @@ TGTOKEN = os.getenv('TGTOKEN')
 # The discord guild
 GUILD = os.getenv('GUILD')
 # The data paths
-path_to_bot = "/home/akiahala/.local/share/Cockatrice/Cockatrice/decks/ManaBot"
-path_to_cards = "/home/akiahala/.local/share/Cockatrice/Cockatrice/cards.xml"
-path_to_images = "/home/akiahala/.local/share/Cockatrice/Cockatrice/pics/downloadedPics"
+path_to_bot = "/home/kokio/.local/share/Cockatrice/Cockatrice/decks/ManaBot"
+path_to_cards = "/home/kokio/.local/share/Cockatrice/Cockatrice/cards.xml"
+path_to_images = "/home/kokio/.local/share/Cockatrice/Cockatrice/pics/downloadedPics"
 path_to_decks = path_to_bot+"/data"
 # The help and rules files
 dcbothelp = path_to_bot+"/data/readintexts/dchelp.txt"

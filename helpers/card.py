@@ -3,7 +3,7 @@
     This file contains all the major functions for laoding card information, as well as the card class
 '''
 
-import os
+import os, json
 import xml.etree.ElementTree as ET
 from dotenv import load_dotenv
 from helpers.helpers import stripExt, simplifyString
@@ -22,12 +22,16 @@ path_to_cards = os.getenv('CARDPATH')
 # directory and subdirectories
 def loadAllImages(imageDir):
     paths, names = {}, {}
-    for d in os.listdir(imageDir):
+    '''for d in os.listdir(imageDir):
         for c in os.listdir(imageDir+'/'+d):
             propName, ext = stripExt(c)
             paths[propName] = d+'/'+c
             simpleName = simplifyString(propName)
-            names[simpleName] = propName
+            names[simpleName] = propName'''
+    for c in os.listdir(imageDir):
+        name, ext = stripExt(c)
+        paths[name] = imageDir+'/'+c
+        names[name] = name
     return paths, names
 
 #######################################################################################################################
@@ -39,19 +43,23 @@ class Card:
         self.feats = featDict
 
     def sendRaw(self):
-        toget = ["Mana Cost","Color ID","Type"]
+        #toget = ["Mana Cost","Color ID","Type"]
+        toget = ["convertedManaCost", "colorIdentity", "type"]
         return {f:self.feats[f] for f in self.feats if f in toget}
 
     # Print data of a card
     # Prints.... the data from a card
     # but actually returns it as a string
     def printData(self):
-        ordered = ["Name", "Mana Cost", "Color(s)", "Color ID", "Type", "P/T", "Text", "Related cards"]
+        #ordered = ["Name", "Mana Cost", "Color(s)", "Color ID", "Type", "P/T", "Text", "Related cards"]
+        ordered = ["name", "convertedManaCost", "colors", "colorIdentity", "type",
+                   "power", "toughness", "text"] # fix related cards later
         return "\n".join([f'{o}: {self.feats[o]}' for o in ordered if o in self.feats])
 
 #######################################################################################################################
 #######################################################################################################################
 
+# Deprecating this
 
 # XML Parser class
 # Cuz why not, let's make EVERYTHING an object!!!
@@ -110,4 +118,24 @@ class XMLParser:
                 cards.append(newEle)
         return cards
 
+#######################################################################################################################
+#######################################################################################################################
 
+# SO MUCH SIMPLER
+# SO MUCH CLEANER
+# although we're missing a few things, fix later
+class JSONParser:
+
+    def __init__(self):
+        self.NAME = "JSONParser"
+
+    def parseJSON(self,datapath):
+        alldata = json.load(datapath)
+        allcards = []
+        setlevel = alldata['data']
+        for s in setlevel:
+            for c in alldata['data'][s]:
+                if 'faceName' in c:
+                    continue
+                allcards.append(c)
+        return allcards

@@ -6,7 +6,7 @@
     
     Once the basics are set up, it will also run the update check daily at 00:00 (in the running computer's timezone)
 '''
-import hashlib, json, os, requests, asyncio, filetype
+import hashlib, json, os, requests, asyncio, filetype, sys
 from helpers.simplifyjson import JSONSimplifier
 from helpers.helpers import simplifyString
 
@@ -32,6 +32,7 @@ class Updater:
         print("Hash cleared")
 
     # Check to see if there are any updates for either rules or json
+    # Also, download pics indendently from updating json in case there were any issues with the pics files
     async def checkUpdate(self):
         while True:
             try:
@@ -41,6 +42,7 @@ class Updater:
                     self._updateJSON()
                 else:
                     print("JSON hash not updated")
+                self._downloadPics()
                 if not os.path.isfile(self.rulespath+".hash.txt") or \
                         not open(self.rulespath+".hash.txt").read() == hashlib.sha224( requests.get(self.rulesurl).content).hexdigest():
                     print("New rules hash found. updating.")
@@ -52,9 +54,6 @@ class Updater:
 
     # Update the json if necesasry
     def _updateJSON(self):
-        with open(self.jsonpath+".hash.txt",'w') as f:
-            f.write( requests.get(self.jsonurl+'.sha256').text)
-            print("Updated JSON hash")
         try:
             print("Downloading full json")
             download = self.simplifier.simplify(requests.get(self.jsonurl).json())
@@ -64,22 +63,27 @@ class Updater:
         with open(self.jsonpath,'w') as jsonfile:
             print("Saving modified JSON")
             json.dump(download,jsonfile)
-        self._downloadPics(download)
+        with open(self.jsonpath + ".hash.txt", 'w') as f:
+            f.write(requests.get(self.jsonurl + '.sha256').text)
+            print("Updated JSON hash")
 
     # Download pics one by one
     # This saves them into folders based on their set, kinna like cockatrice
     # Might want to try to reduce repeat card images?
-    def _downloadPics(self,download):
-        print("Downloading all pics")
+    def _downloadPics(self):
+        print("Loading JSON file")
+        download = json.load(open(self.jsonpath))
         newcards = 0
         existingcards = 0
         if not os.path.isdir(self.picspath):
             os.mkdir(self.picspath)
+        print("Downloading sets:",end=" ")
         try:
             setlevel = download['data']
             # s will be a dictionary key
             for s in setlevel:
-                print(f"Downloading set: {s}")
+                print(s,end=" ")
+                sys.stdout.flush()
                 #currpath = self.picspath+'/'+s+'/'
                 currpath = self.picspath+'/ALLPICS/'
                 if not os.path.isdir(currpath):
@@ -97,18 +101,18 @@ class Updater:
         except requests.exceptions.RequestException:
             print("Wizards is down. Retrying later.")
             raise
-        print(f"Cards downloaded. New cards: {newcards}. Existing cards: {existingcards}")
+        print(f"\nCards downloaded. New cards: {newcards}. Existing cards: {existingcards}")
 
     # This downloads the rules...
     def _updateRules(self):
-        with open(self.rulespath+".hash.txt",'w') as f:
-            f.write(hashlib.sha224( requests.get(self.rulesurl).content).hexdigest())
-            print("Rules hash updatd")
         print("Saving new rules")
         newrules = self._simplifyRules([line.strip() for line in  requests.get(self.rulesurl).text])
         with open(self.rulespath,'w') as f:
             f.write(newrules)
             print("New rules saved")
+        with open(self.rulespath+".hash.txt",'w') as f:
+            f.write(hashlib.sha224( requests.get(self.rulesurl).content).hexdigest())
+            print("Rules hash updatd")
 
     # ... and this is just to cut all the non-rules text out of the rules file, like the credits and stuff
     def _simplifyRules(self,rules):

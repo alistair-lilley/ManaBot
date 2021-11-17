@@ -74,11 +74,12 @@ class JSONParser:
         if 'power' in card:
             c["P/T"] = str(card['power'])+'/'+str(card['toughness'])
         else:
-            c["P/T"] = "-/-"
+            c["P/T"] = "N/A"
         if 'text' in card:
             c["Text"] = card['text']
         else:
-            c["Text"] = ""
+            c["Text"] = "N/A"
+        c["Type"] = card['type']
         return c
 
 

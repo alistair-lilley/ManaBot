@@ -34,7 +34,7 @@ class Updater:
 
     # Check to see if there are any updates for either rules or json
     # Also, download pics indendently from updating json in case there were any issues with the pics files
-    async def checkUpdate(self):
+    async def checkUpdate(self,CardManager):
         while True:
             try:
                 # Section for getting json updates
@@ -55,6 +55,7 @@ class Updater:
                         not open(self.rulespath+".hash.txt").read() == hashlib.sha224(urlhash).hexdigest():
                     print("New rules hash found. updating.")
                     await self._updateRules()
+                CardManager.update()
                 await asyncio.sleep(DAY)
             except:
                 print("Wizards offline, waiting one hours")

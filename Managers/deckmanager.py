@@ -12,9 +12,8 @@ from helpers.helpers import stripExt, simplifyString
 NUMERALS = {str(i) for i in range(0, 9)}
 
 class DeckMgr:
-    def __init__(self, path_to_bot, deckDirs, CardManager):
+    def __init__(self, deckDirs, CardManager):
         self.cmds = ['!cleardecks','!checkban','!checkbans','!analyze']
-        self.ptb = path_to_bot
         self.dirs = deckDirs
         self.cm = CardManager
 

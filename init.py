@@ -50,22 +50,21 @@ TGTOKEN = os.getenv('TGTOKEN')
 # The discord guild
 GUILD = os.getenv('GUILD')
 # The data paths
-path_to_bot = "/home/kokio/.local/share/Cockatrice/Cockatrice/decks/ManaBot"
-path_to_cards = path_to_bot+"/data/json/AllCardsJSON.json"
-path_to_images = path_to_bot+"/data/images"
+path_to_cards = "data/json/AllCardsJSON.json"
+path_to_images = "data/images"
 # The help and rules files
-dcbothelp = path_to_bot+"/data/readintexts/dchelp.txt"
-tgbothelp = path_to_bot+"/data/readintexts/tghelp.txt"
-path_to_rules = path_to_bot+"/data/readintexts/rules.txt"
+dcbothelp = "data/readintexts/dchelp.txt"
+tgbothelp = "data/readintexts/tghelp.txt"
+path_to_rules = "data/readintexts/rules.txt"
 # My ids
 medc = os.getenv('KOKIDC')
 metg = os.getenv('KOKITG')
 # Updater stuff
-path_to_json = path_to_bot+"/data/json/AllCardsJSON.json"
-path_to_json_hash = path_to_bot+"/data/json/hash.txt"
-path_to_blacklist = path_to_bot+"/data/json/blacklist.txt"
+path_to_json = "data/json/AllCardsJSON.json"
+path_to_json_hash = "data/json/hash.txt"
+path_to_blacklist = "data/json/blacklist.txt"
 # clear stuff idr
-clr = path_to_bot+'/data/readintexts/clr.txt'
+clr = 'data/readintexts/clr.txt'
 # Get dicord client
 client = discord.Client()
 # Start logging and initialize bot and dispatcher objects
@@ -79,7 +78,7 @@ dp = Dispatcher(tgbot)
 
 # Check that all the required directories exist and make them if not
     
-paths = [path_to_bot+d for d in ["/data/"+r for r in ["toparse/","txts/","json/","bans/","resizedpics/"]]]
+paths = [d for d in ["data/"+r for r in ["toparse/","txts/","json/","bans/","resizedpics/"]]]
 for p in paths:
     if not os.path.isdir(p):
         os.mkdir(p)
@@ -91,9 +90,9 @@ for p in paths:
 # Load CardMgr object
 # This will load image & name dicts, card list, exists set, searchable card list, and merge sort them
 # It will also store found cards for searching/checking
-CardManager = CardMgr(path_to_images,path_to_cards,path_to_bot,metg,tgbot)
+CardManager = CardMgr(path_to_images,path_to_cards,metg,tgbot)
 RulesManager = RulesMgr(path_to_rules,dcbothelp)
-DeckManager = DeckMgr(path_to_bot,["/data/toparse/","/data/txts/"], CardManager)
+DeckManager = DeckMgr(["data/toparse/","data/txts/"], CardManager)
 DiceManager = DiceMgr()
 
 managers = [DeckManager, CardManager, RulesManager, DiceManager]

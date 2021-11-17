@@ -52,7 +52,7 @@ async def on_ready():
         UpdateManager.clearHash()
     if not sys.argv or "noupdate" not in sys.argv:
         print("Updating database")
-        asyncio.create_task(UpdateManager.checkUpdate())
+        asyncio.create_task(UpdateManager.checkUpdate(managers[1]))
     else:
         print("Skipping database update")
 

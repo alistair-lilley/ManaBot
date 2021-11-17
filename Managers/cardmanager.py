@@ -15,16 +15,16 @@ def checkNamesDict(l,d):
             print(f"Warning! {item} missing from dictionary!")
 
 class CardMgr:
-    def __init__(self,image_path,data_path,bot_path,metg,bot):
+    def __init__(self,image_path,data_path,metg,bot):
         self.cmds = ['!card']
         self.bot = bot
         self.metg = metg
         self.image_path = image_path
         self.data_path = data_path
-        self.bot_path = bot_path
+        self.prevcards = {} # Records cards previously searched for quicker lookup
+        self.similars = []
         # Image loading info
         self.image_path_d, self.image_name_d = loadAllImages(image_path)
-        self.prevcards = {} # Records cards previously searched for quicker lookup
         # Data loading info
         self.cards = {simplifyString(c.feats["Name"]):c for c in JSONP.parseJSON(data_path)}
         self.cardnames = [card for card in self.cards] # A sorted list of the cards for quick searching
@@ -32,7 +32,22 @@ class CardMgr:
         # The recent similars search, so that its callable by both search functions
         print(f"Lengths: cardnames {len(self.cardnames)}, cards {len(self.cards)}, image paths {len(self.image_path_d)}"
               f", image names {len(self.image_name_d)}")
-        self.similars = []
+
+
+    ############################################################################
+    ############################################################################
+    ############################################################################
+
+    def update(self):
+        print("Updating CardManager")
+        self.image_path_d, self.image_name_d = loadAllImages(self.image_path)
+        self.cards = {simplifyString(c.feats["Name"]):c for c in JSONP.parseJSON(self.data_path)}
+        self.cardnames = [card for card in self.cards] # A sorted list of the cards for quick searching
+        mS(self.cardnames)
+        # The recent similars search, so that its callable by both search functions
+        print(f"Lengths: cardnames {len(self.cardnames)}, cards {len(self.cards)}, image paths {len(self.image_path_d)}"
+              f", image names {len(self.image_name_d)}")
+
 
 
     ############################################################################
@@ -112,7 +127,7 @@ class CardMgr:
             # and resizes it to 350 if so
             resized = sizecheck.resize((350, 466), Image.ANTIALIAS)
             # if it resizes, it saves the resized pic to /resizedpics and gets the path
-            path = self.bot_path + '/data/resizedpics/' + propName + '.jpg'
+            path = '/data/resizedpics/' + propName + '.jpg'
             resized.save(path)
         # That part is specifically to make sure it CAN send the file, cuz if it's too big it wont send
         # then return the path

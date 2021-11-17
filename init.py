@@ -71,6 +71,8 @@ client = discord.Client()
 logging.basicConfig(level=logging.INFO)
 tgbot = Bot(token=TGTOKEN)
 dp = Dispatcher(tgbot)
+# Make sure you're in the right dir
+os.chdir(os.path.dirname(__file__))
 
 ########################################################################################################################
 ########################################################################################################################

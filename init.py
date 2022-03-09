@@ -68,7 +68,7 @@ os.chdir(os.path.dirname(__file__))
 ########################################################################################################################
 ########################################################################################################################
     
-paths = [d for d in ["data/"+r for r in ["toparse/","txts/","json/","bans/","resizedpics/"]]]
+paths = [d for d in ["data/"+r for r in ["toparse/","txts/","json/","bans/","resizedpics/","images/"]]]
 for p in paths:
     if not os.path.isdir(p):
         os.mkdir(p)

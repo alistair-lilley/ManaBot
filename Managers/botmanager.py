@@ -29,7 +29,7 @@ class BotMgr:
     # Telegram
 
     async def _toTelegram(self,message,content,photo):
-        query = ' '.join(simplifyString(message.query.split()[1:]))
+        query = ' '.join(message.query.split()[1:])
         # messages require unique hashs, so we're making a new one
         newhash = hashlib.md5(message.id.encode()).hexdigest()
         arts = []

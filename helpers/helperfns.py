@@ -1,7 +1,26 @@
 import string
-from helpers import eDistC
 
 NUMERALS = set([str(i) for i in range(0,10)]+["."])
+
+def edist(sone, stwo, i, j, table):
+    if table[i][j] >= 0:
+        return table[i][j]
+    comp = (0,1)[sone[i] == stwo[j]]
+    if i == 0 and j == 0:
+        table[0][0] = comp
+        return table[0][0]
+    elif i == 0:
+        table[i][j] = comp + edist(sone, stwo, i, j-1, table)
+        return table[i][j]
+    elif j == 0:
+        table[i][j] = comp + edist(sone, stwo, i-1, j, table)
+        return table[i][j]
+    else:
+        table[i][j] = comp + \
+                      min(edist(sone, stwo, i, j-1, table),
+                            edist(sone, stwo, i-1, j, table),
+                            edist(sone, stwo, i-1, j-1, table))
+        return table[i][j]
 
 def makeNum(numstr,idx):
     nombor = ''
@@ -130,10 +149,10 @@ def findSimilar(L, name, N=7):
     tops = {}
     for l in L:
         try:
-            dist = eDistC.edist(l, name, len(l), len(name))
+            dist = edist(l, name, len(l), len(name), [[-1 for i in range(len(l))] for j in range(len(name))])
             tops[l] = dist
         except:
-            print(f"Uh-oh! {l} had an error")
+            pass
     while len(top) < N:
         maxCard = min(tops, key=tops.get)
         top[maxCard] = tops[maxCard]

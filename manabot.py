@@ -58,7 +58,7 @@ async def on_inline(message: InlineQuery):
 
     cmd = simplifyString(message.query.split()[0]) # Since you can search *either* card or rule, we use command
     cmd = '!'+cmd
-    query = ' '.join(simplifyString(message.query.split()[1:]))
+    query = simplifyString(' '.join(message.query.split()[1:]))
     for mgr in managers:
         if cmd in mgr.cmds:
             tosend = await mgr.handle(cmd,query)

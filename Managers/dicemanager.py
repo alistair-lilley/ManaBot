@@ -16,6 +16,7 @@ class DiceMgr:
 
     def __init__(self):
         #self.cmds = ['!roll','!r']
+        self.cmds = []
         pass
 
     async def handle(self,cmd,query):

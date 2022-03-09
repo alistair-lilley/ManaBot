@@ -53,7 +53,7 @@ class JSONParser:
         c = dict()
         c["Name"] = card['name']
         c["Mana Cost"] = str(int(card['convertedManaCost']))
-        if 'colors' in card:
+        if 'colors' in card and card['colors']:
             c["Color(s)"] = ''.join(card['colors'])
         else:
             c["Color(s)"] = 'C'

@@ -23,11 +23,14 @@ class CardMgr:
         self.prevcards = {} # quicker lookup of previous searched card
         self.similars = []
         self.image_path_d, self.image_name_d = loadAllImages(image_path)
-        self.cards = {simplifyString(c.feats["Name"]):c for c in JSONP.parseJSON(data_path)}
-        self.cardnames = [card for card in self.cards]
-        smS(self.cardnames)
-        print(f"Lengths: cardnames {len(self.cardnames)}, cards {len(self.cards)}, image paths {len(self.image_path_d)}"
-              f", image names {len(self.image_name_d)}")
+        try:
+            self.cards = {simplifyString(c.feats["Name"]):c for c in JSONP.parseJSON(data_path)}
+            self.cardnames = [card for card in self.cards]
+            smS(self.cardnames)
+            print(f"Lengths: cardnames {len(self.cardnames)}, cards {len(self.cards)}, image paths {len(self.image_path_d)}"
+                  f", image names {len(self.image_name_d)}")
+        except:
+            print("Json file not found")
 
     ############################################################################
     ############################################################################
@@ -36,19 +39,25 @@ class CardMgr:
     def update(self):
         print("Updating CardManager")
         self.image_path_d, self.image_name_d = loadAllImages(self.image_path)
-        self.cards = {simplifyString(c.feats["Name"]):c for c in JSONP.parseJSON(self.data_path)}
-        self.cardnames = [card for card in self.cards]
-        smS(self.cardnames)
-        print(f"Lengths: cardnames {len(self.cardnames)}, cards {len(self.cards)}, image paths {len(self.image_path_d)}"
-              f", image names {len(self.image_name_d)}")
+        try:
+            self.cards = {simplifyString(c.feats["Name"]):c for c in JSONP.parseJSON(self.data_path)}
+            self.cardnames = [card for card in self.cards]
+            smS(self.cardnames)
+            print(f"Lengths: cardnames {len(self.cardnames)}, cards {len(self.cards)}, image paths {len(self.image_path_d)}"
+                  f", image names {len(self.image_name_d)}")
+        except:
+            print("Json file not found")
 
     ############################################################################
     ############################################################################
 
     async def handle(self,cmd,query):
         if cmd == "!card":
-            card = await self._getCard(query)
-            return [card[0],card[1],None]
+            try:
+                card = await self._getCard(query)
+                return [card[0],card[1],None]
+            except:
+                return ["An error occurred searching" + query, "data/default.jpg"]
         elif cmd == "!raw":
             card = await self._getRaw(query)
             return [card,None,None]
@@ -59,18 +68,21 @@ class CardMgr:
     # Getting all data
 
     async def _getCard(self,cardname):
-        self.findSimilar(cardname)
+        try:
+            self.similars = findSimilar(self.cardnames,cardname)
+        except:
+            pass
         try:
             cardpic = await self._searchImage(cardname)
         except:
             await self.bot.send_message(self.metg,"Whoa! Big error in card pic search\nNext is card data search")
-            cardpic = None
+            cardpic = "data/default.jpg"
 
         try:
             cardd = await self._searchDescription(cardname)
         except:
             await self.bot.send_message(self.metg, "Whoa! Big error in card data search")
-            cardd = None
+            cardd = "An error occurred searching" + cardname
         return [cardd, cardpic]
 
 
@@ -90,7 +102,7 @@ class CardMgr:
             cardpic = await self._getImage(cardname)
         except:
             print("Whoa! Big error in getting card image.")
-            cardpic = await self._getDefault(cardname,"Card image")
+            cardpic = "data/default.jpg"
         return cardpic
 
 

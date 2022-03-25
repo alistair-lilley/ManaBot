@@ -4,22 +4,24 @@
     
     Sample:
     XdY[dk][hl]Z+N
+    
+    Needs work
 '''
 from random import randint
-from helpers.helpers import *
+from helpers.helperfns import *
 
 
 # Manage dicies!!
 class DiceMgr:
 
-    # We're gonna put bot-oriented stuff here
     def __init__(self):
-        self.cmds = ['!roll','!r']
+        #self.cmds = ['!roll','!r']
+        pass
 
-    # Handle, but no need for cmd yet
     async def handle(self,cmd,query):
-        if cmd in ['!roll','!r']:
-            return [self._roll(query),None,None]
+        '''if cmd in ['!roll','!r']:
+            return [self._roll(query),None,None]'''
+        pass
 
     # Dropping system
     def _drop(self,nums,dklh,dropnum):
@@ -39,18 +41,15 @@ class DiceMgr:
         elif dklh == "nd":
             return nums, []
 
-    # Parse the text to readable format
-    # Id like to break this up? but i have no idea how
+    # Redo this in a bit: parse it!
+    # gonna leave it as the mess it is for a bit tho
     def _parse(self,query):
         # Set defaults
         num, dtype, dklh, dropnum, mod = 1, 20, 'nd', -1, 0
-        # Array is easier, above is for description purposes
         allres = [num, dtype, dklh, dropnum, mod]
 
-        # If there's a number of dice, i.e. 2d6
         if query[0] in NUMERALS:
             allres[0], query = int(query.split('d')[0]), 'd'+'d'.join(query.split('d')[1:])
-        # Jump ship if the next is wrong
         idx = 1
         if query[idx] not in NUMERALS:
             return 'error'
@@ -61,7 +60,6 @@ class DiceMgr:
         # Return if it's at the end
         if idx == len(query):
             return allres
-        # Jump ship if the next symbol is invalid
         if query[idx] not in 'dk+-':
             return 'error'
         # If its dk,

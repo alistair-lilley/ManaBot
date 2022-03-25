@@ -1,0 +1,46 @@
+{"data.dir" :
+    [
+        {"bans.txt" :
+            [
+                "EDHduelban",
+                "EDHmultiban",
+                "EDHsingleban"
+            ]
+        },
+
+        "images",
+
+        {"json.txt" :
+            [
+                "blacklist",
+                "AllCardsJSON.json.hash",
+                "hash"
+            ]
+        },
+
+        {"json.json" :
+            [
+                "AllCardsJSON"
+            ]
+        },
+
+        {"readintexts.txt" :
+            [
+                "clr",
+                "dchelp",
+                "rules",
+                "rules.txt.hash",
+                "tghelp"
+            ]
+        },
+
+        "resizedpics",
+        "toparse",
+        "txts"
+    ],
+
+"data.jpg" :
+    [
+        "default"
+    ]
+}

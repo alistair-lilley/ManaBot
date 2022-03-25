@@ -1,4 +1,5 @@
-import string
+import string, os, shutil, sys
+from PIL import Image
 
 NUMERALS = set([str(i) for i in range(0,10)]+["."])
 
@@ -158,3 +159,58 @@ def findSimilar(L, name, N=7):
         top[maxCard] = tops[maxCard]
         del (tops[maxCard])
     return list(sorted(top, key=top.get))
+
+
+def ensureFileDir(pathDicts,key,v,currPath):
+    if type(pathDicts[key][v]) == dict:
+        val = list(pathDicts[key][v])[0]
+    else:
+        val = pathDicts[key][v]
+    if '.' in val:
+        val = '.'.join(val.split('.')[:-1])
+    if not os.path.exists(currPath + '/' + val):
+        os.mkdir(currPath + '/' + val)
+    if type(pathDicts[key][v]) == dict:
+        ensureFiles(pathDicts[key][v], currPath)
+
+def ensureFileTxt(pathDicts,key,v,currPath):
+    val = pathDicts[key][v]
+    pathToTxt = currPath + '/' + val + '.txt'
+    if not os.path.exists(pathToTxt):
+        with open(pathToTxt, 'w') as f:
+            f.write("Empty")
+
+def ensureFileJpg(pathDicts,key,v,currPath):
+    val = pathDicts[key][v]
+    pathToJpg = currPath + "/" + val + ".jpg"
+    if not os.path.exists(pathToJpg):
+        img = Image.new("RGB", (361, 500))
+        img.save(pathToJpg)
+
+def ensureFileJson(pathDicts,key,v,currPath):
+    val = pathDicts[key][v]
+    pathToJson = currPath + "/" + val + ".json"
+    if not os.path.exists(pathToJson):
+        with open(pathToJson, 'w') as f:
+            f.write("{}")
+
+def ensureFileEach(pathDicts,currPath,mode,key,v):
+    if mode == 'dir':
+        ensureFileDir(pathDicts,key,v,currPath)
+    if mode == 'txt':
+        ensureFileTxt(pathDicts,key,v,currPath)
+    if mode == "jpg":
+        ensureFileJpg(pathDicts,key,v,currPath)
+    if mode == "json":
+        ensureFileJson(pathDicts,key,v,currPath)
+
+def ensureFiles(pathDicts, prevPath=os.getcwd()):
+    for key in list(pathDicts.keys()):
+        mode = key.split('.')[-1]
+        keyPath = '.'.join(key.split('.')[:-1])
+        currPath = prevPath + '/' + keyPath
+        if not os.path.exists(currPath):
+            os.mkdir(currPath)
+        for v in range(len(pathDicts[key])):
+            ensureFileEach(pathDicts,currPath,mode,key,v)
+

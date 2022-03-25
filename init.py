@@ -23,7 +23,7 @@ __all__ = [
     "UpdateManager"
 ]
 
-import os, discord, logging, asyncio, sys
+import os, discord, logging, asyncio, sys, json
 from aiogram import Bot, Dispatcher
 from aiogram.types import InlineQuery
 from datetime import datetime
@@ -36,6 +36,20 @@ from Managers.dicemanager import DiceMgr
 from Managers.botmanager import BotMgr
 from Managers.updatemanager import Updater
 from helpers.helperfns import simplifyString
+from helpers.helperfns import ensureFiles
+
+########################################################################################################################
+########################################################################################################################
+########################################################################################################################
+
+# This is to ensure all necessary files are loaded into the system before anything else loads, cuz otherwise BAD THINGS
+# HAPPEN
+
+ensureFiles(json.load(open("data/fileStruct.json")))
+
+########################################################################################################################
+########################################################################################################################
+########################################################################################################################
 
 # Load all environment variables
 load_dotenv()
@@ -63,15 +77,6 @@ logging.basicConfig(level=logging.INFO)
 tgbot = Bot(token=TGTOKEN)
 dp = Dispatcher(tgbot)
 os.chdir(os.path.dirname(__file__))
-
-########################################################################################################################
-########################################################################################################################
-########################################################################################################################
-    
-paths = [d for d in ["data/"+r for r in ["toparse/","txts/","json/","bans/","resizedpics/","images/"]]]
-for p in paths:
-    if not os.path.isdir(p):
-        os.mkdir(p)
 
 ########################################################################################################################
 ########################################################################################################################

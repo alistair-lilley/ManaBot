@@ -1,4 +1,4 @@
-import string, os, shutil, sys
+import string, os
 from PIL import Image
 
 NUMERALS = set([str(i) for i in range(0,10)]+["."])
@@ -6,7 +6,7 @@ NUMERALS = set([str(i) for i in range(0,10)]+["."])
 def edist(sone, stwo, i, j, table):
     if table[i][j] >= 0:
         return table[i][j]
-    comp = (0,1)[sone[i] == stwo[j]]
+    comp = (1,0)[sone[i] == stwo[j]]
     if i == 0 and j == 0:
         table[0][0] = comp
         return table[0][0]
@@ -145,12 +145,12 @@ def smS(arr):
     smergeSort(arr, 0, len(arr)-1)
 
 
-def findSimilar(L, name, N=7):
+def findSimilar(L, name, N=5):
     top = {}
     tops = {}
     for l in L:
         try:
-            dist = edist(l, name, len(l), len(name), [[-1 for i in range(len(l))] for j in range(len(name))])
+            dist = edist(l, name, len(l)-1, len(name)-1, [[-1 for i in range(len(name))] for j in range(len(l))])
             tops[l] = dist
         except:
             pass
@@ -159,7 +159,6 @@ def findSimilar(L, name, N=7):
         top[maxCard] = tops[maxCard]
         del (tops[maxCard])
     return list(sorted(top, key=top.get))
-
 
 def ensureFileDir(pathDicts,key,v,currPath):
     if type(pathDicts[key][v]) == dict:

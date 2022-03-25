@@ -2,7 +2,6 @@
 '''
     This file is designed to create a singular, all-encompassing card manager object.
 '''
-from PIL import Image
 from helpers.card import JSONParser, loadAllImages
 from helpers.helperfns import *
 
@@ -27,7 +26,9 @@ class CardMgr:
             self.cards = {simplifyString(c.feats["Name"]):c for c in JSONP.parseJSON(data_path)}
             self.cardnames = [card for card in self.cards]
             smS(self.cardnames)
-            print(f"Lengths: cardnames {len(self.cardnames)}, cards {len(self.cards)}, image paths {len(self.image_path_d)}"
+            print(f"Lengths: cardnames {len(self.cardnames)}, "
+                  f"cards {len(self.cards)}, "
+                  f"image paths {len(self.image_path_d)}"
                   f", image names {len(self.image_name_d)}")
         except:
             print("Json file not found")
@@ -53,14 +54,20 @@ class CardMgr:
 
     async def handle(self,cmd,query):
         if cmd == "!card":
-            try:
-                card = await self._getCard(query)
-                return [card[0],card[1],None]
-            except:
-                return ["An error occurred searching" + query, "data/default.jpg"]
+            card = await self._getCard(query)
+            return card
         elif cmd == "!raw":
-            card = await self._getRaw(query)
-            return [card,None,None]
+            card = self._getRaw(query)
+            return card
+
+    ############################################################################
+    ############################################################################
+
+    def _getRaw(self,cardname):
+        try:
+            return [self.cards[cardname].sendRaw(), None, None]
+        except:
+            return [None, None, None]
 
     ############################################################################
     ############################################################################
@@ -72,53 +79,22 @@ class CardMgr:
             self.similars = findSimilar(self.cardnames,cardname)
         except:
             pass
-        try:
-            cardpic = await self._searchImage(cardname)
-        except:
-            await self.bot.send_message(self.metg,"Whoa! Big error in card pic search\nNext is card data search")
-            cardpic = "data/default.jpg"
 
         try:
             cardd = await self._searchDescription(cardname)
         except:
             await self.bot.send_message(self.metg, "Whoa! Big error in card data search")
             cardd = "An error occurred searching" + cardname
-        return [cardd, cardpic]
 
-
-    def _getRaw(self,cardname):
         try:
-            return self.cards[cardname].sendRaw()
+            cardpic = await self._searchImage(cardname)
         except:
-            return None
-
-        ############################################################################
-        ############################################################################
-
-    # Image section
-
-    async def _searchImage(self,cardname):
-        try:
-            cardpic = await self._getImage(cardname)
-        except:
-            print("Whoa! Big error in getting card image.")
+            await self.bot.send_message(self.metg,"Whoa! Big error in card pic search\nNext is card data search")
             cardpic = "data/default.jpg"
-        return cardpic
 
+        self.similars = []
 
-    async def _getImage(self,cardname):
-        if cardname in self.image_name_d:
-            propName = cardname
-        else:
-            propName = self.similars[0]
-        path = self.image_path_d[propName]
-        # Checks to see if the file is too big because telegram won't send pictures that are over 350 pixels
-        sizecheck = Image.open(path)
-        if sizecheck.size[0] > 350:
-            resized = sizecheck.resize((350, 466), Image.ANTIALIAS)
-            path = '/data/resizedpics/' + propName + '.jpg'
-            resized.save(path)
-        return path
+        return [cardd, cardpic, None]
 
         ############################################################################
         ############################################################################
@@ -146,12 +122,39 @@ class CardMgr:
             cardData = "No data for this card."
         if simstr:
             cardData = f'Card not found. Closest match:\n{cardData}\n\nDid you mean...\n{simstr}'
-        self.similars = []
         return cardData
 
         ############################################################################
         ############################################################################
 
+    # Image section
+
+    async def _searchImage(self,cardname):
+        try:
+            cardpic = await self._getImage(cardname)
+        except:
+            print("Whoa! Big error in getting card image.")
+            cardpic = "data/default.jpg"
+
+        return cardpic
+
+
+    async def _getImage(self,cardname):
+        if cardname in self.image_name_d:
+            propName = cardname
+        else:
+            propName = self.similars[0]
+        path = self.image_path_d[propName]
+        # Checks to see if the file is too big because telegram won't send pictures that are over 350 pixels
+        sizecheck = Image.open(path)
+        if sizecheck.size[0] > 375:
+            resized = sizecheck.resize((375, 500), Image.ANTIALIAS)
+            path = '/data/resizedpics/' + propName + '.jpg'
+            resized.save(path)
+        return path
+
+        ############################################################################
+        ############################################################################
 
         # Default
 

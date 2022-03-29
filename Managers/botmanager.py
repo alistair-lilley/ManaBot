@@ -29,7 +29,7 @@ class BotMgr:
     # Telegram
 
     async def _toTelegram(self,message,text,photo):
-        query = ' '.join(message.query.split()[1:])
+        query = message.query
         if not query:
             query = "ManaBot"
         # messages require unique hashs, so we're making a new one

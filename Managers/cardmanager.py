@@ -19,7 +19,7 @@ class CardMgr:
         self.metg = metg
         self.image_path = image_path
         self.data_path = data_path
-        self.prevcards = {} # quicker lookup of previous searched card
+        self.prevcards = dict() # quicker lookup of previous searched card
         self.similars = []
         self.image_path_d, self.image_name_d = loadAllImages(image_path)
         try:
@@ -75,10 +75,13 @@ class CardMgr:
     # Getting all data
 
     async def _getCard(self,cardname):
-        try:
-            self.similars = findSimilar(self.cardnames,cardname)
-        except:
-            pass
+        if cardname not in self.prevcards:
+            try:
+                self.similars = findSimilar(self.cardnames,cardname)
+                self.prevcards[cardname] = self.similars[0]
+                self.prevcards[self.similars[0]] = self.similars[0]
+            except:
+                pass
 
         try:
             cardd = await self._searchDescription(cardname)
@@ -110,8 +113,8 @@ class CardMgr:
 
 
     async def _getDescription(self,cardname):
-        if cardname in self.cards:
-            card = self.cards[cardname]
+        if cardname in self.prevcards:
+            card = self.cards[self.prevcards[cardname]]
             simstr = ''
         else:
             card = self.cards[self.similars[0]]
@@ -143,7 +146,10 @@ class CardMgr:
         if cardname in self.image_name_d:
             propName = cardname
         else:
-            propName = self.similars[0]
+            if cardname in self.prevcards:
+                propName = self.prevcards[cardname]
+            else:
+                propName = self.similars[0]
         path = self.image_path_d[propName]
         # Checks to see if the file is too big because telegram won't send pictures that are over 350 pixels
         sizecheck = Image.open(path)

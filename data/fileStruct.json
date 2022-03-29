@@ -1,46 +1,51 @@
-{"data.dir" :
-    [
-        {"bans.txt" :
-            [
-                "EDHduelban",
-                "EDHmultiban",
-                "EDHsingleban"
-            ]
-        },
+{
+    "data.dir" :
+        [
+            {
+		        "bans.txt" :
+		            [
+		                "EDHduelban",
+		                "EDHmultiban",
+		                "EDHsingleban",
+                        "Pauperban",
+                        "Modernban"
+		            ]
+            },
 
-        "images",
+            "images",
 
-        {"json.txt" :
-            [
-                "blacklist",
-                "AllCardsJSON.json.hash",
-                "hash"
-            ]
-        },
+            {
+		        "json.txt" :
+		            [
+		                "blacklist",
+		                "AllCardsJSON.json.hash",
+		                "hash"
+		            ],
 
-        {"json.json" :
-            [
-                "AllCardsJSON"
-            ]
-        },
+		        "json.json" :
+		            [
+		                "AllCardsJSON"
+		            ]
+            },
 
-        {"readintexts.txt" :
-            [
-                "clr",
-                "dchelp",
-                "rules",
-                "rules.txt.hash",
-                "tghelp"
-            ]
-        },
+            {
+                "readintexts.txt" :
+                    [
+                        "clr",
+                        "dchelp",
+                        "rules",
+                        "rules.txt.hash",
+                        "tghelp"
+                    ]
+            },
 
-        "resizedpics",
-        "toparse",
-        "txts"
-    ],
+            "resizedpics",
+            "toparse",
+            "txts"
+        ],
 
-"data.jpg" :
-    [
-        "default"
-    ]
+    "data.jpg" :
+        [
+            "default"
+        ]
 }

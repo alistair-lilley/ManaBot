@@ -29,7 +29,7 @@ class DeckMgr:
             furl = attached[1]
             r = requests.get(furl)
             # Save the file data
-            srcpath = self.ptb+"/data/toparse/"+fullname
+            srcpath = "data/toparse/"+fullname
             open(srcpath, 'wb').write(r.content)
             # Convert!
             decks = self._convert(fullname)
@@ -55,8 +55,8 @@ class DeckMgr:
     def _convert(self, f):
         # parse name and get paths
         name, ext = stripExt(f)
-        srcpath = self.ptb + "/data/toparse/"
-        textpath = self.ptb + "/data/txts/"
+        srcpath = "data/toparse/"
+        textpath = "data/txts/"
     
         # flist is a list of tuples of (path, filename) so that it uploads the file and a palatable name for it
         # Collect it dynamically
@@ -84,8 +84,8 @@ class DeckMgr:
     def _convertZip(self, Z):
         zipname, zext = stripExt(Z)
         # mkdir with same name as zip
-        subparse = self.ptb + "/data/toparse/" + zipname
-        subtext = self.ptb + "/data/txts/" + zipname
+        subparse = "data/toparse/" + zipname
+        subtext = "data/txts/" + zipname
         # Make sure there aren't any of these dirs, then make them
         # Baseically ensure they exist and are empty
         if os.path.exists(subparse):
@@ -95,7 +95,7 @@ class DeckMgr:
         os.mkdir(subparse)
         os.mkdir(subtext)
         # extract all to that dir
-        with ZipFile(self.ptb + "/data/toparse/" + Z) as zf:
+        with ZipFile("data/toparse/" + Z) as zf:
             zf.extractall(subparse)
         # Convert all the files and collect their paths,names
         flist = []
@@ -192,38 +192,25 @@ class DeckMgr:
 
     # Bans
 
-    # Checks cards against a banlist; only works for EDH
+    # Checks cards against a banlist;
+    #           current formats supported: EDH (1v1/3+/duel), pauper, modern
     def _checkbanned(self, f):
-        # load banlists and decklist
-        singlebanned = [line for line in open(self.ptb + "/data/bans/EDHsingleban.txt")]
-        multibanned = [line for line in open(self.ptb + "/data/bans/EDHmultiban.txt")]
-        duelbanned = [line for line in open(self.ptb + "/data/bans/EDHduelban.txt")]
+        bandir = "data/bans/"
+        formats = ["EDHsingle","EDHmulti","EDHduel","Pauper","Modern"]
+        titles = ["*"+gameFormat+" bans:*\n" for gameFormat in
+                  ["1v1 EDH","3+ player EDH","Duel EDH","Pauper","Modern"]]
+        banlists = [[line for line in open(bandir+gameFormat+"ban.txt")] for gameFormat in formats]
+        gameforms = list(zip(titles,banlists))
         deck = [line[2:] for line in open(f)]
-        # go through sp bans
-        sbans = [f"**Deck: {f.split('/')[-1]}**\n*Single player EDH bans:*\n"]
-        check = list(set(deck).intersection(set(singlebanned))) # check the intersection of the two things
-        if not check:
-            sbans.append("None\n")
-        else:
-            sbans += check
-        # repeat with mp
-        sbans = ''.join(sbans)
-        mbans = ["*Multiplayer EDH bans:*\n"]
-        check = list(set(deck).intersection(set(multibanned)))
-        if not check:
-            mbans.append("None\n")
-        else:
-            mbans += check
-        mbans = ''.join(mbans)
-        dbans = ["*Duel EDH bans:*\n"]
-        check = list(set(deck).intersection(set(duelbanned)))
-        if not check:
-                dbans.append("None")
-        else:
-                dbans += check
-        dbans = ''.join(dbans)
-        allbans = sbans + mbans + dbans + '\n\n'
-        # return as string
+        bans = [f"**Deck: {f.split('/')[-1]}**\n"]
+        for gameform in gameforms:
+            bans.append(gameform[0])
+            check = list(set(deck).intersection(set(gameform[1])))
+            if not check:
+                bans.append("None\n")
+            else:
+                bans += check
+        allbans = ''.join(bans)
         return allbans
 
     ###############################################################
@@ -281,7 +268,6 @@ class DeckMgr:
         return data, found
 
     def _analyze(self, f):
-        # get decklist
         deck = [line.strip() for line in open(f)]
         datatypes = ["color","costs","converted","avgcost","lands","cardtypes"]
         data = {dat:dict() for dat in datatypes}
@@ -292,7 +278,9 @@ class DeckMgr:
             if not found:
                 return False
         data["converted"] = sum([data["costs"][t] for t in data["costs"]])
-        data["avgcost"] = round(data["converted"] / (sum([int(c[0]) for c in deck if c[0] in NUMERALS]) - sum([data["lands"][t] for t in data["lands"]])), 2)
+        data["avgcost"] = round(data["converted"] /
+                                (sum([int(c[0]) for c in deck if c[0] in NUMERALS]) -
+                                 sum([data["lands"][t] for t in data["lands"]])), 2)
         data = self._parseData(data)
         return '\n'.join([data[d] for d in data])
 
@@ -312,7 +300,6 @@ class DeckMgr:
 
 
 
-
     ###############################################################
     ###############################################################
     ###############################################################
@@ -322,11 +309,11 @@ class DeckMgr:
     # Clears all decks from parse and text dirs
     def _cleardecks(self):
         for p in self.dirs:
-            for d in os.listdir(self.ptb+p):
-                if os.path.isdir(self.ptb+p+d):
-                    shutil.rmtree(self.ptb+p+d)
+            for d in os.listdir(+p):
+                if os.path.isdir(+p+d):
+                    shutil.rmtree(+p+d)
                 else:
-                    os.remove(self.ptb+p+d)
+                    os.remove(+p+d)
     
     async def scheduledClear(self):
         while True:

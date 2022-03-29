@@ -28,16 +28,18 @@ class BotMgr:
 
     # Telegram
 
-    async def _toTelegram(self,message,content,photo):
+    async def _toTelegram(self,message,text,photo):
         query = ' '.join(message.query.split()[1:])
+        if not query:
+            query = "ManaBot"
         # messages require unique hashs, so we're making a new one
         newhash = hashlib.md5(message.id.encode()).hexdigest()
         arts = []
         if photo:
             photoart = await self._photoArticle(newhash,photo)
             arts.append(photoart)
-        if content:
-            textart = self._textArticle(query,newhash,content)
+        if text:
+            textart = self._textArticle(query,newhash,text)
             arts.append(textart)
         if arts:
             await self.tgbot.answer_inline_query(message.id,results=arts,cache_time=1)

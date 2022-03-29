@@ -51,17 +51,14 @@ async def on_ready():
         print("Skipping database update")
 
 # Telegram
-
+# Currently Telegram Manabot only supports cards, cuz I rarely use it for rules anyway and that makes it harder to use
 @dp.inline_handler()
 async def on_inline(message: InlineQuery):
-    tosend = open(tgbothelp).read()
+    tosend = [open(tgbothelp).read(), None, None]
 
-    cmd = simplifyString(message.query.split()[0]) # Since you can search *either* card or rule, we use command
-    cmd = '!'+cmd
-    query = simplifyString(' '.join(message.query.split()[1:]))
-    for mgr in managers:
-        if cmd in mgr.cmds:
-            tosend = await mgr.handle(cmd,query)
+    if message.query:
+        query = simplifyString(message.query)
+        tosend = await CardManager.handle("!card",query)
 
     await BotManager.send(tosend,message=message)
 

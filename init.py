@@ -19,6 +19,7 @@ __all__ = [
     "dp",
     "InlineQuery",
     "managers",
+    "CardManager",
     "BotManager",
     "UpdateManager"
 ]

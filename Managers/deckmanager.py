@@ -197,7 +197,7 @@ class DeckMgr:
     def _checkbanned(self, f):
         bandir = "data/bans/"
         formats = ["EDHsingle","EDHmulti","EDHduel","Pauper","Modern"]
-        titles = ["*"+gameFormat+" bans:*\n" for gameFormat in
+        titles = ["__"+gameFormat+" bans:__\n" for gameFormat in
                   ["1v1 EDH","3+ player EDH","Duel EDH","Pauper","Modern"]]
         banlists = [[line for line in open(bandir+gameFormat+"ban.txt")] for gameFormat in formats]
         gameforms = list(zip(titles,banlists))

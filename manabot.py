@@ -81,20 +81,22 @@ async def on_message(message):
     if len(contParsed):
         cmd = contParsed[0].lower()
         query = simplifyString(' '.join(contParsed[1:]))
+
         for mgr in managers:
             if cmd in mgr.cmds:
                 if message.attachments:
-                    msgatt = message.attachments[0]
-                    tosend = await managers[0].handle(cmd,query,attached=[msgatt.filename,msgatt.url])
+                    tosend = [await managers[0].handle(cmd,query,attached=[msgatt.filename,msgatt.url])
+                              for msgatt in message.attachments]
                 else:
-                    tosend = await mgr.handle(cmd,query)
+                    tosend = [await mgr.handle(cmd,query)]
 
-                await BotManager.send(tosend,channel=channel)
+                for send in tosend:
+                    await BotManager.send(send,channel=channel)
 
     elif message.attachments:
-        msgatt = message.attachments[0]
-        tosend = await managers[0].handle('','',attached=[msgatt.filename,msgatt.url])
-        await BotManager.send(tosend,channel=channel)
+        for msgatt in message.attachments:
+            tosend = await managers[0].handle('','',attached=[msgatt.filename,msgatt.url])
+            await BotManager.send(tosend,channel=channel)
 
 
 

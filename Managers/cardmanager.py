@@ -21,17 +21,11 @@ class CardMgr:
         self.data_path = data_path
         self.prevcards = dict() # quicker lookup of previous searched card
         self.similars = []
-        self.image_path_d, self.image_name_d = loadAllImages(image_path)
-        try:
-            self.cards = {simplifyString(c.feats["Name"]):c for c in JSONP.parseJSON(data_path)}
-            self.cardnames = [card for card in self.cards]
-            smS(self.cardnames)
-            print(f"Lengths: cardnames {len(self.cardnames)}, "
-                  f"cards {len(self.cards)}, "
-                  f"image paths {len(self.image_path_d)}"
-                  f", image names {len(self.image_name_d)}")
-        except:
-            print("Json file not found")
+        self.image_path_d, self.image_name_d = loadAllImages(self.image_path)
+        self.cards = dict()
+        self.cards_by_len = dict()
+        self.cards = []
+        self.update() # I feel like this is bad practice? but it reduces code
 
     ############################################################################
     ############################################################################
@@ -42,10 +36,11 @@ class CardMgr:
         self.image_path_d, self.image_name_d = loadAllImages(self.image_path)
         try:
             self.cards = {simplifyString(c.feats["Name"]):c for c in JSONP.parseJSON(self.data_path)}
-            self.cardnames = [card for card in self.cards]
-            smS(self.cardnames)
-            print(f"Lengths: cardnames {len(self.cardnames)}, cards {len(self.cards)}, image paths {len(self.image_path_d)}"
-                  f", image names {len(self.image_name_d)}")
+            for card in self.cards:
+                self.cards_by_len[len(card)] = self.cards_by_len.get(len(card),[]) + [card]
+            print(f"Lengths: cards {len(self.cards)}, "
+                  f"image paths {len(self.image_path_d)}, "
+                  f"image names {len(self.image_name_d)}")
         except:
             print("Json file not found")
 
@@ -77,22 +72,32 @@ class CardMgr:
     async def _getCard(self,cardname):
         if cardname not in self.prevcards:
             try:
-                self.similars = findSimilar(self.cardnames,cardname)
-                self.prevcards[cardname] = self.similars[0]
-                self.prevcards[self.similars[0]] = self.similars[0]
+                namelen = len(cardname)
+                if namelen < 6:
+                    namelen = 6
+                elif namelen > max(self.cards_by_len)-7:
+                    namelen = max(self.cards_by_len)-7
+                similar_candidates = []
+                for i in range(namelen-5,namelen+6):
+                    similar_candidates += self.cards_by_len[i]
+                self.similars = findSimilar(similar_candidates,cardname)
+                self.prevcards[cardname] = self.similars
+                self.prevcards[self.similars[0]] = [self.similars[0]]
             except:
                 pass
+        else:
+            self.similars = self.prevcards[cardname]
 
         try:
             cardd = await self._searchDescription(cardname)
         except:
-            await self.bot.send_message(self.metg, "Whoa! Big error in card data search")
+            await self.bot.send_message(self.metg, "Whoa! Big error in card data search\nNext is card pic search")
             cardd = "An error occurred searching" + cardname
 
         try:
-            cardpic = await self._searchImage(cardname)
+            cardpic = await self._searchImage()
         except:
-            await self.bot.send_message(self.metg,"Whoa! Big error in card pic search\nNext is card data search")
+            await self.bot.send_message(self.metg,"Whoa! Big error in card pic search")
             cardpic = "data/default.jpg"
 
         self.similars = []
@@ -106,20 +111,19 @@ class CardMgr:
 
     async def _searchDescription(self,cardname):
         try:
-            carddata = await self._getDescription(cardname)
+            carddata = await self._getDescription()
         except:
-            carddata = await self._getDefault(cardname,"Card data")
+            print("Whoa! Big error in getting card description")
+            carddata = f"Card data for {cardname} not found."
         return carddata
 
 
-    async def _getDescription(self,cardname):
-        if cardname in self.prevcards:
-            card = self.cards[self.prevcards[cardname]]
-            simstr = ''
-        else:
-            card = self.cards[self.similars[0]]
-            propSims = [self.cards[sim].feats["Name"] for sim in self.similars]
-            simstr = '\n'.join(propSims[1:])
+    async def _getDescription(self):
+        card = self.cards[self.similars[0]]
+        simstr = ''
+        if len(self.similars) > 1:
+            propSims = [self.cards[sim].feats["Name"] for sim in self.similars[1:]]
+            simstr = '\n'.join(propSims)
         cardData = card.printData()
         if cardData == '':
             cardData = "No data for this card."
@@ -132,9 +136,9 @@ class CardMgr:
 
     # Image section
 
-    async def _searchImage(self,cardname):
+    async def _searchImage(self):
         try:
-            cardpic = await self._getImage(cardname)
+            cardpic = await self._getImage()
         except:
             print("Whoa! Big error in getting card image.")
             cardpic = "data/default.jpg"
@@ -142,14 +146,8 @@ class CardMgr:
         return cardpic
 
 
-    async def _getImage(self,cardname):
-        if cardname in self.image_name_d:
-            propName = cardname
-        else:
-            if cardname in self.prevcards:
-                propName = self.prevcards[cardname]
-            else:
-                propName = self.similars[0]
+    async def _getImage(self):
+        propName = self.similars[0]
         path = self.image_path_d[propName]
         # Checks to see if the file is too big because telegram won't send pictures that are over 350 pixels
         sizecheck = Image.open(path)
@@ -158,14 +156,6 @@ class CardMgr:
             path = '/data/resizedpics/' + propName + '.jpg'
             resized.save(path)
         return path
-
-        ############################################################################
-        ############################################################################
-
-        # Default
-
-    async def _getDefault(self,cardname,setting):
-        return f"{setting} for {cardname} not found."
 
         ############################################################################
         ############################################################################

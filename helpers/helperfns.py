@@ -1,9 +1,9 @@
-import pyximport
+'''import pyximport
 pyximport.install()
-from helpers.eDist import edist
+from helpers.eDist import edist'''
 import string, os
 from PIL import Image
-
+from editdistance import eval
 
 NUMERALS = set([str(i) for i in range(0,10)]+["."])
 
@@ -128,21 +128,24 @@ def smergeSort(arr, l, r):
 def smS(arr):
     smergeSort(arr, 0, len(arr)-1)
 
-
 def findSimilar(L, name, N=5):
-    top = {}
     tops = {}
     for l in L:
         try:
-            dist = edist(l, name, len(l)-1, len(name)-1, [[-1 for i in range(len(name))] for j in range(len(l))])
-            tops[l] = dist
+            #dist = edist(l, name, len(l)-1, len(name)-1, [[-1 for i in range(len(name))] for j in range(len(l))])
+            dist = eval(l,name)
+            if len(tops) <= N:
+                tops[l] = dist
+            elif dist < tops[max(tops)]:
+                del tops[max(tops)]
+                tops[l] = dist
         except:
             pass
-    while len(top) < N:
-        maxCard = min(tops, key=tops.get)
-        top[maxCard] = tops[maxCard]
-        del (tops[maxCard])
-    return list(sorted(top, key=top.get))
+    return list(sorted(tops, key=tops.get))
+
+
+
+
 
 def ensureFileDir(pathDicts,key,v,currPath):
     if type(pathDicts[key][v]) == dict:

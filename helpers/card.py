@@ -39,7 +39,7 @@ class Card:
 
     def printData(self):
         ordered = ["Name", "Mana Cost", "Color(s)", "Color ID", "Type", "P/T", "Text"] #, "Related cards"]; get that l8r
-        return "\n".join([f'{o}: {self.feats[o]}' for o in ordered if o in self.feats])
+        return "\n".join([f'**{o}:** {self.feats[o]}' for o in ordered if o in self.feats])
 
 #######################################################################################################################
 #######################################################################################################################
